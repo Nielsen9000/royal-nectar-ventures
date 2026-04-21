@@ -104,8 +104,8 @@
     let timer = null;
     let paused = false;
     let firstRun = true;
-    const DURATION = 2.6;
-    const FIRST_DURATION = 1.1;
+    const DURATION = 4.2;
+    const FIRST_DURATION = 2.6;
 
     bottles.forEach((b, i) => gsap.set(b, { autoAlpha: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 0.6 }));
     gsap.set(hero, { backgroundColor: PRODUCTS[0].color });
@@ -272,10 +272,6 @@
       scrollTrigger: { trigger: ".story__facts", start: "top 88%", toggleActions: "play none none reverse" },
       y: 30, autoAlpha: 0, duration: 0.6, stagger: 0.08, ease: "power3.out"
     });
-    gsap.from(".story__body", {
-      scrollTrigger: { trigger: ".story__body", start: "top 88%", toggleActions: "play none none reverse" },
-      y: 30, autoAlpha: 0, duration: 0.6, ease: "power3.out"
-    });
   }
 
   function initOrbital() {
@@ -437,54 +433,34 @@
 
     sections.forEach((section, sectionIndex) => {
       const bottle    = section.querySelector(".product__bottle");
-      const adinkra   = section.querySelector(".product__adinkra");
       const textItems = section.querySelectorAll(".product__text > *");
-      const isEven = (sectionIndex % 2) === 1;
+      const textFromX = (sectionIndex % 2 === 0) ? -40 : 40;
 
-      if (!reduced) {
-        gsap.fromTo(bottle,
-          { y: 120, scale: 0.88, rotate: isEven ? 4 : -4 },
-          {
-            y: -120, scale: 1.06, rotate: isEven ? -4 : 4,
-            ease: "none",
-            scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: true }
-          }
-        );
-
-        gsap.fromTo(adinkra,
-          { rotate: isEven ? -60 : 60, scale: 0.9 },
-          {
-            rotate: isEven ? 60 : -60, scale: 1.05,
-            ease: "none",
-            scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: true }
-          }
-        );
-      }
+      gsap.from(bottle, {
+        opacity: 0,
+        y: reduced ? 0 : 60,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 70%",
+          once: true,
+          toggleActions: "play none none none"
+        }
+      });
 
       gsap.from(textItems, {
-        scrollTrigger: { trigger: section, start: "top 72%", toggleActions: "play none none reverse" },
-        y: 38,
-        autoAlpha: 0,
-        duration: 0.85,
-        stagger: 0.07,
-        ease: "back.out(1.4)"
-      });
-
-      gsap.from(section.querySelectorAll(".product__spec > div"), {
-        scrollTrigger: { trigger: section, start: "top 60%", toggleActions: "play none none reverse" },
-        y: 20,
-        autoAlpha: 0,
-        duration: 0.55,
-        stagger: 0.06,
-        ease: "power3.out"
-      });
-
-      gsap.from(section.querySelector(".product__kente"), {
-        scrollTrigger: { trigger: section, start: "top 85%" },
-        scaleX: 0,
-        transformOrigin: "0% 50%",
-        duration: 1,
-        ease: "power2.out"
+        opacity: 0,
+        x: reduced ? 0 : textFromX,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 65%",
+          once: true,
+          toggleActions: "play none none none"
+        }
       });
     });
   }
