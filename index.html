@@ -12,14 +12,31 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="public/images/bottles/buccaneer-white-rum.png" />
-  <link rel="preload" as="image" href="public/images/bottles/qe-vodka.png" />
-  <link rel="icon" type="image/png" href="public/images/rnv-logo.png" />
+  <link rel="preload" as="image" href="public/images/bottles/buccaneer-white-rum-nobg.png" fetchpriority="high" />
+  <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
-  <link rel="stylesheet" href="src/styles/main.css?v=2" />
+  <link rel="stylesheet" href="src/styles/main.css?v=12" />
 </head>
 <body>
+  <div class="loader" id="loader" role="status" aria-label="Loading Royal Nectar Ventures">
+    <div class="loader__inner">
+      <svg class="loader__antler" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 44 L24 24" />
+          <path d="M24 28 L16 20 M16 20 L10 22 M16 20 L13 12 M16 20 L8 16" />
+          <path d="M24 28 L32 20 M32 20 L38 22 M32 20 L35 12 M32 20 L40 16" />
+          <path d="M24 34 L18 28 M18 28 L14 30" />
+          <path d="M24 34 L30 28 M30 28 L34 30" />
+          <circle cx="24" cy="44" r="1.4" fill="currentColor" stroke="none" />
+        </g>
+      </svg>
+      <span class="loader__wordmark">Royal Nectar Ventures</span>
+      <span class="loader__tag">The best quality drinks on the market</span>
+    </div>
+    <div class="loader__bar" aria-hidden="true"><span id="loaderFill"></span></div>
+  </div>
+
   <div class="progress" aria-hidden="true"><span></span></div>
 
   <header class="nav" id="nav">
@@ -39,7 +56,7 @@
 
     <nav class="nav__links" aria-label="Primary">
       <a href="#story">Our Story</a>
-      <a href="#products">Products</a>
+      <a href="products.html">Products</a>
       <a href="#contact">Contact</a>
       <a class="nav__cta" href="#contact">
         <span>Trade enquiry</span>
@@ -59,7 +76,7 @@
       <span class="menu-overlay__eyebrow">Royal Nectar Ventures &middot; Accra</span>
       <ul class="menu-overlay__list">
         <li><a href="#story" data-menu-link>Our Story</a></li>
-        <li><a href="#products" data-menu-link>The Seven Bottles</a></li>
+        <li><a href="products.html" data-menu-link>The Seven Bottles</a></li>
         <li><a href="#contact" data-menu-link>Contact &amp; Trade</a></li>
       </ul>
       <div class="menu-overlay__foot">
@@ -72,17 +89,32 @@
   <main id="top">
 
     <section class="hero" id="hero" aria-label="Featured spirits">
+      <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+        <source src="public/videos/hero-reel.mp4" type="video/mp4">
+      </video>
+      <script>
+        (function () {
+          if (window.matchMedia && window.matchMedia("(max-width: 768px)").matches) {
+            var v = document.getElementById("heroVideo");
+            if (!v) return;
+            while (v.firstChild) v.removeChild(v.firstChild);
+            v.removeAttribute("src");
+            try { v.load(); } catch (e) {}
+          }
+        })();
+      </script>
+      <div class="hero__overlay"></div>
       <div class="hero__kente hero__kente--left" aria-hidden="true"></div>
       <div class="hero__kente hero__kente--right" aria-hidden="true"></div>
 
       <div class="hero__inner">
         <div class="hero__copy">
           <span class="hero__marker"><i></i> Accra. Uncorked.</span>
-          <span class="hero__eyebrow" id="heroEyebrow">White Rum</span>
           <h1 class="hero__title" id="heroTitle">Buccaneer White Rum</h1>
+          <span class="hero__eyebrow" id="heroEyebrow">White Rum</span>
           <p class="hero__tagline" id="heroTagline">Clean. Bold. Legendary.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary" href="#products">
+            <a class="btn btn--primary" href="products.html">
               <span>Meet the seven</span>
               <span class="btn__ico" aria-hidden="true">&rarr;</span>
             </a>
@@ -104,25 +136,25 @@
         <div class="hero__stage" aria-hidden="true">
           <div class="hero__halo"></div>
           <div class="hero__bottle is-active" data-idx="0">
-            <img src="public/images/bottles/buccaneer-white-rum.png" alt="" />
+            <img src="public/images/bottles/buccaneer-white-rum-nobg.png" alt="" fetchpriority="high" decoding="async" />
           </div>
           <div class="hero__bottle" data-idx="1">
-            <img src="public/images/bottles/buccaneer-dark-rum.png" alt="" />
+            <img src="public/images/bottles/buccaneer-dark-rum-nobg.png" alt="" fetchpriority="low" decoding="async" />
           </div>
           <div class="hero__bottle" data-idx="2">
-            <img src="public/images/bottles/qe-vodka.png" alt="" />
+            <img src="public/images/bottles/qe-vodka-nobg.png" alt="" fetchpriority="low" decoding="async" />
           </div>
           <div class="hero__bottle" data-idx="3">
-            <img src="public/images/bottles/georgievski-orange.png" alt="" />
+            <img src="public/images/bottles/georgievski-orange-nobg.png" alt="" fetchpriority="low" decoding="async" />
           </div>
           <div class="hero__bottle" data-idx="4">
-            <img src="public/images/bottles/georgievski-cranberry.png" alt="" />
+            <img src="public/images/bottles/georgievski-cranberry-nobg.png" alt="" fetchpriority="low" decoding="async" />
           </div>
           <div class="hero__bottle" data-idx="5">
-            <img src="public/images/bottles/georgievski-lime.png" alt="" />
+            <img src="public/images/bottles/georgievski-lime-nobg.png" alt="" fetchpriority="low" decoding="async" />
           </div>
           <div class="hero__bottle" data-idx="6">
-            <img src="public/images/bottles/pink-mystique-gin.png" alt="" />
+            <img src="public/images/bottles/pink-mystique-gin-nobg.png" alt="" fetchpriority="low" decoding="async" />
           </div>
         </div>
       </div>
@@ -143,31 +175,61 @@
       </div>
     </section>
 
+    <section class="jerrys" id="jerrys" aria-label="Mr. Jerry's Espresso Martini">
+      <div class="jerrys__inner">
+        <div class="jerrys__copy">
+          <span class="jerrys__eyebrow">Featured</span>
+          <h2 class="jerrys__title">Mr. Jerry&rsquo;s Espresso Martini</h2>
+          <p class="jerrys__sub">Ready to Serve Cocktail &middot; 20% ABV</p>
+          <p class="jerrys__body">A sweet style cocktail best enjoyed post dinner, intense coffee bitterness rounded by the vanilla and nutmeg. Super Smooth.</p>
+
+          <ul class="jerrys__awards" aria-label="Awards and accolades">
+            <li class="jerrys__award">
+              <svg class="jerrys__star" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.6l2.95 6.28 6.85.83-5.05 4.77 1.34 6.83L12 17.95 5.91 21.3l1.34-6.83L2.2 9.71l6.85-.83L12 2.6z" fill="currentColor" />
+              </svg>
+              <div class="jerrys__award-text">
+                <strong>Gold Medal 2022</strong>
+                <span>Concours Mondial de Bruxelles</span>
+              </div>
+            </li>
+            <li class="jerrys__award">
+              <svg class="jerrys__star" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.6l2.95 6.28 6.85.83-5.05 4.77 1.34 6.83L12 17.95 5.91 21.3l1.34-6.83L2.2 9.71l6.85-.83L12 2.6z" fill="currentColor" />
+              </svg>
+              <div class="jerrys__award-text">
+                <strong>IWSC 95 Points</strong>
+                <span>International Wine &amp; Spirit Competition</span>
+              </div>
+            </li>
+          </ul>
+
+          <a class="btn btn--primary jerrys__cta" href="#contact">
+            <span>Trade enquiry</span>
+            <span class="btn__ico" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="jerrys__media" aria-hidden="true">
+          <video class="jerrys__video" autoplay muted loop playsinline preload="metadata">
+            <source src="public/videos/mr-jerrys-rotation.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
     <section class="story" id="story" aria-label="Our story">
       <div class="story__pin">
-        <div class="story__grid">
-          <div class="story__col story__col--lead">
-            <span class="story__eyebrow"><i></i> Our story</span>
-            <h2 class="story__headline">
-              <span class="word"><span>We</span></span>
-              <span class="word"><span>bring</span></span>
-              <span class="word"><span>Ghana</span></span>
-              <span class="word word--accent"><span>the</span></span>
-              <span class="word word--accent"><span>bottles</span></span>
-              <span class="word"><span>actually</span></span>
-              <span class="word"><span>worth</span></span>
-              <span class="word"><span>opening.</span></span>
-            </h2>
-          </div>
-          <div class="story__col story__col--body">
-            <p class="story__lede">Royal Nectar Ventures is a Ghanaian importer and distributor of spirits with conviction. We don&rsquo;t chase dusty shelves &mdash; we move the bottles Accra actually opens on a Friday night.</p>
-            <ul class="story__facts">
-              <li><strong>7</strong><span>bottles curated</span></li>
-              <li><strong>1</strong><span>uncompromising standard</span></li>
-              <li><strong>233</strong><span>Accra is home</span></li>
-            </ul>
-          </div>
-        </div>
+        <h2 class="story__headline">
+          <span class="word"><span>We</span></span>
+          <span class="word"><span>bring</span></span>
+          <span class="word"><span>Ghana</span></span>
+          <span class="word word--accent"><span>the</span></span>
+          <span class="word word--accent"><span>bottles</span></span>
+          <span class="word"><span>actually</span></span>
+          <span class="word"><span>worth</span></span>
+          <span class="word"><span>opening.</span></span>
+        </h2>
       </div>
     </section>
 
@@ -176,39 +238,39 @@
         <h2 class="orbital__title">Our Collection</h2>
         <div class="orbital__stage">
           <div class="orbital__ring">
-            <button class="orbital__bottle" type="button" data-target="#buccaneer-white-rum" style="--accent:#0066FF;" aria-label="Buccaneer White Rum — jump to product">
+            <button class="orbital__bottle" type="button" data-target="products.html#buccaneer-white-rum" style="--accent:#0066FF;" aria-label="Buccaneer White Rum — view product">
               <span class="orbital__name">Buccaneer White Rum</span>
-              <img src="public/images/bottles/buccaneer-white-rum-nobg.png" alt="" />
+              <img src="public/images/bottles/buccaneer-white-rum-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">White Rum</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="#buccaneer-dark-rum" style="--accent:#FF5500;" aria-label="Buccaneer Dark Rum — jump to product">
+            <button class="orbital__bottle" type="button" data-target="products.html#buccaneer-dark-rum" style="--accent:#FF5500;" aria-label="Buccaneer Dark Rum — view product">
               <span class="orbital__name">Buccaneer Dark Rum</span>
-              <img src="public/images/bottles/buccaneer-dark-rum-nobg.png" alt="" />
+              <img src="public/images/bottles/buccaneer-dark-rum-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Dark Rum</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="#qe-vodka" style="--accent:#E8000D;" aria-label="QE Premium Vodka — jump to product">
+            <button class="orbital__bottle" type="button" data-target="products.html#qe-vodka" style="--accent:#E8000D;" aria-label="QE Premium Vodka — view product">
               <span class="orbital__name">QE Premium Vodka</span>
-              <img src="public/images/bottles/qe-vodka-nobg.png" alt="" />
+              <img src="public/images/bottles/qe-vodka-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Premium Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="#georgievski-orange" style="--accent:#FFD600;" aria-label="Georgievski Orange — jump to product">
+            <button class="orbital__bottle" type="button" data-target="products.html#georgievski-orange" style="--accent:#FFD600;" aria-label="Georgievski Orange — view product">
               <span class="orbital__name">Georgievski Orange</span>
-              <img src="public/images/bottles/georgievski-orange-nobg.png" alt="" />
+              <img src="public/images/bottles/georgievski-orange-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Flavoured Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="#georgievski-cranberry" style="--accent:#FF0080;" aria-label="Georgievski Cranberry — jump to product">
+            <button class="orbital__bottle" type="button" data-target="products.html#georgievski-cranberry" style="--accent:#FF0080;" aria-label="Georgievski Cranberry — view product">
               <span class="orbital__name">Georgievski Cranberry</span>
-              <img src="public/images/bottles/georgievski-cranberry-nobg.png" alt="" />
+              <img src="public/images/bottles/georgievski-cranberry-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Flavoured Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="#georgievski-lime" style="--accent:#00CC44;" aria-label="Georgievski Lime — jump to product">
+            <button class="orbital__bottle" type="button" data-target="products.html#georgievski-lime" style="--accent:#00CC44;" aria-label="Georgievski Lime — view product">
               <span class="orbital__name">Georgievski Lime</span>
-              <img src="public/images/bottles/georgievski-lime-nobg.png" alt="" />
+              <img src="public/images/bottles/georgievski-lime-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Flavoured Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="#pink-mystique-gin" style="--accent:#8800FF;" aria-label="Pink Mystique Gin — jump to product">
+            <button class="orbital__bottle" type="button" data-target="products.html#pink-mystique-gin" style="--accent:#8800FF;" aria-label="Pink Mystique Gin — view product">
               <span class="orbital__name">Pink Mystique Gin</span>
-              <img src="public/images/bottles/pink-mystique-gin-nobg.png" alt="" />
+              <img src="public/images/bottles/pink-mystique-gin-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">London Dry Gin</span>
             </button>
           </div>
@@ -216,215 +278,59 @@
       </div>
     </section>
 
-    <section class="products" id="products" aria-label="The seven bottles">
-      <header class="products__head">
-        <span class="products__eyebrow"><i></i> Imported for Ghana</span>
-        <h2 class="products__title">One brand. <em>Seven worlds.</em></h2>
-        <p class="products__sub">Seven premium spirits. Each one imported with purpose. Each one poured with pride. This is Royal Nectar Ventures.</p>
-      </header>
-
-      <article class="product" id="buccaneer-white-rum" data-idx="0" data-contrast="light" style="--accent:#0066FF;--accent-deep:#002A99;">
-        <div class="product__grid">
-          <div class="product__text">
-            <span class="product__num">01 &mdash; Seven</span>
-            <span class="product__type">White Rum</span>
-            <h3 class="product__name">Buccaneer <em>White Rum</em></h3>
-            <p class="product__tag">Clean. Bold. Legendary.</p>
-            <p class="product__body">Triple-distilled and filtered until it reads like glass. Built for long pours with citrus, coconut water, and the kind of nights Labadi was invented for.</p>
-            <dl class="product__spec">
-              <div><dt>Category</dt><dd>White rum</dd></div>
-              <div><dt>Serve</dt><dd>Over ice, with lime</dd></div>
-              <div><dt>Mood</dt><dd>Coastal, unbothered</dd></div>
-            </dl>
-            <a class="btn btn--primary product__cta" href="#contact">
-              <span>Enquire to stock</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
+    <section class="tetra" id="tetra" aria-label="Tetra Pak range">
+      <div class="tetra__hero">
+        <img src="public/images/backgrounds/tetra-pak-hero.jpg" alt="" loading="lazy" decoding="async" />
+      </div>
+      <div class="tetra__head">
+        <span class="tetra__eyebrow">Tetra Pak Range</span>
+        <h2 class="tetra__title">The Simple Choice</h2>
+        <p class="tetra__sub">Premium spirits. Accessible format. Built for Ghana.</p>
+      </div>
+      <div class="tetra__grid">
+        <article class="tetra-card" style="--accent:#CC0000;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/express-rum-nobg.png" alt="Express Deluxe Rum carton" loading="lazy" decoding="async" />
           </div>
-          <div class="product__visual">
-            <div class="product__adinkra" aria-hidden="true">
-              <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="100" cy="100" r="86" /><circle cx="100" cy="100" r="66" /><circle cx="100" cy="100" r="46" /><circle cx="100" cy="100" r="26" /><circle cx="100" cy="100" r="6" fill="currentColor" /><path d="M100 6 L100 194 M6 100 L194 100 M34 34 L166 166 M166 34 L34 166" /></g></svg>
-            </div>
-            <div class="product__bottle">
-              <img src="public/images/bottles/buccaneer-white-rum.png" alt="Buccaneer White Rum bottle" loading="lazy" />
-            </div>
+          <h3 class="tetra-card__name">Express Deluxe Rum</h3>
+          <span class="tetra-card__type">Rum</span>
+        </article>
+        <article class="tetra-card" style="--accent:#0055CC;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/famous-blue-whisky-nobg.png" alt="Famous Blue Whisky carton" loading="lazy" decoding="async" />
           </div>
-        </div>
-      </article>
-
-      <article class="product" id="buccaneer-dark-rum" data-idx="1" data-contrast="light" style="--accent:#FF5500;--accent-deep:#7A2200;">
-        <div class="product__grid">
-          <div class="product__text">
-            <span class="product__num">02 &mdash; Seven</span>
-            <span class="product__type">Dark Rum</span>
-            <h3 class="product__name">Buccaneer <em>Dark Rum</em></h3>
-            <p class="product__tag">Deep. Rich. Unapologetic.</p>
-            <p class="product__body">Aged until it stops apologising. Molasses, burnt sugar, and the slow heat of a harmattan fire. Drinks neat &mdash; refuses to be diluted into politeness.</p>
-            <dl class="product__spec">
-              <div><dt>Category</dt><dd>Dark rum</dd></div>
-              <div><dt>Serve</dt><dd>Neat, or with ginger beer</dd></div>
-              <div><dt>Mood</dt><dd>Late, lit, unrushed</dd></div>
-            </dl>
-            <a class="btn btn--primary product__cta" href="#contact">
-              <span>Enquire to stock</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
+          <h3 class="tetra-card__name">Famous Blue Whisky</h3>
+          <span class="tetra-card__type">Whisky</span>
+        </article>
+        <article class="tetra-card" style="--accent:#7AAB8A;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/western-gin-nobg.png" alt="HEH's Western London Dry Gin carton" loading="lazy" decoding="async" />
           </div>
-          <div class="product__visual">
-            <div class="product__adinkra" aria-hidden="true">
-              <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M100 10 L100 190 M10 100 L190 100" /><path d="M100 30 C 60 30 60 70 100 70 C 140 70 140 30 100 30 Z" /><path d="M100 130 C 60 130 60 170 100 170 C 140 170 140 130 100 130 Z" /><path d="M30 100 C 30 60 70 60 70 100 C 70 140 30 140 30 100 Z" /><path d="M170 100 C 170 60 130 60 130 100 C 130 140 170 140 170 100 Z" /><circle cx="100" cy="100" r="8" fill="currentColor" /></g></svg>
-            </div>
-            <div class="product__bottle">
-              <img src="public/images/bottles/buccaneer-dark-rum.png" alt="Buccaneer Dark Rum bottle" loading="lazy" />
-            </div>
+          <h3 class="tetra-card__name">HEH&rsquo;s Western London Dry Gin</h3>
+          <span class="tetra-card__type">London Dry Gin</span>
+        </article>
+        <article class="tetra-card" style="--accent:#FFD600;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/starling-brandy-nobg.png" alt="Starling Napoleon Brandy carton" loading="lazy" decoding="async" />
           </div>
-        </div>
-      </article>
-
-      <article class="product" id="qe-vodka" data-idx="2" data-contrast="light" style="--accent:#E8000D;--accent-deep:#6A0008;">
-        <div class="product__grid">
-          <div class="product__text">
-            <span class="product__num">03 &mdash; Seven</span>
-            <span class="product__type">Premium Vodka</span>
-            <h3 class="product__name">QE <em>Premium Vodka</em></h3>
-            <p class="product__tag">Pure. Sharp. Premium.</p>
-            <p class="product__body">Clean enough to hand to your mother-in-law. Sharp enough to carry a chilli-pepper martini without breaking a sweat. Our benchmark. Everything else is measured against it.</p>
-            <dl class="product__spec">
-              <div><dt>Category</dt><dd>Premium vodka</dd></div>
-              <div><dt>Serve</dt><dd>Ice cold, in a chilled glass</dd></div>
-              <div><dt>Mood</dt><dd>Dressed, deliberate</dd></div>
-            </dl>
-            <a class="btn btn--primary product__cta" href="#contact">
-              <span>Enquire to stock</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
+          <h3 class="tetra-card__name">Starling Napoleon Brandy</h3>
+          <span class="tetra-card__type">Brandy</span>
+        </article>
+        <article class="tetra-card" style="--accent:#00AAEE;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/bobs-vodka-nobg.png" alt="Bob's Premium Vodka carton" loading="lazy" decoding="async" />
           </div>
-          <div class="product__visual">
-            <div class="product__adinkra" aria-hidden="true">
-              <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M100 14 L118 82 L188 82 L132 124 L152 192 L100 152 L48 192 L68 124 L12 82 L82 82 Z" /><circle cx="100" cy="100" r="26" /><circle cx="100" cy="100" r="6" fill="currentColor" /></g></svg>
-            </div>
-            <div class="product__bottle">
-              <img src="public/images/bottles/qe-vodka.png" alt="QE Premium Vodka bottle" loading="lazy" />
-            </div>
+          <h3 class="tetra-card__name">Bob&rsquo;s Premium Vodka</h3>
+          <span class="tetra-card__type">Vodka</span>
+        </article>
+        <article class="tetra-card" style="--accent:#4A1A00;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/express-coffee-rum-nobg.png" alt="Express Coffee Rum carton" loading="lazy" decoding="async" />
           </div>
-        </div>
-      </article>
-
-      <article class="product" id="georgievski-orange" data-idx="3" data-contrast="dark" style="--accent:#FFD600;--accent-deep:#8A7400;">
-        <div class="product__grid">
-          <div class="product__text">
-            <span class="product__num">04 &mdash; Seven</span>
-            <span class="product__type">Flavoured Vodka</span>
-            <h3 class="product__name">Georgievski <em>Orange</em></h3>
-            <p class="product__tag">Bright. Zesty. Alive.</p>
-            <p class="product__body">QE&rsquo;s clean spine wrapped in real orange &mdash; peel oil, pith, the full sun. Mixes forward, stands up to ginger and Angostura without flinching. The cocktail cabinet&rsquo;s loud yellow anchor.</p>
-            <dl class="product__spec">
-              <div><dt>Category</dt><dd>Flavoured vodka</dd></div>
-              <div><dt>Serve</dt><dd>With tonic and bitter orange</dd></div>
-              <div><dt>Mood</dt><dd>Afternoon, open balcony</dd></div>
-            </dl>
-            <a class="btn btn--primary product__cta" href="#contact">
-              <span>Enquire to stock</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-          <div class="product__visual">
-            <div class="product__adinkra" aria-hidden="true">
-              <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="100" cy="100" r="40" /><g><path d="M100 10 L100 40 M100 160 L100 190 M10 100 L40 100 M160 100 L190 100 M34 34 L56 56 M144 144 L166 166 M34 166 L56 144 M144 56 L166 34" /><path d="M70 20 L78 46 M122 154 L130 180 M20 70 L46 78 M154 122 L180 130 M20 130 L46 122 M154 78 L180 70 M70 180 L78 154 M122 46 L130 20" /></g></g></svg>
-            </div>
-            <div class="product__bottle">
-              <img src="public/images/bottles/georgievski-orange.png" alt="Georgievski Orange flavoured vodka bottle" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="product" id="georgievski-cranberry" data-idx="4" data-contrast="light" style="--accent:#FF0080;--accent-deep:#80003E;">
-        <div class="product__grid">
-          <div class="product__text">
-            <span class="product__num">05 &mdash; Seven</span>
-            <span class="product__type">Flavoured Vodka</span>
-            <h3 class="product__name">Georgievski <em>Cranberry</em></h3>
-            <p class="product__tag">Bold. Fruity. Fearless.</p>
-            <p class="product__body">Tart, high-contrast, unmistakable. Cranberry that refuses to blush. Pairs obnoxiously well with soda, lime, and a playlist that peaks at 1am.</p>
-            <dl class="product__spec">
-              <div><dt>Category</dt><dd>Flavoured vodka</dd></div>
-              <div><dt>Serve</dt><dd>Long, with soda and lime</dd></div>
-              <div><dt>Mood</dt><dd>Loud. Unapologetic.</dd></div>
-            </dl>
-            <a class="btn btn--primary product__cta" href="#contact">
-              <span>Enquire to stock</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-          <div class="product__visual">
-            <div class="product__adinkra" aria-hidden="true">
-              <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M100 20 C 40 40 40 100 100 100 C 160 100 160 40 100 20 Z" /><path d="M100 100 C 40 120 40 180 100 180 C 160 180 160 120 100 100 Z" /><path d="M100 20 L100 180" /><circle cx="100" cy="60" r="4" fill="currentColor" /><circle cx="100" cy="140" r="4" fill="currentColor" /></g></svg>
-            </div>
-            <div class="product__bottle">
-              <img src="public/images/bottles/georgievski-cranberry.png" alt="Georgievski Cranberry flavoured vodka bottle" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="product" id="georgievski-lime" data-idx="5" data-contrast="dark" style="--accent:#00CC44;--accent-deep:#006622;">
-        <div class="product__grid">
-          <div class="product__text">
-            <span class="product__num">06 &mdash; Seven</span>
-            <span class="product__type">Flavoured Vodka</span>
-            <h3 class="product__name">Georgievski <em>Lime</em></h3>
-            <p class="product__tag">Fresh. Sharp. Electric.</p>
-            <p class="product__body">Real lime, not lime candy. Cuts through tonic, tamarind, even kelewele heat. The most misunderstood bottle in the range &mdash; your bar program&rsquo;s secret weapon.</p>
-            <dl class="product__spec">
-              <div><dt>Category</dt><dd>Flavoured vodka</dd></div>
-              <div><dt>Serve</dt><dd>Tall, with tonic and cucumber</dd></div>
-              <div><dt>Mood</dt><dd>Cold shower, 2pm</dd></div>
-            </dl>
-            <a class="btn btn--primary product__cta" href="#contact">
-              <span>Enquire to stock</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-          <div class="product__visual">
-            <div class="product__adinkra" aria-hidden="true">
-              <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M100 20 L180 100 L100 180 L20 100 Z" /><path d="M100 50 L150 100 L100 150 L50 100 Z" /><path d="M100 80 L120 100 L100 120 L80 100 Z" /><circle cx="100" cy="100" r="4" fill="currentColor" /></g></svg>
-            </div>
-            <div class="product__bottle">
-              <img src="public/images/bottles/georgievski-lime.png" alt="Georgievski Lime flavoured vodka bottle" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="product" id="pink-mystique-gin" data-idx="6" data-contrast="light" style="--accent:#8800FF;--accent-deep:#3E0073;">
-        <div class="product__grid">
-          <div class="product__text">
-            <span class="product__num">07 &mdash; Seven</span>
-            <span class="product__type">London Dry Gin</span>
-            <h3 class="product__name">Pink Mystique <em>Gin</em></h3>
-            <p class="product__tag">Mysterious. Botanical. Royal.</p>
-            <p class="product__body">The crown of the range. Juniper up front, hibiscus on the finish, and a colour that looks like it was poured from a sunset. Our most requested bottle &mdash; for a reason.</p>
-            <dl class="product__spec">
-              <div><dt>Category</dt><dd>London dry gin</dd></div>
-              <div><dt>Serve</dt><dd>With pink grapefruit tonic</dd></div>
-              <div><dt>Mood</dt><dd>Crown on, candles lit</dd></div>
-            </dl>
-            <a class="btn btn--primary product__cta" href="#contact">
-              <span>Enquire to stock</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-          <div class="product__visual">
-            <div class="product__adinkra" aria-hidden="true">
-              <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M100 14 L112 72 L170 64 L128 108 L172 150 L112 142 L100 200 L88 142 L28 150 L72 108 L30 64 L88 72 Z" /><circle cx="100" cy="108" r="18" /><circle cx="100" cy="108" r="4" fill="currentColor" /></g></svg>
-            </div>
-            <div class="product__bottle">
-              <img src="public/images/bottles/pink-mystique-gin.png" alt="Pink Mystique Gin bottle" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </article>
+          <h3 class="tetra-card__name">Express Coffee Rum</h3>
+          <span class="tetra-card__type">Coffee Rum</span>
+        </article>
+      </div>
     </section>
 
     <section class="contact" id="contact" aria-label="Contact and trade enquiries">
@@ -459,7 +365,7 @@
 
   <footer class="footer" aria-label="Site footer">
     <div class="footer__inner">
-      <img class="footer__logo" src="public/images/rnv-logo.png" alt="Royal Nectar Ventures" />
+      <img class="footer__logo" src="public/images/logo/rnv-logo.png" alt="Royal Nectar Ventures" loading="lazy" decoding="async" />
       <p class="footer__tag">The best quality drinks on the market.</p>
 
       <div class="footer__grid">
@@ -477,7 +383,7 @@
         </div>
         <div class="footer__col">
           <h4>Range</h4>
-          <a href="#products">Seven bottles</a>
+          <a href="products.html">Seven bottles</a>
           <a href="#story">Our story</a>
           <a href="#contact">Trade enquiry</a>
         </div>
@@ -491,6 +397,7 @@
 
   <script src="public/vendor/gsap.min.js" defer></script>
   <script src="public/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="src/animations/gsap.js?v=5" defer></script>
+  <script src="src/animations/gsap.js?v=14" defer></script>
+  <script src="src/animations/orbital-drag.js?v=3" defer></script>
 </body>
 </html>

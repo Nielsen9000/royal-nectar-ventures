@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080500" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Our Collection &mdash; Royal Nectar Ventures</title>
+  <meta name="description" content="The Royal Nectar Ventures collection. Seven premium spirits and six Tetra Pak favourites, imported for Ghana and drunk like royalty." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
+  <link rel="stylesheet" href="src/styles/main.css?v=12" />
+</head>
+<body class="page-products">
+  <div class="loader" id="loader" role="status" aria-label="Loading Royal Nectar Ventures">
+    <div class="loader__inner">
+      <svg class="loader__antler" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 44 L24 24" />
+          <path d="M24 28 L16 20 M16 20 L10 22 M16 20 L13 12 M16 20 L8 16" />
+          <path d="M24 28 L32 20 M32 20 L38 22 M32 20 L35 12 M32 20 L40 16" />
+          <path d="M24 34 L18 28 M18 28 L14 30" />
+          <path d="M24 34 L30 28 M30 28 L34 30" />
+          <circle cx="24" cy="44" r="1.4" fill="currentColor" stroke="none" />
+        </g>
+      </svg>
+      <span class="loader__wordmark">Royal Nectar Ventures</span>
+      <span class="loader__tag">The best quality drinks on the market</span>
+    </div>
+    <div class="loader__bar" aria-hidden="true"><span id="loaderFill"></span></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html" aria-label="Royal Nectar Ventures home">
+      <svg class="nav__antler" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 44 L24 24" />
+          <path d="M24 28 L16 20 M16 20 L10 22 M16 20 L13 12 M16 20 L8 16" />
+          <path d="M24 28 L32 20 M32 20 L38 22 M32 20 L35 12 M32 20 L40 16" />
+          <path d="M24 34 L18 28 M18 28 L14 30" />
+          <path d="M24 34 L30 28 M30 28 L34 30" />
+          <circle cx="24" cy="44" r="1.4" fill="currentColor" stroke="none" />
+        </g>
+      </svg>
+      <span class="nav__wordmark">Royal Nectar Ventures</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#story">Our Story</a>
+      <a href="products.html" aria-current="page">Products</a>
+      <a href="#contact-cta">Contact</a>
+      <a class="nav__cta" href="#contact-cta">
+        <span>Trade enquiry</span>
+        <span class="nav__cta-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </nav>
+
+    <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-overlay">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+    <div class="menu-overlay__kente"></div>
+    <div class="menu-overlay__inner">
+      <span class="menu-overlay__eyebrow">Royal Nectar Ventures &middot; Accra</span>
+      <ul class="menu-overlay__list">
+        <li><a href="index.html#story" data-menu-link>Our Story</a></li>
+        <li><a href="products.html" data-menu-link>The Seven Bottles</a></li>
+        <li><a href="#contact-cta" data-menu-link>Contact &amp; Trade</a></li>
+      </ul>
+      <div class="menu-overlay__foot">
+        <a href="mailto:spirits@royalnectarventures.com">spirits@royalnectarventures.com</a>
+        <a href="tel:+233542190308">(+233) 542 190 308</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <section class="collection-hero" aria-label="Our Collection">
+      <div class="collection-hero__kente collection-hero__kente--left" aria-hidden="true"></div>
+      <div class="collection-hero__kente collection-hero__kente--right" aria-hidden="true"></div>
+      <div class="collection-hero__inner">
+        <span class="collection-hero__eyebrow"><i></i> The Royal Nectar Range</span>
+        <h1 class="collection-hero__title">Our <em>Collection</em></h1>
+        <p class="collection-hero__sub">Imported for Ghana. Drunk like royalty.</p>
+      </div>
+    </section>
+
+    <section class="premium" aria-label="Premium range">
+      <header class="premium__head">
+        <span class="premium__eyebrow">Premium Range</span>
+        <h2 class="premium__title">Seven bottles. <em>One standard.</em></h2>
+        <p class="premium__sub">Each bottle carries its own colour world. Each one earns its place on your back bar.</p>
+      </header>
+
+      <div class="premium__grid">
+        <article class="premium-card" id="buccaneer-white-rum" style="--accent:#0066FF;--accent-deep:#002A99;">
+          <div class="premium-card__visual">
+            <img src="public/images/bottles/buccaneer-white-rum-nobg.png" alt="Buccaneer White Rum bottle" loading="lazy" decoding="async" />
+          </div>
+          <div class="premium-card__body">
+            <span class="premium-card__type">White Rum</span>
+            <h3 class="premium-card__name">Buccaneer White Rum</h3>
+            <p class="premium-card__tag">Clean. Bold. Legendary.</p>
+            <a class="btn btn--gold premium-card__cta" href="#contact-cta">
+              <span>Trade Enquiry</span>
+              <span class="btn__ico" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="premium-card" id="buccaneer-dark-rum" style="--accent:#FF5500;--accent-deep:#7A2200;">
+          <div class="premium-card__visual">
+            <img src="public/images/bottles/buccaneer-dark-rum-nobg.png" alt="Buccaneer Dark Rum bottle" loading="lazy" decoding="async" />
+          </div>
+          <div class="premium-card__body">
+            <span class="premium-card__type">Dark Rum</span>
+            <h3 class="premium-card__name">Buccaneer Dark Rum</h3>
+            <p class="premium-card__tag">Deep. Rich. Unapologetic.</p>
+            <a class="btn btn--gold premium-card__cta" href="#contact-cta">
+              <span>Trade Enquiry</span>
+              <span class="btn__ico" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="premium-card" id="qe-vodka" style="--accent:#E8000D;--accent-deep:#6A0008;">
+          <div class="premium-card__visual">
+            <img src="public/images/bottles/qe-vodka-nobg.png" alt="QE Premium Vodka bottle" loading="lazy" decoding="async" />
+          </div>
+          <div class="premium-card__body">
+            <span class="premium-card__type">Premium Vodka</span>
+            <h3 class="premium-card__name">QE Premium Vodka</h3>
+            <p class="premium-card__tag">Pure. Sharp. Premium.</p>
+            <a class="btn btn--gold premium-card__cta" href="#contact-cta">
+              <span>Trade Enquiry</span>
+              <span class="btn__ico" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="premium-card" data-contrast="dark" id="georgievski-orange" style="--accent:#FFD600;--accent-deep:#8A7400;">
+          <div class="premium-card__visual">
+            <img src="public/images/bottles/georgievski-orange-nobg.png" alt="Georgievski Orange vodka bottle" loading="lazy" decoding="async" />
+          </div>
+          <div class="premium-card__body">
+            <span class="premium-card__type">Flavoured Vodka</span>
+            <h3 class="premium-card__name">Georgievski Orange</h3>
+            <p class="premium-card__tag">Bright. Zesty. Alive.</p>
+            <a class="btn btn--gold premium-card__cta" href="#contact-cta">
+              <span>Trade Enquiry</span>
+              <span class="btn__ico" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="premium-card" id="georgievski-cranberry" style="--accent:#FF0080;--accent-deep:#80003E;">
+          <div class="premium-card__visual">
+            <img src="public/images/bottles/georgievski-cranberry-nobg.png" alt="Georgievski Cranberry vodka bottle" loading="lazy" decoding="async" />
+          </div>
+          <div class="premium-card__body">
+            <span class="premium-card__type">Flavoured Vodka</span>
+            <h3 class="premium-card__name">Georgievski Cranberry</h3>
+            <p class="premium-card__tag">Bold. Fruity. Fearless.</p>
+            <a class="btn btn--gold premium-card__cta" href="#contact-cta">
+              <span>Trade Enquiry</span>
+              <span class="btn__ico" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="premium-card" data-contrast="dark" id="georgievski-lime" style="--accent:#00CC44;--accent-deep:#006622;">
+          <div class="premium-card__visual">
+            <img src="public/images/bottles/georgievski-lime-nobg.png" alt="Georgievski Lime vodka bottle" loading="lazy" decoding="async" />
+          </div>
+          <div class="premium-card__body">
+            <span class="premium-card__type">Flavoured Vodka</span>
+            <h3 class="premium-card__name">Georgievski Lime</h3>
+            <p class="premium-card__tag">Fresh. Sharp. Electric.</p>
+            <a class="btn btn--gold premium-card__cta" href="#contact-cta">
+              <span>Trade Enquiry</span>
+              <span class="btn__ico" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="premium-card" id="pink-mystique-gin" style="--accent:#8800FF;--accent-deep:#3E0073;">
+          <div class="premium-card__visual">
+            <img src="public/images/bottles/pink-mystique-gin-nobg.png" alt="Pink Mystique Gin bottle" loading="lazy" decoding="async" />
+          </div>
+          <div class="premium-card__body">
+            <span class="premium-card__type">London Dry Gin</span>
+            <h3 class="premium-card__name">Pink Mystique Gin</h3>
+            <p class="premium-card__tag">Mysterious. Botanical. Royal.</p>
+            <a class="btn btn--gold premium-card__cta" href="#contact-cta">
+              <span>Trade Enquiry</span>
+              <span class="btn__ico" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="tetra" id="tetra" aria-label="Tetra Pak range">
+      <div class="tetra__hero">
+        <img src="public/images/backgrounds/tetra-pak-hero.jpg" alt="" loading="lazy" decoding="async" />
+      </div>
+      <div class="tetra__head">
+        <span class="tetra__eyebrow">Tetra Pak Range</span>
+        <h2 class="tetra__title">The Simple Choice</h2>
+        <p class="tetra__sub">Premium spirits. Accessible format. Built for Ghana.</p>
+      </div>
+      <div class="tetra__grid">
+        <article class="tetra-card" style="--accent:#CC0000;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/express-rum-nobg.png" alt="Express Deluxe Rum carton" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="tetra-card__name">Express Deluxe Rum</h3>
+          <span class="tetra-card__type">Rum</span>
+        </article>
+        <article class="tetra-card" style="--accent:#0055CC;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/famous-blue-whisky-nobg.png" alt="Famous Blue Whisky carton" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="tetra-card__name">Famous Blue Whisky</h3>
+          <span class="tetra-card__type">Whisky</span>
+        </article>
+        <article class="tetra-card" style="--accent:#7AAB8A;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/western-gin-nobg.png" alt="HEH's Western London Dry Gin carton" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="tetra-card__name">HEH&rsquo;s Western London Dry Gin</h3>
+          <span class="tetra-card__type">London Dry Gin</span>
+        </article>
+        <article class="tetra-card" style="--accent:#FFD600;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/starling-brandy-nobg.png" alt="Starling Napoleon Brandy carton" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="tetra-card__name">Starling Napoleon Brandy</h3>
+          <span class="tetra-card__type">Brandy</span>
+        </article>
+        <article class="tetra-card" style="--accent:#00AAEE;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/bobs-vodka-nobg.png" alt="Bob's Premium Vodka carton" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="tetra-card__name">Bob&rsquo;s Premium Vodka</h3>
+          <span class="tetra-card__type">Vodka</span>
+        </article>
+        <article class="tetra-card" style="--accent:#4A1A00;">
+          <div class="tetra-card__visual">
+            <img src="public/images/bottles/express-coffee-rum-nobg.png" alt="Express Coffee Rum carton" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="tetra-card__name">Express Coffee Rum</h3>
+          <span class="tetra-card__type">Coffee Rum</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-cta" id="contact-cta" aria-label="Contact">
+      <div class="contact-cta__inner">
+        <span class="contact-cta__eyebrow"><i></i> Get in touch</span>
+        <h2 class="contact-cta__title">Ready to stock <em>Royal Nectar Ventures?</em></h2>
+        <p class="contact-cta__sub">Get in touch for wholesale and retail enquiries</p>
+        <div class="contact-cta__actions">
+          <a class="btn btn--gold" href="mailto:spirits@royalnectarventures.com">
+            <span>Email Us</span>
+            <span class="btn__ico" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="btn btn--gold" href="https://wa.me/233542190308" target="_blank" rel="noopener">
+            <span>WhatsApp</span>
+            <span class="btn__ico" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" aria-label="Site footer">
+    <div class="footer__inner">
+      <img class="footer__logo" src="public/images/logo/rnv-logo.png" alt="Royal Nectar Ventures" loading="lazy" decoding="async" />
+      <p class="footer__tag">The best quality drinks on the market.</p>
+
+      <div class="footer__grid">
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href="mailto:spirits@royalnectarventures.com">spirits@royalnectarventures.com</a>
+          <a href="tel:+233542190308">(+233) 542 190 308</a>
+          <a href="tel:+233532941034">(+233) 532 941 034</a>
+        </div>
+        <div class="footer__col">
+          <h4>Where</h4>
+          <p>Accra, Ghana</p>
+          <p>Distributed nationwide</p>
+          <a href="https://www.royalnectarventures.com">www.royalnectarventures.com</a>
+        </div>
+        <div class="footer__col">
+          <h4>Range</h4>
+          <a href="products.html">Seven bottles</a>
+          <a href="index.html#story">Our story</a>
+          <a href="#contact-cta">Trade enquiry</a>
+        </div>
+      </div>
+
+      <p class="footer__small">Please drink responsibly. Not for sale to persons under 18.</p>
+      <p class="footer__copy">&copy; 2026 Royal Nectar Ventures Ghana.</p>
+    </div>
+    <div class="footer__kente" aria-hidden="true"></div>
+  </footer>
+
+  <script src="public/vendor/gsap.min.js" defer></script>
+  <script src="public/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="src/animations/gsap.js?v=14" defer></script>
+</body>
+</html>
