@@ -430,20 +430,22 @@
 
   function initProducts() {
     const sections = gsap.utils.toArray(".product");
+    const isNarrow = window.matchMedia("(max-width: 899px)").matches;
 
     sections.forEach((section, sectionIndex) => {
       const bottle    = section.querySelector(".product__bottle");
       const textItems = section.querySelectorAll(".product__text > *");
-      const textFromX = (sectionIndex % 2 === 0) ? -40 : 40;
+      const textFromX = isNarrow ? 0 : ((sectionIndex % 2 === 0) ? -40 : 40);
+      const textFromY = isNarrow ? 28 : 0;
 
       gsap.from(bottle, {
         opacity: 0,
-        y: reduced ? 0 : 60,
-        duration: 0.9,
+        y: reduced ? 0 : (isNarrow ? 40 : 60),
+        duration: isNarrow ? 0.7 : 0.9,
         ease: "power3.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 70%",
+          start: isNarrow ? "top 80%" : "top 70%",
           once: true,
           toggleActions: "play none none none"
         }
@@ -452,12 +454,13 @@
       gsap.from(textItems, {
         opacity: 0,
         x: reduced ? 0 : textFromX,
-        duration: 0.8,
+        y: reduced ? 0 : textFromY,
+        duration: isNarrow ? 0.6 : 0.8,
         ease: "power2.out",
-        stagger: 0.15,
+        stagger: isNarrow ? 0.08 : 0.15,
         scrollTrigger: {
           trigger: section,
-          start: "top 65%",
+          start: isNarrow ? "top 80%" : "top 65%",
           once: true,
           toggleActions: "play none none none"
         }
