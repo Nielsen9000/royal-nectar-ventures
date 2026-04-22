@@ -2267,3 +2267,74 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
     transform: none !important;
   }
 }
+
+/* ==========================================================================
+   Section transition gradients
+   Each section has a bottom fade into the next section's colour.
+   80px height. No top fades. .story (text breaker) intentionally has none.
+   ========================================================================== */
+
+/* .hero -> .jerrys */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent 0%, #080500 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* .jerrys -> .story (cream) */
+.jerrys::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent 0%, #F5E6C8 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* .orbital -> .tetra (cream) */
+.orbital::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent 0%, #F5E6C8 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* .tetra -> .contact / .contact-cta (dark) */
+.tetra::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent 0%, #080500 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* .collection-hero -> .premium (products page, dark -> cream) */
+.collection-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent 0%, #F5E6C8 100%);
+  pointer-events: none;
+  z-index: 2;
+}
