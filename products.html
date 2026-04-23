@@ -40,16 +40,7 @@
 
   <header class="nav" id="nav">
     <a class="nav__brand" href="index.html" aria-label="Royal Nectar Ventures home">
-      <svg class="nav__antler" viewBox="0 0 48 48" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M24 44 L24 24" />
-          <path d="M24 28 L16 20 M16 20 L10 22 M16 20 L13 12 M16 20 L8 16" />
-          <path d="M24 28 L32 20 M32 20 L38 22 M32 20 L35 12 M32 20 L40 16" />
-          <path d="M24 34 L18 28 M18 28 L14 30" />
-          <path d="M24 34 L30 28 M30 28 L34 30" />
-          <circle cx="24" cy="44" r="1.4" fill="currentColor" stroke="none" />
-        </g>
-      </svg>
+      <span class="nav__antler" aria-hidden="true"></span>
       <span class="nav__wordmark">Royal Nectar Ventures</span>
     </a>
 
@@ -97,7 +88,7 @@
       </div>
     </section>
 
-    <section class="premium" aria-label="Premium range">
+    <section class="premium" data-nav-theme="light" aria-label="Premium range">
       <header class="premium__head">
         <span class="premium__eyebrow">Premium Range</span>
         <h2 class="premium__title">Seven bottles. <em>One standard.</em></h2>
@@ -212,7 +203,7 @@
       </div>
     </section>
 
-    <section class="tetra" id="tetra" aria-label="Tetra Pak range">
+    <section class="tetra" id="tetra" data-nav-theme="light" aria-label="Tetra Pak range">
       <div class="tetra__hero">
         <img src="public/images/backgrounds/tetra-pak-hero.jpg" alt="" loading="lazy" decoding="async" />
       </div>
@@ -289,7 +280,7 @@
 
   <footer class="footer" aria-label="Site footer">
     <div class="footer__inner">
-      <img class="footer__logo" src="public/images/logo/rnv-logo.png" alt="Royal Nectar Ventures" loading="lazy" decoding="async" />
+      <span class="footer__logo" role="img" aria-label="Royal Nectar Ventures"></span>
       <p class="footer__tag">The best quality drinks on the market.</p>
 
       <div class="footer__grid">

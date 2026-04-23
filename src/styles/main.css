@@ -260,6 +260,17 @@ body.is-scrolled .nav {
 }
 body.is-scrolled .nav::before { opacity: 0; }
 
+body.is-nav-light .nav,
+body.is-scrolled.is-nav-light .nav {
+  background: rgba(245, 230, 200, 0.9);
+  color: var(--ink);
+  border-bottom-color: rgba(8, 5, 0, 0.12);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+}
+body.is-nav-light .nav::before { opacity: 0; }
+body.is-nav-light .nav__wordmark { color: var(--ink); }
+
 .nav__brand {
   display: inline-flex;
   align-items: center;
@@ -269,11 +280,15 @@ body.is-scrolled .nav::before { opacity: 0; }
   transition: color 400ms var(--ease-soft);
 }
 .nav__antler {
-  width: 45px;
-  height: 45px;
-  color: var(--gold);
+  width: 80px;
+  height: 80px;
   flex-shrink: 0;
-  transition: transform 600ms var(--ease-soft), color 400ms var(--ease-soft);
+  display: block;
+  background-color: var(--gold);
+  -webkit-mask: url("../../public/images/logo/rnv-logo.png") center / contain no-repeat;
+  mask: url("../../public/images/logo/rnv-logo.png") center / contain no-repeat;
+  filter: drop-shadow(0 6px 14px rgba(200, 134, 10, 0.4));
+  transition: transform 600ms var(--ease-soft), filter 400ms var(--ease-soft);
 }
 .nav__brand:hover .nav__antler { transform: rotate(-8deg) scale(1.05); }
 .nav__wordmark {
@@ -942,7 +957,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 @media (min-width: 900px) {
   .jerrys { padding: clamp(4rem, 7vh, 6rem) 1.25rem; }
   .jerrys__inner {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: 2rem;
     align-items: center;
     padding-right: 0;
@@ -952,7 +967,10 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
     height: clamp(640px, 88vh, 960px);
     margin-right: 0;
   }
-  .jerrys__copy { gap: 1.25rem; }
+  .jerrys__copy {
+    order: 1;
+    gap: 1.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1693,7 +1711,11 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .footer__logo {
   width: clamp(160px, 28vw, 240px);
-  height: auto;
+  aspect-ratio: 1 / 1;
+  display: block;
+  background-color: var(--gold);
+  -webkit-mask: url("../../public/images/logo/rnv-logo.png") center / contain no-repeat;
+  mask: url("../../public/images/logo/rnv-logo.png") center / contain no-repeat;
   filter: drop-shadow(0 12px 20px rgba(200, 134, 10, 0.25));
 }
 .footer__tag {
@@ -2111,7 +2133,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 
 @media (min-width: 900px) {
   .nav__toggle { display: none; }
-  .nav__antler { width: 60px; height: 60px; }
+  .nav__antler { width: 96px; height: 96px; }
   .nav__links { display: inline-flex; }
 
   .hero { padding: calc(var(--nav-h) + 2rem) 3rem 6rem; }

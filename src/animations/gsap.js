@@ -75,6 +75,7 @@
     initProgress();
     initNavEntrance();
     initNavScrollState();
+    initNavTheme();
     initMobileMenu();
     initHero(PRODUCTS);
     initJerrys();
@@ -271,6 +272,32 @@
       onEnter:     () => document.body.classList.add("is-scrolled"),
       onLeaveBack: () => document.body.classList.remove("is-scrolled")
     });
+  }
+
+  function initNavTheme() {
+    const lightSections = Array.from(document.querySelectorAll('[data-nav-theme="light"]'));
+    if (!lightSections.length) return;
+
+    const nav = document.querySelector(".nav");
+    const navH = nav ? nav.getBoundingClientRect().height : 80;
+    const probe = navH + 4;
+    let lastLight = null;
+
+    function update() {
+      let overLight = false;
+      for (let i = 0; i < lightSections.length; i++) {
+        const r = lightSections[i].getBoundingClientRect();
+        if (r.top <= probe && r.bottom > probe) { overLight = true; break; }
+      }
+      if (overLight !== lastLight) {
+        document.body.classList.toggle("is-nav-light", overLight);
+        lastLight = overLight;
+      }
+    }
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
   }
 
   function initMobileMenu() {
