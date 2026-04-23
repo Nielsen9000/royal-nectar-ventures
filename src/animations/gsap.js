@@ -489,19 +489,69 @@
   function initJerrys() {
     const section = document.querySelector(".jerrys");
     if (!section || reduced) return;
-    const heading = section.querySelector(".jerrys__title");
+
+    const photo   = section.querySelector(".jerrys__left");
     const eyebrow = section.querySelector(".jerrys__eyebrow");
+    const title   = section.querySelector(".jerrys__title");
     const sub     = section.querySelector(".jerrys__sub");
     const body    = section.querySelector(".jerrys__body");
     const awards  = section.querySelectorAll(".jerrys__award");
     const cta     = section.querySelector(".jerrys__cta");
-    const img     = section.querySelector(".jerrys__img");
 
-    animateEntrance([eyebrow], section);
-    animateHeading(heading, section);
-    animateEntrance([sub, body, ...Array.from(awards)].filter(Boolean), section);
-    animateImage(img, section);
-    animateButton(cta, section);
+    // Ken Burns — photo slowly zooms in as section enters
+    if (photo) {
+      gsap.fromTo(photo,
+        { scale: 1.08 },
+        {
+          scale: 1.0,
+          duration: 2.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 90%",
+            once: true
+          }
+        }
+      );
+    }
+
+    // Staggered text reveal from right side
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        once: true
+      }
+    });
+
+    if (eyebrow) tl.fromTo(eyebrow,
+      { y: 20, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" });
+
+    if (title) tl.fromTo(title,
+      { y: 40, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.9, ease: "power4.out" },
+      "-=0.3");
+
+    if (sub) tl.fromTo(sub,
+      { y: 24, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
+      "-=0.5");
+
+    if (body) tl.fromTo(body,
+      { y: 20, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
+      "-=0.4");
+
+    if (awards.length) tl.fromTo(awards,
+      { y: 16, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.15 },
+      "-=0.3");
+
+    if (cta) tl.fromTo(cta,
+      { y: 16, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+      "-=0.2");
   }
 
   function initStory() {
