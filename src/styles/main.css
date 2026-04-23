@@ -910,7 +910,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 14px;
+  bottom: 0;
   z-index: 3;
   overflow: hidden;
   border-top: 1px solid rgba(245, 230, 200, 0.18);
@@ -986,7 +986,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   height: 100%;
   display: flex;
   align-items: center;
-  padding: clamp(2rem, 5vw, 5rem);
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 5rem) clamp(3rem, 6vw, 7rem);
 }
 .jerrys__inner {
   display: flex;
@@ -2433,7 +2434,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   left: 0;
   right: 0;
   height: 80px;
-  background: linear-gradient(to bottom, transparent 0%, #080500 100%);
+  background: linear-gradient(to bottom, transparent 0%, #1E0E02 100%);
   pointer-events: none;
   z-index: 2;
 }
