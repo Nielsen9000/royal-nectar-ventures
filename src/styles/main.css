@@ -1076,10 +1076,11 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   overflow: hidden;
   padding-bottom: clamp(4rem, 8vh, 7rem);
 }
-.story__pin {
+.story__inner {
   position: relative;
   padding: clamp(56px, 8vw, 96px) 1.25rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -1100,10 +1101,25 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .story__headline .word { display: inline-block; overflow: hidden; padding-bottom: 0.18em; }
 .story__headline .word > span { display: inline-block; will-change: transform; }
-.story__headline .word--accent > span {
+.story__eyebrow {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.75rem;
+}
+.story__rule {
+  width: 64px;
+  height: 2px;
+  background: var(--gold);
+  margin: 2.5rem auto 0;
+  opacity: 0.7;
+}
+.story__word--accent span {
+  color: #E8000D;
   font-style: italic;
-  color: var(--vodka);
-  font-family: var(--font-display);
 }
 
 /* ------------ Orbital collection ------------ */
@@ -1992,7 +2008,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .premium__head {
   text-align: center;
-  padding: clamp(3.25rem, 9vh, 6rem) 1.25rem clamp(2rem, 5vh, 3rem);
+  padding: calc(var(--nav-h) + clamp(2rem, 5vh, 3rem)) 1.25rem clamp(2rem, 5vh, 3rem);
   max-width: 920px;
   margin: 0 auto;
 }
