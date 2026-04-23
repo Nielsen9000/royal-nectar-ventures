@@ -336,6 +336,9 @@
     const eyebrowEl = document.getElementById("heroEyebrow");
     const taglineEl = document.getElementById("heroTagline");
 
+    // Mobile hero is a static poster — no carousel DOM present. Skip.
+    if (!bottles.length || !titleEl) return;
+
     let idx = 0;
     let timer = null;
     let paused = false;
