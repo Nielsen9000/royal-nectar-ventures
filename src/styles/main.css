@@ -1086,9 +1086,10 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   opacity: 0;
   transition: opacity 280ms var(--ease-soft);
   pointer-events: none;
+  z-index: 3;
 }
 .orbital__name {
-  top: -2.4rem;
+  top: -1.4rem;
   color: var(--gold);
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -1097,15 +1098,10 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 .orbital__type {
-  bottom: -2rem;
-  color: var(--cream);
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-size: clamp(0.62rem, 0.72vw, 0.74rem);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  display: none;
 }
 .orbital__bottle.is-hover {
+  z-index: 4;
   filter:
     drop-shadow(0 0 38px rgba(231, 168, 41, 0.85))
     drop-shadow(0 0 18px var(--accent, rgba(200, 134, 10, 0.6)));
@@ -1172,10 +1168,6 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   }
   .orbital__name {
     top: 0.6rem;
-    opacity: 1;
-  }
-  .orbital__type {
-    bottom: 0.6rem;
     opacity: 1;
   }
   .orbital__bottle.is-hover {
