@@ -939,36 +939,65 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 
 /* ------------ Mr. Jerry's Espresso Martini ------------ */
 .jerrys {
-  --jerrys-teal: #4ABFBF;
-  --jerrys-bg: #000000;
+  --jerrys-brown-l: #1E0E02;
+  --jerrys-brown-r: #1E0E02;
   position: relative;
-  background: var(--jerrys-bg);
-  color: var(--cream);
-  padding: clamp(3.5rem, 7vh, 6rem) 1.25rem;
+  background: var(--jerrys-brown-l);
   overflow: hidden;
   isolation: isolate;
+  color: var(--cream);
+}
+.jerrys::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(245,230,200,0.5) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+.jerrys__split {
+  position: relative;
+  min-height: clamp(600px, 88vh, 960px);
+  display: block;
+}
+.jerrys__left {
+  position: absolute;
+  inset: 0;
+  width: 55%;
+  background-image: url('../../public/images/backgrounds/jerrys-hero.jpg');
+  background-size: cover;
+  background-position: center center;
+  pointer-events: none;
+  z-index: 0;
+}
+.jerrys__left::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 60%, #1E0E02 100%);
+  pointer-events: none;
+}
+.jerrys__right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 52%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 5rem);
 }
 .jerrys__inner {
-  position: relative;
-  z-index: 2;
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: center;
-  gap: 2.5rem;
-}
-.jerrys__copy {
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-  min-width: 0;
-  max-width: min(56ch, 100%);
+  max-width: 540px;
 }
 .jerrys__eyebrow {
   display: inline-flex;
   align-self: flex-start;
-  color: var(--jerrys-teal);
+  color: var(--gold);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.32em;
@@ -985,7 +1014,6 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .jerrys__sub {
   margin: 0;
-  font-family: var(--font-body);
   font-style: italic;
   font-weight: 500;
   font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
@@ -997,8 +1025,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   color: var(--cream);
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
   line-height: 1.65;
-  opacity: 0.92;
-  overflow-wrap: break-word;
+  opacity: 0.88;
 }
 .jerrys__awards {
   list-style: none;
@@ -1006,37 +1033,22 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   margin: 0.25rem 0 0;
   display: grid;
   gap: 0.9rem;
-  min-width: 0;
-  border-top: 1px solid rgba(200, 134, 10, 0.25);
+  border-top: 1px solid rgba(200,134,10,0.25);
 }
 .jerrys__award {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  min-width: 0;
   color: var(--gold);
-}
-.jerrys__star {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  color: var(--gold);
-  filter: drop-shadow(0 0 12px rgba(200, 134, 10, 0.35));
 }
 .jerrys__award-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  min-width: 0;
-  line-height: 1.25;
+  display: flex; flex-direction: column; gap: 0.15rem; line-height: 1.25;
 }
 .jerrys__award-text strong {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
   color: var(--gold);
-  letter-spacing: 0.01em;
-  overflow-wrap: break-word;
 }
 .jerrys__award-text span {
   font-size: 0.85rem;
@@ -1044,7 +1056,6 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   text-transform: uppercase;
   color: var(--gold-soft);
   opacity: 0.85;
-  overflow-wrap: break-word;
 }
 .jerrys__cta {
   --btn-bg: var(--gold);
@@ -1055,77 +1066,6 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   margin-top: 0.75rem;
 }
 .jerrys__cta:hover { --btn-bg: var(--gold-soft); }
-
-.jerrys__media {
-  position: relative;
-  width: 100%;
-  height: 70vh;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  order: -1;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.jerrys__media::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(74, 191, 191, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-.jerrys__media::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
-  pointer-events: none;
-  z-index: 2;
-}
-.jerrys__video {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  background: #000000;
-  transform: scale(1.25);
-}
-
-@media (min-width: 900px) {
-  .jerrys { padding: clamp(4rem, 7vh, 6rem) 1.25rem; }
-  .jerrys__inner {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: 2rem;
-    align-items: center;
-    padding-right: 0;
-  }
-  .jerrys__media {
-    order: 0;
-    height: clamp(640px, 88vh, 960px);
-    margin-right: 0;
-  }
-  .jerrys__copy {
-    order: 1;
-    gap: 1.25rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .jerrys__video { display: none; }
-}
 
 /* ------------ Story (text breaker) ------------ */
 .story {

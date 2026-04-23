@@ -489,19 +489,18 @@
   function initJerrys() {
     const section = document.querySelector(".jerrys");
     if (!section || reduced) return;
-
     const heading = section.querySelector(".jerrys__title");
     const eyebrow = section.querySelector(".jerrys__eyebrow");
     const sub     = section.querySelector(".jerrys__sub");
     const body    = section.querySelector(".jerrys__body");
     const awards  = section.querySelectorAll(".jerrys__award");
     const cta     = section.querySelector(".jerrys__cta");
-    const media   = section.querySelector(".jerrys__media");
+    const img     = section.querySelector(".jerrys__img");
 
     animateEntrance([eyebrow], section);
     animateHeading(heading, section);
     animateEntrance([sub, body, ...Array.from(awards)].filter(Boolean), section);
-    animateImage(media, section);
+    animateImage(img, section);
     animateButton(cta, section);
   }
 
