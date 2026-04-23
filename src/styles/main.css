@@ -1001,7 +1001,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .orbital {
   background: var(--ink);
   color: var(--cream);
-  padding: clamp(4.5rem, 10vh, 8rem) 1.25rem clamp(1.5rem, 3vh, 2.5rem);
+  padding: clamp(4.5rem, 10vh, 8rem) 1.25rem clamp(4rem, 8vh, 6.5rem);
   position: relative;
   overflow: hidden;
   isolation: isolate;
