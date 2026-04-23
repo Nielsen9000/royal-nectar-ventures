@@ -1001,7 +1001,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .orbital {
   background: var(--ink);
   color: var(--cream);
-  padding: clamp(4.5rem, 10vh, 8rem) 1.25rem clamp(4rem, 8vh, 6.5rem);
+  padding: clamp(4.5rem, 10vh, 8rem) 1.25rem clamp(7rem, 14vh, 11rem);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -1033,7 +1033,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.02;
-  margin: 0 auto clamp(4rem, 9vh, 7rem);
+  margin: 0 auto clamp(6.5rem, 13vh, 10rem);
 }
 .orbital__stage {
   position: relative;
@@ -1050,7 +1050,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .orbital__ring {
   position: absolute;
-  inset: clamp(3rem, 7vh, 5.5rem) 0 0 0;
+  inset: clamp(3rem, 7vh, 5.5rem) 0 clamp(2rem, 5vh, 4rem) 0;
 }
 .orbital__bottle {
   position: absolute;
@@ -1090,7 +1090,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .orbital__name {
   top: -1.4rem;
-  color: var(--gold);
+  color: var(--accent, var(--gold));
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
