@@ -12,8 +12,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="public/images/hero/mobile-poster-750.jpg" imagesrcset="public/images/hero/mobile-poster-750.jpg 750w, public/images/hero/mobile-poster-1200.jpg 1200w" imagesizes="100vw" fetchpriority="high" media="(max-width: 768px)" />
-  <link rel="preload" as="image" href="public/images/bottles/buccaneer-white-rum-nobg.png" fetchpriority="high" media="(min-width: 769px)" />
   <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
@@ -42,7 +40,7 @@
 
   <header class="nav" id="nav">
     <a class="nav__brand" href="#top" aria-label="Royal Nectar Ventures home">
-      <span class="nav__antler" aria-hidden="true"></span>
+      <img class="nav__antler" src="public/images/logo/rnv-logo.png" alt="" aria-hidden="true" decoding="async" />
       <span class="nav__wordmark">Royal Nectar Ventures</span>
     </a>
 
@@ -80,123 +78,27 @@
 
   <main id="top">
 
-    <section class="hero" id="hero" aria-label="Featured spirits">
-      <div class="hero__mobile">
-        <picture class="hero-m__poster" aria-hidden="true">
-          <source srcset="public/images/hero/mobile-poster-750.jpg 750w, public/images/hero/mobile-poster-1200.jpg 1200w" sizes="100vw" />
-          <img src="public/images/hero/mobile-poster-750.jpg" alt="" width="750" height="422" fetchpriority="high" decoding="async" />
-        </picture>
-        <div class="hero-m__kente hero-m__kente--left" aria-hidden="true"></div>
-        <div class="hero-m__kente hero-m__kente--right" aria-hidden="true"></div>
-        <div class="hero-m__inner">
-          <span class="hero-m__marker"><i></i> Accra. Uncorked.</span>
-          <h1 class="hero-m__title">The bottles Accra actually drinks.</h1>
-          <p class="hero-m__sub">Bold spirits. Imported for Ghana.</p>
-          <div class="hero-m__actions">
-            <a class="btn btn--primary" href="products.html">
-              <span>Meet the seven</span>
-              <span class="btn__ico" aria-hidden="true">&rarr;</span>
-            </a>
-            <a class="btn btn--ghost" href="#contact">
-              <span>Trade enquiry</span>
-            </a>
-          </div>
+    <section class="hero" id="hero" aria-label="Royal Nectar Ventures">
+      <div class="hero__copy">
+        <span class="hero__eyebrow">Accra. Uncorked.</span>
+        <h1 class="hero__title">We bring Ghana <em>the&nbsp;bottles</em> actually worth opening.</h1>
+        <p class="hero__sub">Premium spirits. Imported with purpose. Distributed across Ghana.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="products.html">
+            <span>Meet the collection</span>
+            <span class="btn__ico" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="btn btn--ghost" href="#contact">
+            <span>Trade enquiry</span>
+          </a>
         </div>
-        <a class="hero-m__scroll" href="#jerrys" aria-label="Scroll to next section">
-          <span>Scroll</span>
-          <span class="hero-m__scroll-line" aria-hidden="true"></span>
-        </a>
       </div>
-
-      <template id="heroDesktopTemplate">
-        <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto">
           <source src="public/videos/hero-reel.mp4" type="video/mp4">
         </video>
-        <div class="hero__overlay"></div>
-        <div class="hero__kente hero__kente--left" aria-hidden="true"></div>
-        <div class="hero__kente hero__kente--right" aria-hidden="true"></div>
-
-        <div class="hero__inner">
-          <div class="hero__copy">
-            <span class="hero__marker"><i></i> Accra. Uncorked.</span>
-            <h1 class="hero__title" id="heroTitle">Buccaneer White Rum</h1>
-            <span class="hero__eyebrow" id="heroEyebrow">White Rum</span>
-            <p class="hero__tagline" id="heroTagline">Clean. Bold. Legendary.</p>
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="products.html">
-                <span>Meet the seven</span>
-                <span class="btn__ico" aria-hidden="true">&rarr;</span>
-              </a>
-              <a class="btn btn--ghost" href="#contact">
-                <span>Trade enquiry</span>
-              </a>
-            </div>
-            <div class="hero__dots" role="tablist" aria-label="Product selector">
-              <button class="hero__dot is-active" role="tab" aria-selected="true" data-idx="0" aria-label="Buccaneer White Rum"></button>
-              <button class="hero__dot" role="tab" aria-selected="false" data-idx="1" aria-label="Buccaneer Dark Rum"></button>
-              <button class="hero__dot" role="tab" aria-selected="false" data-idx="2" aria-label="QE Premium Vodka"></button>
-              <button class="hero__dot" role="tab" aria-selected="false" data-idx="3" aria-label="Georgievski Vodka Orange"></button>
-              <button class="hero__dot" role="tab" aria-selected="false" data-idx="4" aria-label="Georgievski Vodka Cranberry"></button>
-              <button class="hero__dot" role="tab" aria-selected="false" data-idx="5" aria-label="Georgievski Vodka Lime"></button>
-              <button class="hero__dot" role="tab" aria-selected="false" data-idx="6" aria-label="Pink Mystique Gin"></button>
-            </div>
-          </div>
-
-          <div class="hero__stage" aria-hidden="true">
-            <div class="hero__halo"></div>
-            <div class="hero__bottle is-active" data-idx="0">
-              <img src="public/images/bottles/buccaneer-white-rum-nobg.png" alt="" fetchpriority="high" decoding="async" />
-            </div>
-            <div class="hero__bottle" data-idx="1">
-              <img src="public/images/bottles/buccaneer-dark-rum-nobg.png" alt="" fetchpriority="low" decoding="async" />
-            </div>
-            <div class="hero__bottle" data-idx="2">
-              <img src="public/images/bottles/qe-vodka-nobg.png" alt="" fetchpriority="low" decoding="async" />
-            </div>
-            <div class="hero__bottle" data-idx="3">
-              <img src="public/images/bottles/georgievski-orange-nobg.png" alt="" fetchpriority="low" decoding="async" />
-            </div>
-            <div class="hero__bottle" data-idx="4">
-              <img src="public/images/bottles/georgievski-cranberry-nobg.png" alt="" fetchpriority="low" decoding="async" />
-            </div>
-            <div class="hero__bottle" data-idx="5">
-              <img src="public/images/bottles/georgievski-lime-nobg.png" alt="" fetchpriority="low" decoding="async" />
-            </div>
-            <div class="hero__bottle" data-idx="6">
-              <img src="public/images/bottles/pink-mystique-gin-nobg.png" alt="" fetchpriority="low" decoding="async" />
-            </div>
-          </div>
-        </div>
-
-        <div class="hero__marquee" aria-hidden="true">
-          <div class="marquee__track">
-            <span>Rum</span><span aria-hidden="true">&#10022;</span>
-            <span>Vodka</span><span aria-hidden="true">&#10022;</span>
-            <span>Gin</span><span aria-hidden="true">&#10022;</span>
-            <span>Imported for Ghana</span><span aria-hidden="true">&#10022;</span>
-            <span>Distributed nationwide</span><span aria-hidden="true">&#10022;</span>
-            <span>Rum</span><span aria-hidden="true">&#10022;</span>
-            <span>Vodka</span><span aria-hidden="true">&#10022;</span>
-            <span>Gin</span><span aria-hidden="true">&#10022;</span>
-            <span>Imported for Ghana</span><span aria-hidden="true">&#10022;</span>
-            <span>Distributed nationwide</span><span aria-hidden="true">&#10022;</span>
-          </div>
-        </div>
-      </template>
+      </div>
     </section>
-    <script>
-      (function () {
-        if (window.matchMedia && window.matchMedia("(min-width: 769px)").matches) {
-          var hero = document.getElementById("hero");
-          var tmpl = document.getElementById("heroDesktopTemplate");
-          if (hero && tmpl && "content" in tmpl) {
-            hero.classList.add("hero--desktop-hydrated");
-            hero.insertBefore(tmpl.content.cloneNode(true), tmpl);
-            tmpl.remove();
-          }
-        }
-      })();
-    </script>
 
 <section class="jerrys" id="jerrys" aria-label="Mr. Jerry's Espresso Martini">
   <div class="jerrys__split">
@@ -228,13 +130,14 @@
   <div class="story__inner">
     <span class="story__eyebrow">Ghana's premier spirits importer</span>
     <h2 class="story__headline">
-      <span class="word"><span>We</span></span>
-      <span class="word"><span>bring</span></span>
-      <span class="word"><span>Ghana</span></span>
-      <span class="word story__word--accent"><span>the&nbsp;bottles</span></span>
-      <span class="word"><span>actually</span></span>
-      <span class="word"><span>worth</span></span>
-      <span class="word"><span>opening.</span></span>
+      <span class="word"><span>Bold</span></span>
+      <span class="word"><span>enough</span></span>
+      <span class="word"><span>for</span></span>
+      <span class="word"><span>Accra.</span></span>
+      <span class="word story__word--accent"><span>Good</span></span>
+      <span class="word story__word--accent"><span>enough</span></span>
+      <span class="word story__word--accent"><span>for</span></span>
+      <span class="word story__word--accent"><span>anywhere.</span></span>
     </h2>
     <div class="story__rule" aria-hidden="true"></div>
   </div>
@@ -378,7 +281,7 @@
 
   <footer class="footer" aria-label="Site footer">
     <div class="footer__inner">
-      <span class="footer__logo" role="img" aria-label="Royal Nectar Ventures"></span>
+      <img class="footer__logo" src="public/images/logo/rnv-logo.png" alt="Royal Nectar Ventures" decoding="async" />
       <p class="footer__tag">The best quality drinks on the market.</p>
 
       <div class="footer__grid">

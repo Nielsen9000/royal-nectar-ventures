@@ -62,22 +62,12 @@
     if (typeof gsap === "undefined") return;
     if (typeof ScrollTrigger !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-    const PRODUCTS = [
-      { name: "Buccaneer White Rum",   type: "White Rum",       tagline: "Clean. Bold. Legendary.",       color: "#0066FF" },
-      { name: "Buccaneer Dark Rum",    type: "Dark Rum",        tagline: "Deep. Rich. Unapologetic.",     color: "#FF5500" },
-      { name: "QE Premium Vodka",      type: "Premium Vodka",   tagline: "Pure. Sharp. Premium.",         color: "#E8000D" },
-      { name: "Georgievski Orange",    type: "Flavoured Vodka", tagline: "Bright. Zesty. Alive.",         color: "#FFD600" },
-      { name: "Georgievski Cranberry", type: "Flavoured Vodka", tagline: "Bold. Fruity. Fearless.",       color: "#FF0080" },
-      { name: "Georgievski Lime",      type: "Flavoured Vodka", tagline: "Fresh. Sharp. Electric.",       color: "#00CC44" },
-      { name: "Pink Mystique Gin",     type: "London Dry Gin",  tagline: "Mysterious. Botanical. Royal.", color: "#8800FF" }
-    ];
-
     initProgress();
     initNavEntrance();
     initNavScrollState();
     initNavTheme();
     initMobileMenu();
-    initHero(PRODUCTS);
+    initHero();
     initJerrys();
     initStory();
     initOrbital();
@@ -324,164 +314,44 @@
     });
   }
 
-  /* ---------- hero (interactive carousel; non-scroll) ---------- */
+  /* ---------- hero (split layout intro timeline; non-scroll) ---------- */
 
-  function initHero(PRODUCTS) {
+  function initHero() {
     const hero = document.querySelector(".hero");
     if (!hero) return;
 
-    const bottles   = Array.from(document.querySelectorAll(".hero__bottle"));
-    const dots      = Array.from(document.querySelectorAll(".hero__dot"));
-    const titleEl   = document.getElementById("heroTitle");
-    const eyebrowEl = document.getElementById("heroEyebrow");
-    const taglineEl = document.getElementById("heroTagline");
+    const eyebrow = hero.querySelector(".hero__eyebrow");
+    const title   = hero.querySelector(".hero__title");
+    const sub     = hero.querySelector(".hero__sub");
+    const actions = Array.from(hero.querySelectorAll(".hero__actions > *"));
+    const video   = hero.querySelector(".hero__video");
 
-    // Mobile hero is a static poster — no carousel DOM present. Skip.
-    if (!bottles.length || !titleEl) return;
+    const revealables = [eyebrow, title, sub, ...actions, video].filter(Boolean);
+    if (reduced) {
+      gsap.set(revealables, { autoAlpha: 1, y: 0, scale: 1 });
+      return;
+    }
 
-    let idx = 0;
-    let timer = null;
-    let paused = false;
-    let firstRun = true;
-    const DURATION = 4.2;
-    const FIRST_DURATION = 2.6;
-
-    bottles.forEach((b, i) => gsap.set(b, { autoAlpha: i === 0 ? 1 : 0, scale: (isMobile() || reduced) ? 1 : (i === 0 ? 1 : 0.6) }));
-    gsap.set(hero, { backgroundColor: PRODUCTS[0].color });
-
-    // Hero entrance + carousel motion are intentionally NOT scroll-triggered —
-    // they run on first paint and on click/auto-rotation. Keep the original
-    // dramatic carousel feel (scale 0.6, back.out, y:80); the user's scroll
-    // spec governs below-the-fold sections.
     const mobile = isMobile();
-    const hd    = (n) => reduced ? 0 : (mobile ? n * 0.4 : n);
-    const hdur  = (n) => reduced ? 0.001 : (mobile ? n * 0.8 : n);
-    const hez   = (full) => (mobile || reduced) ? "power2.out" : full;
+    const hd   = (n) => mobile ? n * 0.5 : n;
+    const hdur = (n) => mobile ? n * 0.85 : n;
 
-    if (!reduced) {
-      const entrance = gsap.timeline({ defaults: { ease: hez("power3.out") } });
-      entrance
-        .from(".hero__marker",      { y: hd(18), autoAlpha: 0, duration: hdur(0.7), delay: 0.1 })
-        .from(".hero__eyebrow",     { y: hd(20), autoAlpha: 0, duration: hdur(0.6) }, "-=0.4")
-        .from(".hero__title",       { y: hd(36), autoAlpha: 0, duration: hdur(0.85), ease: hez("back.out(1.4)") }, "-=0.45")
-        .from(".hero__tagline",     { y: hd(20), autoAlpha: 0, duration: hdur(0.6) }, "-=0.6")
-        .from(".hero__actions > *", { y: hd(16), autoAlpha: 0, duration: hdur(0.5), stagger: 0.08 }, "-=0.5")
-        .from(".hero__dots > *",    { y: hd(12), autoAlpha: 0, duration: hdur(0.4), stagger: 0.05 }, "-=0.35")
-        .from(".hero__bottle.is-active img",
-          mobile
-            ? { y: hd(80), autoAlpha: 0, duration: hdur(1.1), ease: hez("back.out(1.5)") }
-            : { y: 80, scale: 0.8, autoAlpha: 0, duration: 1.1, ease: "back.out(1.5)" },
-          "-=0.9")
-        .from(".hero__kente",
-          mobile
-            ? { autoAlpha: 0, duration: hdur(1), stagger: 0.08 }
-            : { scaleY: 0, autoAlpha: 0, transformOrigin: "50% 0%", duration: 1, stagger: 0.08 },
-          "-=1")
-        .from(".hero__marquee",     { y: hd(24), autoAlpha: 0, duration: hdur(0.6) }, "-=0.4");
-    }
-
-    function show(target) {
-      if (target === idx) return;
-      const prev = idx;
-      idx = target;
-      const p = PRODUCTS[target];
-
-      if (reduced) {
-        gsap.set(hero, { backgroundColor: p.color });
-        gsap.set(bottles[prev], { autoAlpha: 0 });
-        bottles[prev].classList.remove("is-active");
-        bottles[target].classList.add("is-active");
-        gsap.set(bottles[target], { autoAlpha: 1, scale: 1, y: 0 });
-        eyebrowEl.textContent = p.type;
-        titleEl.textContent   = p.name;
-        taglineEl.textContent = p.tagline;
-      } else {
-        gsap.to(hero, { backgroundColor: p.color, duration: hdur(0.9), ease: "power2.inOut" });
-
-        const outVars = { autoAlpha: 0, duration: hdur(0.55), ease: "power2.in",
-          onComplete: () => bottles[prev].classList.remove("is-active") };
-        if (!mobile) outVars.scale = 0.6;
-        gsap.to(bottles[prev], outVars);
-
-        bottles[target].classList.add("is-active");
-        const fromVars = mobile ? { autoAlpha: 0, y: hd(40) } : { autoAlpha: 0, scale: 0.6, y: 40 };
-        const toVars   = mobile
-          ? { autoAlpha: 1, y: 0, duration: hdur(0.9), ease: hez("back.out(1.4)") }
-          : { autoAlpha: 1, scale: 1, y: 0, duration: 0.9, ease: "back.out(1.4)" };
-        gsap.fromTo(bottles[target], fromVars, toVars);
-
-        const tl = gsap.timeline();
-        tl.to([eyebrowEl, titleEl, taglineEl], {
-            autoAlpha: 0, y: hd(-16), duration: hdur(0.28), stagger: 0.04, ease: "power2.in"
-          })
-          .add(() => {
-            eyebrowEl.textContent = p.type;
-            titleEl.textContent   = p.name;
-            taglineEl.textContent = p.tagline;
-          })
-          .set([eyebrowEl, titleEl, taglineEl], { y: hd(26) })
-          .to([eyebrowEl, titleEl, taglineEl], {
-            autoAlpha: 1, y: 0, duration: hdur(0.55), stagger: 0.07, ease: hez("back.out(1.5)")
-          });
-      }
-
-      dots.forEach((d, i) => {
-        d.classList.toggle("is-active", i === target);
-        d.setAttribute("aria-selected", String(i === target));
-      });
-    }
-
-    function clearTimer() { if (timer) { timer.kill(); timer = null; } }
-
-    function queueNext() {
-      clearTimer();
-      if (paused) return;
-      const delay = firstRun ? FIRST_DURATION : DURATION;
-      firstRun = false;
-      timer = gsap.delayedCall(delay, () => {
-        show((idx + 1) % PRODUCTS.length);
-        queueNext();
-      });
-    }
-
-    function pauseRotation()  { paused = true; clearTimer(); }
-    function resumeRotation() { paused = false; queueNext(); }
-
-    dots.forEach((d, i) => {
-      d.addEventListener("click", () => { show(i); queueNext(); });
-    });
-
-    const dotsEl = hero.querySelector(".hero__dots");
-    if (dotsEl) {
-      dotsEl.addEventListener("mouseenter", pauseRotation);
-      dotsEl.addEventListener("mouseleave", resumeRotation);
-    }
-    document.addEventListener("visibilitychange", () => {
-      document.hidden ? pauseRotation() : resumeRotation();
-    });
-
-    const SWIPE_THRESHOLD = 40;
-    let startX = 0, startY = 0, tracking = false;
-
-    function onStart(x, y) { tracking = true; startX = x; startY = y; pauseRotation(); }
-    function onEnd(x, y) {
-      if (!tracking) return;
-      tracking = false;
-      const dx = x - startX, dyv = y - startY;
-      if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dyv)) {
-        const dir = dx < 0 ? 1 : -1;
-        show((idx + dir + PRODUCTS.length) % PRODUCTS.length);
-      }
-      resumeRotation();
-    }
-
-    hero.addEventListener("touchstart", (e) => { const t = e.changedTouches[0]; onStart(t.clientX, t.clientY); }, { passive: true });
-    hero.addEventListener("touchend",   (e) => { const t = e.changedTouches[0]; onEnd(t.clientX, t.clientY); });
-    hero.addEventListener("touchcancel", () => { tracking = false; resumeRotation(); });
-    hero.addEventListener("mousedown",  (e) => { if (e.button !== 0) return; onStart(e.clientX, e.clientY); });
-    window.addEventListener("mouseup",  (e) => { if (!tracking) return; onEnd(e.clientX, e.clientY); });
-
-    queueNext();
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    if (eyebrow) tl.fromTo(eyebrow,
+      { y: hd(20), autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: hdur(0.6) }, 0.15);
+    if (title) tl.fromTo(title,
+      { y: hd(40), autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: hdur(0.95), ease: "power4.out" }, "-=0.35");
+    if (sub) tl.fromTo(sub,
+      { y: hd(20), autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: hdur(0.65) }, "-=0.55");
+    if (actions.length) tl.fromTo(actions,
+      { y: hd(16), autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: hdur(0.5), stagger: 0.08 }, "-=0.45");
+    if (video) tl.fromTo(video,
+      { autoAlpha: 0, scale: 1.04 },
+      { autoAlpha: 1, scale: 1, duration: hdur(1.1), ease: "power2.out" }, 0.4);
   }
 
   /* ---------- section entrance animations ---------- */
