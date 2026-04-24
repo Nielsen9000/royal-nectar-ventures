@@ -154,11 +154,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 body:not(.anim-ready) .nav__brand,
 body:not(.anim-ready) .nav__links > a,
 body:not(.anim-ready) .nav__toggle,
+body:not(.anim-ready) .hero { --hero-shield-opacity: 0; }
 body:not(.anim-ready) .hero__eyebrow,
 body:not(.anim-ready) .hero__title,
 body:not(.anim-ready) .hero__sub,
 body:not(.anim-ready) .hero__actions > *,
-body:not(.anim-ready) .hero__video,
+body:not(.anim-ready) .hero__media,
 body:not(.anim-ready) .story__headline .word > span,
 body:not(.anim-ready) .orbital__title,
 body:not(.anim-ready) .orbital__stage,
@@ -182,7 +183,7 @@ body:not(.anim-ready) .footer__kente {
 .hero__title,
 .hero__sub,
 .hero__actions > *,
-.hero__video,
+.hero__media,
 .jerrys__copy,
 .jerrys__media,
 .story__headline .word > span,
@@ -555,6 +556,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 
 /* ------------ Hero (overlapping layout) ------------ */
 .hero {
+  --hero-shield-opacity: 1;
   position: relative;
   min-height: 100dvh;
   background: #080500;
@@ -661,6 +663,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
     width: 55%;
     height: 100%;
     background: linear-gradient(90deg, #080500 0%, #080500 35%, rgba(8,5,0,0.85) 65%, transparent 100%);
+    opacity: var(--hero-shield-opacity, 1);
     pointer-events: none;
     z-index: 2;
   }
@@ -2096,7 +2099,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .hero__title,
 .hero__sub,
 .hero__actions > *,
-.hero__video,
+.hero__media,
 .jerrys__title,
 .jerrys__eyebrow,
 .jerrys__sub,
@@ -2146,7 +2149,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   body .hero__title,
   body .hero__sub,
   body .hero__actions > *,
-  body .hero__video,
+  body .hero__media,
   body .story__headline .word > span,
   body .orbital__title,
   body .orbital__stage,

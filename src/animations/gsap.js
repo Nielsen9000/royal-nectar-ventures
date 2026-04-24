@@ -245,6 +245,8 @@
   }
 
   function initNavEntrance() {
+    // On the homepage the cinematic hero timeline owns the nav reveal.
+    if (document.querySelector(".hero")) return;
     if (reduced) return;
     const tl = gsap.timeline({ defaults: { ease: EASE_BASE } });
     tl.from(prep(".nav__brand"), { y: dy(24), autoAlpha: 0, duration: ddur(DUR_BASE) })
@@ -314,44 +316,77 @@
     });
   }
 
-  /* ---------- hero (split layout intro timeline; non-scroll) ---------- */
+  /* ---------- hero (cinematic page-load entrance; no ScrollTrigger) ---------- */
 
   function initHero() {
     const hero = document.querySelector(".hero");
+    const nav  = document.querySelector(".nav");
+    const navItems = nav
+      ? Array.from(nav.querySelectorAll(".nav__brand, .nav__links > a, .nav__toggle"))
+      : [];
+
     if (!hero) return;
 
     const eyebrow = hero.querySelector(".hero__eyebrow");
     const title   = hero.querySelector(".hero__title");
     const sub     = hero.querySelector(".hero__sub");
     const actions = Array.from(hero.querySelectorAll(".hero__actions > *"));
-    const video   = hero.querySelector(".hero__video");
+    const media   = hero.querySelector(".hero__media");
+    const lines   = title ? splitHeadingLines(title) : [];
 
-    const revealables = [eyebrow, title, sub, ...actions, video].filter(Boolean);
     if (reduced) {
-      gsap.set(revealables, { autoAlpha: 1, y: 0, scale: 1 });
+      const flat = [eyebrow, title, sub, ...actions, media, ...navItems].filter(Boolean);
+      gsap.set(flat, { autoAlpha: 1, y: 0 });
+      gsap.set(hero, { "--hero-shield-opacity": 1 });
+      if (lines.length) gsap.set(lines.flat(), { autoAlpha: 1, y: 0 });
       return;
     }
 
-    const mobile = isMobile();
-    const hd   = (n) => mobile ? n * 0.5 : n;
-    const hdur = (n) => mobile ? n * 0.85 : n;
+    const tl = gsap.timeline({ delay: 0.3 });
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    // 1. Video fades in — 1.5s from t=0
+    if (media) tl.fromTo(media,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 1.5, ease: "power2.out" }, 0);
+
+    // 2. Dark gradient shield — 1s starting at 0.5
+    tl.fromTo(hero,
+      { "--hero-shield-opacity": 0 },
+      { "--hero-shield-opacity": 1, duration: 1, ease: "power2.out" }, 0.5);
+
+    // 3. Eyebrow — 0.8s starting at 0.8
     if (eyebrow) tl.fromTo(eyebrow,
-      { y: hd(20), autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: hdur(0.6) }, 0.15);
-    if (title) tl.fromTo(title,
-      { y: hd(40), autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: hdur(0.95), ease: "power4.out" }, "-=0.35");
+      { y: 20, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 0.8);
+
+    // 4. Headline — per-line reveal, 1s each, stagger 0.2s, starting at 1.0
+    const HEADLINE_START = 1.0;
+    let lastLineEnd = HEADLINE_START + 1.0;
+    if (lines.length) {
+      lines.forEach((lineInners, i) => {
+        tl.fromTo(lineInners,
+          { y: 60, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 1, ease: "power4.out" },
+          HEADLINE_START + i * 0.2);
+      });
+      lastLineEnd = HEADLINE_START + (lines.length - 1) * 0.2 + 1.0;
+    }
+
+    // 5. Subtext — 0.8s starting when the last headline line finishes
+    const subStart = lastLineEnd;
     if (sub) tl.fromTo(sub,
-      { y: hd(20), autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: hdur(0.65) }, "-=0.55");
+      { y: 20, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, subStart);
+
+    // 6. Buttons — 0.6s, 0.15s after subtext starts
     if (actions.length) tl.fromTo(actions,
-      { y: hd(16), autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: hdur(0.5), stagger: 0.08 }, "-=0.45");
-    if (video) tl.fromTo(video,
-      { autoAlpha: 0, scale: 1.04 },
-      { autoAlpha: 1, scale: 1, duration: hdur(1.1), ease: "power2.out" }, 0.4);
+      { y: 20, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, subStart + 0.15);
+
+    // 7. Nav — 0.6s, last in the sequence
+    if (navItems.length) tl.fromTo(navItems,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 0.6, ease: "power2.out" }, subStart + 0.75);
   }
 
   /* ---------- section entrance animations ---------- */
