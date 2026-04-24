@@ -1124,7 +1124,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 
 /* ------------ Orbital collection ------------ */
 .orbital {
-  background: var(--ink);
+  background: #080500;
   color: var(--cream);
   padding: clamp(4.5rem, 10vh, 8rem) 1.25rem clamp(7rem, 14vh, 11rem);
   position: relative;
@@ -1134,15 +1134,14 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .orbital::before {
   content: "";
   position: absolute;
-  top: -14%;
+  top: 50%;
   left: 50%;
-  width: clamp(480px, 68vw, 920px);
-  height: clamp(480px, 68vw, 920px);
-  transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(200, 134, 10, 0.18), transparent 68%);
-  filter: blur(40px);
-  z-index: 0;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(200,134,10,0.32) 0%, rgba(200,134,10,0.14) 35%, rgba(200,134,10,0.04) 60%, transparent 75%);
   pointer-events: none;
+  z-index: 0;
 }
 .orbital__inner {
   position: relative;
@@ -1207,6 +1206,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .orbital__stage {
   position: relative;
+  z-index: 1;
   height: clamp(460px, 64vh, 680px);
   max-width: 960px;
   margin: 0 auto;
