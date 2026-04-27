@@ -640,14 +640,14 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   margin-top: 0.5rem;
 }
 .hero__actions .btn--ghost {
-  color: var(--cream);
-  border-color: rgba(245, 230, 200, 0.5);
+  color: var(--gold);
+  border-color: rgba(200, 134, 10, 0.6);
 }
 .hero__actions .btn--ghost:hover,
 .hero__actions .btn--ghost:focus-visible {
-  background: var(--cream);
+  background: var(--gold);
   color: var(--ink);
-  border-color: var(--cream);
+  border-color: var(--gold);
 }
 
 @media (min-width: 900px) {
