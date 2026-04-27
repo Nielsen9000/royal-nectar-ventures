@@ -667,12 +667,12 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
     pointer-events: none;
     z-index: 2;
   }
-  /* Video: 65% of viewport, anchored right */
+  /* Video: 72% of viewport, anchored right (overlaps text zone at 28-55%) */
   .hero__media {
     position: absolute;
     top: 0;
     right: 0;
-    width: 65%;
+    width: 72%;
     height: 100%;
     order: 0;
     z-index: 1;
