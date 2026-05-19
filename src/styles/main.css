@@ -2313,18 +2313,6 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
    80px height. No top fades. .story (text breaker) intentionally has none.
    ========================================================================== */
 
-/* Hero (dark) -> orbital (cream) */
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent 0%, var(--cream) 100%);
-  pointer-events: none;
-  z-index: 2;
-}
 /* Espresso jerrys (brown) -> story (cream) */
 .jerrys:first-of-type::after {
   content: "";
@@ -2338,18 +2326,6 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   z-index: 5;
 }
 
-/* Story (cream) -> negroni (brown) */
-.story::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent 0%, #1E0E02 100%);
-  pointer-events: none;
-  z-index: 2;
-}
 
 /* .tetra -> .contact / .contact-cta (dark) */
 .tetra::after {
