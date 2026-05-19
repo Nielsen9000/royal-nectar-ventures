@@ -392,71 +392,74 @@
   /* ---------- section entrance animations ---------- */
 
   function initJerrys() {
-    const section = document.querySelector(".jerrys");
-    if (!section || reduced) return;
+    if (reduced) return;
+    const sections = document.querySelectorAll(".jerrys");
+    if (!sections.length) return;
 
-    const photo   = section.querySelector(".jerrys__left");
-    const eyebrow = section.querySelector(".jerrys__eyebrow");
-    const title   = section.querySelector(".jerrys__title");
-    const sub     = section.querySelector(".jerrys__sub");
-    const body    = section.querySelector(".jerrys__body");
-    const awards  = section.querySelectorAll(".jerrys__award");
-    const cta     = section.querySelector(".jerrys__cta");
+    sections.forEach((section) => {
+      const photo   = section.querySelector(".jerrys__left");
+      const eyebrow = section.querySelector(".jerrys__eyebrow");
+      const title   = section.querySelector(".jerrys__title");
+      const sub     = section.querySelector(".jerrys__sub");
+      const body    = section.querySelector(".jerrys__body");
+      const awards  = section.querySelectorAll(".jerrys__award");
+      const cta     = section.querySelector(".jerrys__cta");
 
-    // Ken Burns — photo slowly zooms in as section enters
-    if (photo) {
-      gsap.fromTo(photo,
-        { scale: 1.08 },
-        {
-          scale: 1.0,
-          duration: 2.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 90%",
-            once: true
+      // Ken Burns — photo slowly zooms in as section enters
+      if (photo) {
+        gsap.fromTo(photo,
+          { scale: 1.08 },
+          {
+            scale: 1.0,
+            duration: 2.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 90%",
+              once: true
+            }
           }
-        }
-      );
-    }
-
-    // Staggered text reveal from right side
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 75%",
-        once: true
+        );
       }
+
+      // Staggered text reveal
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          once: true
+        }
+      });
+
+      if (eyebrow) tl.fromTo(eyebrow,
+        { y: 20, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" });
+
+      if (title) tl.fromTo(title,
+        { y: 40, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.9, ease: "power4.out" },
+        "-=0.3");
+
+      if (sub) tl.fromTo(sub,
+        { y: 24, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
+        "-=0.5");
+
+      if (body) tl.fromTo(body,
+        { y: 20, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
+        "-=0.4");
+
+      if (awards.length) tl.fromTo(awards,
+        { y: 16, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.15 },
+        "-=0.3");
+
+      if (cta) tl.fromTo(cta,
+        { y: 16, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+        "-=0.2");
     });
-
-    if (eyebrow) tl.fromTo(eyebrow,
-      { y: 20, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" });
-
-    if (title) tl.fromTo(title,
-      { y: 40, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: 0.9, ease: "power4.out" },
-      "-=0.3");
-
-    if (sub) tl.fromTo(sub,
-      { y: 24, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
-      "-=0.5");
-
-    if (body) tl.fromTo(body,
-      { y: 20, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
-      "-=0.4");
-
-    if (awards.length) tl.fromTo(awards,
-      { y: 16, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.15 },
-      "-=0.3");
-
-    if (cta) tl.fromTo(cta,
-      { y: 16, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
-      "-=0.2");
   }
 
   function initStory() {
@@ -512,7 +515,7 @@
     let lastT = null;
     let RX = 320, RY = 60;
     const SPEED = 0.00018;
-    const HOVER_SCALE = 1.4;
+    const HOVER_BUMP = 0.1; // relative size bump on hover (10%)
     const baseAngles = bottles.map((_, i) => (i / bottles.length) * Math.PI * 2);
 
     function setHover(i) {
@@ -529,9 +532,10 @@
     function computeRadii() {
       const w = stage.clientWidth || 800;
       const h = stage.clientHeight || 560;
-      const bottleW = bottles[0].offsetWidth || 160;
-      RX = Math.max(140, Math.min(w * 0.42, (w - bottleW) / 2 - 10));
-      RY = Math.max(18, h * 0.06);
+      // Orbit kept inside the stage column horizontally; vertical depth gives
+      // each bottle its own row band so they don't pile up in the middle.
+      RX = Math.max(200, w * 0.48);
+      RY = Math.max(20, h * 0.09);
     }
 
     function clearInline() {
@@ -552,7 +556,7 @@
       const z = Math.round((c + 1) * 50);
       const el = bottles[i];
       const boost = i === hoverIdx ? hoverBoost : 0;
-      const scale = orbScale + (HOVER_SCALE - orbScale) * boost;
+      const scale = orbScale * (1 + HOVER_BUMP * boost);
       const opacity = orbOpacity + (1 - orbOpacity) * boost;
       el.style.transform = "translate(-50%, -50%) translate(" + x.toFixed(2) + "px, " + y.toFixed(2) + "px) scale(" + scale.toFixed(3) + ")";
       el.style.opacity = opacity.toFixed(3);
@@ -565,7 +569,7 @@
       if (lastT === null) lastT = t;
       const dt = t - lastT;
       lastT = t;
-      if (!autoPaused && hoverIdx < 0 && hoverBoost < 0.01 && !reduced) rotation += dt * SPEED;
+      if (!autoPaused && hoverIdx < 0 && !reduced) rotation += dt * SPEED;
       for (let i = 0; i < bottles.length; i++) {
         renderBottle(i, baseAngles[i] + rotation);
       }
@@ -577,9 +581,9 @@
 
     bottles.forEach((b, i) => {
       b.addEventListener("mouseenter", () => { setHover(i); b.classList.add("is-hover"); });
-      b.addEventListener("mouseleave", () => { if (hoverIdx === i) setHover(-1); b.classList.remove("is-hover"); });
+      b.addEventListener("mouseleave", () => { setHover(-1); b.classList.remove("is-hover"); });
       b.addEventListener("focus",      () => { setHover(i); b.classList.add("is-hover"); });
-      b.addEventListener("blur",       () => { if (hoverIdx === i) setHover(-1); b.classList.remove("is-hover"); });
+      b.addEventListener("blur",       () => { setHover(-1); b.classList.remove("is-hover"); });
       b.addEventListener("click", (e) => {
         e.preventDefault();
         const href = b.dataset.target;
@@ -594,6 +598,14 @@
           window.location.href = href;
         }
       });
+    });
+
+    // Safety net: if a bottle-level mouseleave gets missed (e.g. overlapping
+    // bottles, fast cursor exits), force-reset hover state when the cursor
+    // leaves the whole stage so rotation always resumes.
+    stage.addEventListener("mouseleave", () => {
+      if (hoverIdx !== -1) setHover(-1);
+      bottles.forEach((b) => b.classList.remove("is-hover"));
     });
 
     function handleResize() {
@@ -620,10 +632,10 @@
     window.dispatchEvent(new CustomEvent("orbital:ready"));
 
     if (reduced) {
-      gsap.set(".orbital__title", { autoAlpha: 1, y: 0 });
+      gsap.set(".orbital__display", { autoAlpha: 1, y: 0 });
       gsap.set(".orbital__stage", { autoAlpha: 1 });
     } else {
-      animateHeading(section.querySelector(".orbital__title"), section);
+      animateHeading(section.querySelector(".orbital__display"), section);
       animateImage(stage, section);
     }
   }
