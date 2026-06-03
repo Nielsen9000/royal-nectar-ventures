@@ -46,7 +46,7 @@
 
     <nav class="nav__links" aria-label="Primary">
       <a href="#story">Our Story</a>
-      <a href="products.html">Products</a>
+      <div class="nav__dropdown"><button class="nav__dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="nav__caret" aria-hidden="true">▾</span></button><div class="nav__dropdown-menu" role="menu"><a role="menuitem" href="premium-bottles.html">Premium Bottles</a><a role="menuitem" href="tetra-pak.html">Tetra Pak</a><a role="menuitem" href="xf.html">XF Cans</a><a role="menuitem" href="mr-jerrys.html">Mr. Jerry&rsquo;s</a></div></div>
       <a href="#contact">Contact</a>
       <a class="nav__cta" href="#contact">
         <span>Trade enquiry</span>
@@ -66,7 +66,7 @@
       <span class="menu-overlay__eyebrow">Royal Nectar Ventures &middot; Accra</span>
       <ul class="menu-overlay__list">
         <li><a href="#story" data-menu-link>Our Story</a></li>
-        <li><a href="products.html" data-menu-link>The Seven Bottles</a></li>
+        <li class="menu-overlay__group"><span class="menu-overlay__heading">Products</span><ul class="menu-overlay__sublist"><li><a href="premium-bottles.html" data-menu-link>Premium Bottles</a></li><li><a href="tetra-pak.html" data-menu-link>Tetra Pak</a></li><li><a href="xf.html" data-menu-link>XF Cans</a></li><li><a href="mr-jerrys.html" data-menu-link>Mr. Jerry&rsquo;s</a></li></ul></li>
         <li><a href="#contact" data-menu-link>Contact &amp; Trade</a></li>
       </ul>
       <div class="menu-overlay__foot">
@@ -100,7 +100,7 @@
       </div>
     </section>
 
-    <section class="orbital" id="collection" data-nav-theme="light" aria-label="Our collection">
+    <section class="orbital" id="collection" aria-label="Our collection">
       <div class="orbital__inner">
         <div class="orbital__layout">
           <div class="orbital__heading">
@@ -130,37 +130,37 @@
           <div class="orbital__stage">
           <p class="orbital__now-showing">&larr; Drag to scroll &rarr;</p>
           <div class="orbital__ring">
-            <button class="orbital__bottle" type="button" data-target="products.html#buccaneer-white-rum" style="--accent:#0066FF;" aria-label="Buccaneer White Rum — view product">
+            <button class="orbital__bottle" type="button" data-target="buccaneer-white-rum.html" style="--accent:#0066FF;" aria-label="Buccaneer White Rum — view product">
               <span class="orbital__name">Buccaneer White Rum</span>
               <img src="public/images/bottles/buccaneer-white-rum-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">White Rum</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="products.html#buccaneer-dark-rum" style="--accent:#FF5500;" aria-label="Buccaneer Dark Rum — view product">
+            <button class="orbital__bottle" type="button" data-target="buccaneer-dark-rum.html" style="--accent:#FF5500;" aria-label="Buccaneer Dark Rum — view product">
               <span class="orbital__name">Buccaneer Dark Rum</span>
               <img src="public/images/bottles/buccaneer-dark-rum-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Dark Rum</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="products.html#qe-vodka" style="--accent:#E8000D;" aria-label="QE Premium Vodka — view product">
+            <button class="orbital__bottle" type="button" data-target="qe-vodka.html" style="--accent:#E8000D;" aria-label="QE Premium Vodka — view product">
               <span class="orbital__name">QE Premium Vodka</span>
               <img src="public/images/bottles/qe-vodka-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Premium Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="products.html#georgievski-orange" style="--accent:#FFD600;" aria-label="Georgievski Orange — view product">
+            <button class="orbital__bottle" type="button" data-target="georgievski-orange.html" style="--accent:#FFD600;" aria-label="Georgievski Orange — view product">
               <span class="orbital__name">Georgievski Orange</span>
               <img src="public/images/bottles/georgievski-orange-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Flavoured Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="products.html#georgievski-cranberry" style="--accent:#FF0080;" aria-label="Georgievski Cranberry — view product">
+            <button class="orbital__bottle" type="button" data-target="georgievski-cranberry.html" style="--accent:#FF0080;" aria-label="Georgievski Cranberry — view product">
               <span class="orbital__name">Georgievski Cranberry</span>
               <img src="public/images/bottles/georgievski-cranberry-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Flavoured Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="products.html#georgievski-lime" style="--accent:#00CC44;" aria-label="Georgievski Lime — view product">
+            <button class="orbital__bottle" type="button" data-target="georgievski-lime.html" style="--accent:#00CC44;" aria-label="Georgievski Lime — view product">
               <span class="orbital__name">Georgievski Lime</span>
               <img src="public/images/bottles/georgievski-lime-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">Flavoured Vodka</span>
             </button>
-            <button class="orbital__bottle" type="button" data-target="products.html#pink-mystique-gin" style="--accent:#8800FF;" aria-label="Pink Mystique Gin — view product">
+            <button class="orbital__bottle" type="button" data-target="pink-mystique-gin.html" style="--accent:#8800FF;" aria-label="Pink Mystique Gin — view product">
               <span class="orbital__name">Pink Mystique Gin</span>
               <img src="public/images/bottles/pink-mystique-gin-nobg.png" alt="" loading="lazy" decoding="async" />
               <span class="orbital__type">London Dry Gin</span>
