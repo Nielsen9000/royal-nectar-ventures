@@ -732,10 +732,23 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   position: absolute;
   inset: 0;
   width: 55%;
+  overflow: hidden;
   background-image: url('../../public/images/backgrounds/jerrys-hero.jpg');
   background-size: cover;
   background-position: 70% center;
   pointer-events: none;
+  z-index: 0;
+}
+/* Video variant replaces the background image entirely */
+.jerrys__left--video {
+  background-image: none;
+}
+.jerrys__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 0;
 }
 .jerrys__left::after {
@@ -744,6 +757,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   inset: 0;
   background: linear-gradient(to right, transparent 60%, #1E0E02 100%);
   pointer-events: none;
+  z-index: 1;
 }
 .jerrys__right {
   position: absolute;
@@ -877,6 +891,16 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .jerrys--negroni .jerrys__cta {
   --btn-bg: var(--jerrys-negroni-accent);
+}
+
+/* Mobile: drop the video, show the poster still to save data */
+@media (max-width: 768px) {
+  .jerrys__left--video .jerrys__video { display: none; }
+  .jerrys__left--video {
+    background-image: url('../../public/images/backgrounds/jerrys-espresso-poster.jpg');
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 /* ------------ Story (text breaker) ------------ */
