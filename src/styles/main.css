@@ -744,6 +744,12 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .jerrys__left--video {
   background-image: none;
 }
+/* Espresso photo variant: portrait still image instead of video */
+.jerrys__left--photo {
+  background-image: url('../../public/images/backgrounds/jerrys-espresso-portrait.jpg');
+  background-size: cover;
+  background-position: center;
+}
 .jerrys__video {
   position: absolute;
   inset: 0;
@@ -898,11 +904,6 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   }
   .jerrys__left { min-height: 56vh; }
   .jerrys__left--video .jerrys__video { display: none; }
-  #jerrys .jerrys__left--video {
-    background-image: url('../../public/images/backgrounds/jerrys-espresso-poster.jpg');
-    background-size: cover;
-    background-position: center;
-  }
   #negroni .jerrys__left--video {
     background-image: url('../../public/images/backgrounds/jerrys-negroni-poster.jpg');
     background-size: cover;
