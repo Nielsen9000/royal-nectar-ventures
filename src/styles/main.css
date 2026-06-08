@@ -725,13 +725,14 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .jerrys__split {
   position: relative;
-  min-height: clamp(600px, 88vh, 960px);
-  display: block;
+  min-height: clamp(480px, 68vh, 760px);
+  display: grid;
+  grid-template-columns: 55% 45%;
 }
 .jerrys__left {
-  position: absolute;
-  inset: 0;
-  width: 55%;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
   overflow: hidden;
   background-image: url('../../public/images/backgrounds/jerrys-hero.jpg');
   background-size: cover;
@@ -760,15 +761,13 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   z-index: 1;
 }
 .jerrys__right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 52%;
-  height: 100%;
+  position: relative;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 5vw, 5rem) clamp(3rem, 6vw, 7rem);
+  /* Extra bottom padding keeps the CTA clear of the 80px section-transition gradient */
+  padding: clamp(2.5rem, 4.5vw, 4.5rem) clamp(3rem, 6vw, 7rem) clamp(5rem, 6vw, 6rem);
 }
 .jerrys__inner {
   display: flex;
@@ -789,8 +788,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   margin: 0;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.25rem, 1rem + 5.2vw, 4.75rem);
-  line-height: 1.02;
+  font-size: clamp(2rem, 0.9rem + 4.2vw, 3.9rem);
+  line-height: 1.04;
   letter-spacing: -0.02em;
   color: var(--cream);
 }
@@ -805,8 +804,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .jerrys__body {
   margin: 0;
   color: var(--cream);
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
-  line-height: 1.65;
+  font-size: clamp(0.92rem, 0.88rem + 0.25vw, 1.02rem);
+  line-height: 1.6;
   opacity: 0.88;
 }
 .jerrys__awards {
@@ -862,19 +861,15 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .jerrys--negroni {
   --jerrys-negroni-accent: #C8420A;
 }
+/* Mirror via reversed grid columns: text left (45%), image right (55%) */
+.jerrys--negroni .jerrys__split {
+  grid-template-columns: 45% 55%;
+}
 .jerrys--negroni .jerrys__left {
-  left: auto;
-  right: 0;
   background-image: url('../../public/images/backgrounds/jerrys-negroni.jpg');
 }
 .jerrys--negroni .jerrys__left::after {
   background: linear-gradient(to left, transparent 60%, #1E0E02 100%);
-}
-.jerrys__right--left {
-  left: 0;
-  right: auto;
-  justify-content: center;
-  align-items: center;
 }
 .jerrys--negroni .jerrys__inner {
   margin: auto 0;
@@ -895,9 +890,21 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 
 /* Mobile: drop the video, show the poster still to save data */
 @media (max-width: 768px) {
+  /* Stack to a single column so the text isn't crushed into a narrow column */
+  .jerrys__split,
+  .jerrys--negroni .jerrys__split {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .jerrys__left { min-height: 56vh; }
   .jerrys__left--video .jerrys__video { display: none; }
-  .jerrys__left--video {
+  #jerrys .jerrys__left--video {
     background-image: url('../../public/images/backgrounds/jerrys-espresso-poster.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  #negroni .jerrys__left--video {
+    background-image: url('../../public/images/backgrounds/jerrys-negroni-poster.jpg');
     background-size: cover;
     background-position: center;
   }
@@ -2340,6 +2347,18 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
    80px height. No top fades. .story (text breaker) intentionally has none.
    ========================================================================== */
 
+/* Collection (dark) -> espresso: soft top fade so the video doesn't start abruptly */
+.jerrys:first-of-type::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(to bottom, #1E0E02 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
 /* Espresso jerrys (brown) -> story (cream) */
 .jerrys:first-of-type::after {
   content: "";
