@@ -744,11 +744,14 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .jerrys__left--video {
   background-image: none;
 }
-/* Espresso photo variant: portrait still image instead of video */
+/* Espresso photo variant: portrait still image instead of video.
+   Pin to the bottom and pull the zoom back a touch so the full glass
+   (incl. the stem/base) stays in frame instead of being cropped off. */
 .jerrys__left--photo {
   background-image: url('../../public/images/backgrounds/jerrys-espresso-portrait.jpg');
-  background-size: cover;
-  background-position: center;
+  background-size: auto 108%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
 .jerrys__video {
   position: absolute;
