@@ -74,6 +74,7 @@
     initJerrys();
     initStory();
     initOrbital();
+    initOrbitalArrows();
     initTetra();
     initProductsHeader();
     initProducts();
@@ -460,6 +461,24 @@
       });
     }, { threshold: 0.05 });
     vids.forEach((v) => io.observe(v));
+  }
+
+  function initOrbitalArrows() {
+    const ring = document.querySelector(".orbital__ring");
+    const prev = document.querySelector(".orbital__arrow--prev");
+    const next = document.querySelector(".orbital__arrow--next");
+    if (!ring || !prev || !next) return;
+
+    // Step the scroll-snap carousel by exactly one bottle. The native swipe
+    // still works; these are just an explicit affordance on mobile.
+    function step(dir) {
+      const bottle = ring.querySelector(".orbital__bottle");
+      const w = bottle ? bottle.getBoundingClientRect().width : ring.clientWidth * 0.8;
+      ring.scrollBy({ left: dir * w, behavior: reduced ? "auto" : "smooth" });
+    }
+
+    prev.addEventListener("click", () => step(-1));
+    next.addEventListener("click", () => step(1));
   }
 
   function initMarquee() {

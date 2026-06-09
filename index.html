@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
-  <link rel="stylesheet" href="src/styles/main.css?v=27" />
+  <link rel="stylesheet" href="src/styles/main.css?v=36" />
 </head>
 <body>
   <div class="loader" id="loader" role="status" aria-label="Loading Royal Nectar Ventures">
@@ -183,10 +183,33 @@
               <span class="orbital__type">London Dry Gin</span>
             </button>
           </div>
+          <button class="orbital__arrow orbital__arrow--prev" type="button" aria-label="Previous bottle">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="orbital__arrow orbital__arrow--next" type="button" aria-label="Next bottle">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
         </div>
       </div>
     </section>
+
+<section class="story" id="story" aria-label="Brand statement">
+  <div class="story__inner">
+    <span class="story__eyebrow">Ghana's premier spirits importer</span>
+    <h2 class="story__headline">
+      <span class="word"><span>Bold</span></span>
+      <span class="word"><span>enough</span></span>
+      <span class="word"><span>for</span></span>
+      <span class="word"><span>Accra.</span></span>
+      <span class="word story__word--accent"><span>Good</span></span>
+      <span class="word story__word--accent"><span>enough</span></span>
+      <span class="word story__word--accent"><span>for</span></span>
+      <span class="word story__word--accent"><span>anywhere.</span></span>
+    </h2>
+    <div class="story__rule" aria-hidden="true"></div>
+  </div>
+</section>
 
 <section class="jerrys" id="jerrys" aria-label="Mr. Jerry's Espresso Martini">
   <div class="jerrys__split">
@@ -211,23 +234,6 @@
         </a>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="story" id="story" aria-label="Brand statement">
-  <div class="story__inner">
-    <span class="story__eyebrow">Ghana's premier spirits importer</span>
-    <h2 class="story__headline">
-      <span class="word"><span>Bold</span></span>
-      <span class="word"><span>enough</span></span>
-      <span class="word"><span>for</span></span>
-      <span class="word"><span>Accra.</span></span>
-      <span class="word story__word--accent"><span>Good</span></span>
-      <span class="word story__word--accent"><span>enough</span></span>
-      <span class="word story__word--accent"><span>for</span></span>
-      <span class="word story__word--accent"><span>anywhere.</span></span>
-    </h2>
-    <div class="story__rule" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -378,7 +384,7 @@
 
   <script src="public/vendor/gsap.min.js" defer></script>
   <script src="public/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="src/animations/gsap.js?v=19" defer></script>
+  <script src="src/animations/gsap.js?v=20" defer></script>
   <script src="src/animations/orbital-drag.js?v=3" defer></script>
 </body>
 </html>

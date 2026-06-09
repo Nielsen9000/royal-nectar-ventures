@@ -980,11 +980,11 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   background: var(--cream);
   color: var(--ink);
   overflow: hidden;
-  padding-bottom: clamp(4rem, 8vh, 7rem);
+  padding-bottom: clamp(1.5rem, 3vh, 2.5rem);
 }
 .story__inner {
   position: relative;
-  padding: clamp(56px, 8vw, 96px) 1.25rem;
+  padding: clamp(2rem, 3.5vw, 3.25rem) 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -992,10 +992,10 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .story__headline {
   margin: 0;
-  max-width: 900px;
+  max-width: 1100px;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(1.75rem, 0.5rem + 4vw, 3.75rem);
+  font-size: clamp(1.45rem, 0.9rem + 1.9vw, 2.35rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -1098,18 +1098,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   z-index: 0;
   opacity: 0.9;
 }
-/* Bottom fade — orbital flows into the brown negroni section */
-.orbital::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent 0%, #1E0E02 100%);
-  pointer-events: none;
-  z-index: 5;
-}
+/* Collection meets the cream story breaker on a crisp edge (fading the dark
+   marble to cream looked muddy), matching the site's other sharp section seams. */
 .orbital__inner {
   position: relative;
   z-index: 1;
@@ -1332,11 +1322,76 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   border-radius: 10px;
 }
 
+/* Prev/next arrows — mobile only (desktop uses the drag-to-rotate orbit). */
+.orbital__arrow { display: none; }
+
 /* Mobile — horizontal scroll-snap carousel (one bottle at a time) */
 @media (max-width: 768px) {
   .orbital {
     padding: clamp(3.5rem, 8vh, 5rem) 0;
   }
+  /* Arrows make the swipe affordance obvious, so the drag hint is redundant. */
+  .orbital__now-showing { display: none; }
+  /* Tighten the dark dead space below the carousel before the cream story. */
+  .orbital { padding-bottom: clamp(1.5rem, 4vh, 2.5rem); }
+  /* And trim the cream story breaker's padding so it isn't a tall white gap. */
+  .story { padding-bottom: 0; }
+  .story__inner { padding: clamp(2.5rem, 9vw, 4rem) 1.25rem clamp(2rem, 7vw, 3rem); }
+  .orbital__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: var(--gold);
+    color: #100b04;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(8, 5, 0, 0.45);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 160ms var(--ease-soft), background-color 160ms var(--ease-soft);
+  }
+  .orbital__arrow svg { width: 22px; height: 22px; display: block; }
+  .orbital__arrow--prev { left: 0.75rem; }
+  .orbital__arrow--next { right: 0.75rem; }
+  .orbital__arrow:active { transform: translateY(-50%) scale(0.92); }
+  .orbital__arrow:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: 3px;
+  }
+  /* The single grid column is minmax(auto, 1fr) by default, so the 80vw-wide
+     carousel items force it (and the heading card) wider than the screen.
+     Cap it at the container with minmax(0, 1fr) + min-width:0 on the items. */
+  .orbital__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .orbital__heading,
+  .orbital__stage {
+    min-width: 0;
+  }
+  /* Keep the heading card inside the viewport — the desktop max-width + margin
+     and the auto stats grid pushed it wider than a phone screen. Centre the
+     content on mobile instead of the desktop left-alignment. */
+  .orbital__heading {
+    max-width: none;
+    margin: 0 1rem;
+    padding: clamp(1.5rem, 6vw, 2rem) clamp(1.25rem, 5vw, 1.6rem);
+    align-items: center;
+    text-align: center;
+  }
+  .orbital__lead { max-width: none; }
+  .orbital__stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .orbital__stat { align-items: center; }
+  .orbital__cta { align-self: center; }
   .orbital__stage {
     height: auto;
     max-width: none;
@@ -1367,7 +1422,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
     flex: 0 0 80vw;
     width: 80vw;
     min-height: 48px;
-    padding: 3rem 1rem 2.5rem;
+    padding: 1.5rem 1rem 1.5rem;
     margin: 0;
     transform: none !important;
     opacity: 1 !important;
@@ -1380,12 +1435,19 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   }
   .orbital__bottle img {
     width: 100%;
-    max-width: 280px;
+    height: 320px;
+    max-width: 240px;
     margin: 0 auto;
   }
   .orbital__name {
     top: 0.6rem;
     opacity: 1;
+  }
+  /* The desktop hover-name fix for the taller vodka bottles has higher
+     specificity and was leaking onto mobile — pin it back to the top here. */
+  .orbital__bottle[data-target*="georgievski"] .orbital__name,
+  .orbital__bottle[data-target*="qe-vodka"] .orbital__name {
+    top: 0.6rem;
   }
   .orbital__bottle.is-hover {
     filter: drop-shadow(0 8px 12px rgba(8, 5, 0, 0.5)) drop-shadow(0 0 7px var(--accent, rgba(200, 134, 10, 0.5)));
@@ -2463,7 +2525,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
    80px height. No top fades. .story (text breaker) intentionally has none.
    ========================================================================== */
 
-/* Collection (dark) -> espresso: soft top fade so the video doesn't start abruptly */
+/* Story (cream) -> espresso: solid brown top so the cream edge stays crisp */
 .jerrys:first-of-type::before {
   content: "";
   position: absolute;
@@ -2475,18 +2537,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   pointer-events: none;
   z-index: 3;
 }
-/* Espresso jerrys (brown) -> story (cream) */
-.jerrys:first-of-type::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent 0%, var(--cream) 100%);
-  pointer-events: none;
-  z-index: 5;
-}
+/* Espresso -> negroni: both brown, so no bottom fade — they read as a
+   mirrored pair (image flips side, accent colour changes). */
 
 
 /* .tetra -> .contact / .contact-cta (dark) */
