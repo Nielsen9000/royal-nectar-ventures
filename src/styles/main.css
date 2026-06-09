@@ -1884,7 +1884,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   overflow: hidden;
   min-height: clamp(540px, 92vh, 820px);
   display: flex;
-  background: #0a0608; /* fallback beneath the video while it loads */
+  background: #080500; /* matches the Tetra section above for a seamless seam */
   color: var(--cream);
 }
 /* Background film — covers the whole section; biased left on mobile so the
@@ -1909,6 +1909,10 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   z-index: 1;
   pointer-events: none;
   background:
+    /* Top fade dissolves the video's hard upper edge into the dark Tetra
+       section above (its exact #080500), so the cans appear to rise out of
+       the black with no visible seam. */
+    linear-gradient(to bottom, #080500 0%, rgba(8, 5, 0, 0.55) 9%, transparent 24%),
     linear-gradient(to top, rgba(10, 6, 8, 0.94) 0%, rgba(10, 6, 8, 0.5) 30%, transparent 58%),
     linear-gradient(to right, transparent 38%, rgba(10, 6, 8, 0.4) 72%, rgba(10, 6, 8, 0.66) 100%);
 }
@@ -1996,6 +2000,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   .xf__video { object-position: center; }
   .xf__scrim {
     background:
+      linear-gradient(to bottom, #080500 0%, rgba(8, 5, 0, 0.5) 8%, transparent 22%),
       linear-gradient(to right, transparent 0%, transparent 44%, rgba(10, 6, 8, 0.55) 68%, rgba(10, 6, 8, 0.86) 100%),
       linear-gradient(to top, rgba(10, 6, 8, 0.45) 0%, transparent 36%);
   }
