@@ -1873,6 +1873,145 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .product[data-contrast="dark"] .product__bottle img { filter: drop-shadow(0 30px 40px rgba(8, 5, 0, 0.35)); }
 
+/* ------------ XF — Xquizit Fizz (full-bleed cinematic video hero) ----------
+   The homepage's loud, young counterpoint to the premium sections: a seamless
+   looping product film of the cranberry + lemon cans fills the section, with
+   the headline overlaid in the dark negative space. Teaser only — the full
+   eight-flavour range lives on xf.html. */
+.xf {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(540px, 92vh, 820px);
+  display: flex;
+  background: #0a0608; /* fallback beneath the video while it loads */
+  color: var(--cream);
+}
+/* Background film — covers the whole section; biased left on mobile so the
+   cans survive the narrow crop. */
+.xf__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.xf__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 34% center;
+}
+/* Directional scrim: drops the right side into shadow for headline contrast,
+   plus a bottom fade for the mobile (text-below) layout. */
+.xf__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(10, 6, 8, 0.94) 0%, rgba(10, 6, 8, 0.5) 30%, transparent 58%),
+    linear-gradient(to right, transparent 38%, rgba(10, 6, 8, 0.4) 72%, rgba(10, 6, 8, 0.66) 100%);
+}
+.xf__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: clamp(2rem, 8vh, 5rem) 1.25rem clamp(2.25rem, 7vh, 4.5rem);
+}
+.xf__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(0.7rem, 1.6vw, 1rem);
+  max-width: 560px;
+}
+.xf__badge {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 169, 58, 0.55);
+  background: rgba(229, 169, 58, 0.14);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: #E5A93A;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.xf__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+}
+.xf__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--cream);
+  font-size: clamp(2.6rem, 1rem + 4.5vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.55);
+}
+.xf__title em {
+  font-style: italic;
+  color: #E5A93A;
+}
+.xf__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: rgba(245, 230, 200, 0.9);
+  font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.4rem);
+  line-height: 1.4;
+  margin: 0;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
+}
+.xf__lead {
+  margin: 0;
+  font-family: var(--font-body);
+  color: rgba(245, 230, 200, 0.8);
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.08rem);
+  line-height: 1.6;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+}
+.xf__cta { margin-top: 0.4rem; }
+
+/* Desktop: video sits centred, copy pulled into the dark right-hand column. */
+@media (min-width: 880px) {
+  .xf { min-height: clamp(600px, 88vh, 880px); }
+  .xf__video { object-position: center; }
+  .xf__scrim {
+    background:
+      linear-gradient(to right, transparent 0%, transparent 44%, rgba(10, 6, 8, 0.55) 68%, rgba(10, 6, 8, 0.86) 100%),
+      linear-gradient(to top, rgba(10, 6, 8, 0.45) 0%, transparent 36%);
+  }
+  /* Widen the container + add right breathing room so the copy sits further
+     into the dark right-hand space, better balancing the cans on the left. */
+  .xf__inner {
+    align-items: center;
+    justify-content: flex-end;
+    padding-block: 0;
+    max-width: 1560px;
+    padding-inline: clamp(1.5rem, 4vw, 3.25rem);
+  }
+  .xf__copy { align-items: flex-start; text-align: left; }
+  .xf__badge { align-self: flex-start; }
+}
+
 /* ------------ Contact ------------ */
 .contact {
   position: relative;

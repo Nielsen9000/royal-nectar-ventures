@@ -76,6 +76,7 @@
     initOrbital();
     initOrbitalArrows();
     initTetra();
+    initXF();
     initProductsHeader();
     initProducts();
     initContact();
@@ -453,7 +454,7 @@
 
   function initVideoPerf() {
     if (!("IntersectionObserver" in window)) return;
-    const vids = document.querySelectorAll("video.hero__video");
+    const vids = document.querySelectorAll("video.hero__video, video.xf__video");
     if (!vids.length) return;
     // Pause the looping hero video once it scrolls out of view so weak devices
     // aren't decoding frames behind the rest of the page; resume on return.
@@ -844,6 +845,22 @@
           scrollTrigger: { trigger: section, start: "top 65%", once: true }
         });
     }
+  }
+
+  function initXF() {
+    const section = document.querySelector(".xf");
+    if (!section) return;
+    // Full-bleed video hero: the looping film carries the motion; we just
+    // stagger the overlaid copy up as the section scrolls into view.
+    const copy = section.querySelectorAll(".xf__eyebrow, .xf__badge, .xf__title, .xf__sub, .xf__lead, .xf__cta");
+    if (reduced || !copy.length) return;
+
+    gsap.fromTo(copy,
+      { y: 28, autoAlpha: 0 },
+      {
+        y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.1,
+        scrollTrigger: { trigger: section, start: "top 72%", once: true }
+      });
   }
 
   function initProductsHeader() {
