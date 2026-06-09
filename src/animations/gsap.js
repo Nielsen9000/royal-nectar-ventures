@@ -67,7 +67,9 @@
     initNavScrollState();
     initNavTheme();
     initMobileMenu();
+    initNavDropdowns();
     initHero();
+    initMarquee();
     initJerrys();
     initStory();
     initOrbital();
@@ -316,6 +318,54 @@
     });
   }
 
+  function initNavDropdowns() {
+    const dropdowns = document.querySelectorAll(".nav__dropdown");
+    if (!dropdowns.length) return;
+
+    dropdowns.forEach((dd) => {
+      const trigger = dd.querySelector(".nav__dropdown-trigger");
+      if (!trigger) return;
+
+      const setOpen = (open) => {
+        dd.classList.toggle("is-open", open);
+        trigger.setAttribute("aria-expanded", String(open));
+      };
+
+      // Tap/click on trigger toggles state (works on both touch + mouse).
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setOpen(!dd.classList.contains("is-open"));
+      });
+
+      // Close when a menu item is tapped.
+      dd.querySelectorAll(".nav__dropdown-menu a").forEach((a) => {
+        a.addEventListener("click", () => setOpen(false));
+      });
+    });
+
+    // Click anywhere outside an open dropdown closes it.
+    document.addEventListener("click", (e) => {
+      dropdowns.forEach((dd) => {
+        if (!dd.contains(e.target)) {
+          dd.classList.remove("is-open");
+          const t = dd.querySelector(".nav__dropdown-trigger");
+          if (t) t.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    // Escape closes any open dropdown.
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        dropdowns.forEach((dd) => {
+          dd.classList.remove("is-open");
+          const t = dd.querySelector(".nav__dropdown-trigger");
+          if (t) t.setAttribute("aria-expanded", "false");
+        });
+      }
+    });
+  }
+
   /* ---------- hero (cinematic page-load entrance; no ScrollTrigger) ---------- */
 
   function initHero() {
@@ -390,6 +440,39 @@
   }
 
   /* ---------- section entrance animations ---------- */
+
+  function initMarquee() {
+    const track = document.querySelector(".marquee__track");
+    if (!track) return;
+    const group = track.querySelector(".marquee__group");
+    if (!group) return;
+
+    // Clone the phrase group until the track spans at least twice the viewport,
+    // so the infinite loop wraps with no visible gap on wide screens.
+    const minWidth = window.innerWidth * 2;
+    let guard = 0;
+    while (track.scrollWidth < minWidth && guard < 20) {
+      track.appendChild(group.cloneNode(true));
+      guard++;
+    }
+
+    if (reduced || typeof gsap === "undefined") return;
+
+    const groupWidth = group.getBoundingClientRect().width;
+    if (!groupWidth) return;
+
+    // Seamless drift at a single steady pace: shift left by one group width,
+    // then wrap via modifier. No scroll coupling — constant speed throughout.
+    gsap.to(track, {
+      x: -groupWidth,
+      duration: groupWidth / 90,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: (x) => (parseFloat(x) % groupWidth) + "px"
+      }
+    });
+  }
 
   function initJerrys() {
     if (reduced) return;
