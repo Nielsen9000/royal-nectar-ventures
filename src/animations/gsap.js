@@ -628,6 +628,8 @@
     let rotation = 0;
     let autoPaused = false;
     let inView = false;
+    let scrolling = false;
+    let scrollIdleTimer = null;
     let lastT = null;
     let RX = 320, RY = 60;
     const SPEED = 0.00018;
@@ -710,7 +712,7 @@
     }
 
     bottles.forEach((b, i) => {
-      b.addEventListener("mouseenter", () => { setHover(i); b.classList.add("is-hover"); });
+      b.addEventListener("mouseenter", () => { if (scrolling) return; setHover(i); b.classList.add("is-hover"); });
       b.addEventListener("mouseleave", () => { setHover(-1); b.classList.remove("is-hover"); });
       b.addEventListener("focus",      () => { setHover(i); b.classList.add("is-hover"); });
       b.addEventListener("blur",       () => { setHover(-1); b.classList.remove("is-hover"); });
@@ -737,6 +739,19 @@
       if (hoverIdx !== -1) setHover(-1);
       bottles.forEach((b) => b.classList.remove("is-hover"));
     });
+
+    // While scrolling, the bottles slide under a stationary cursor and fire a
+    // storm of mouseenter/leave events — each toggling an expensive drop-shadow
+    // glow. Clear any active hover and block new ones until scrolling settles.
+    window.addEventListener("scroll", () => {
+      if (hoverIdx !== -1) {
+        setHover(-1);
+        bottles.forEach((b) => b.classList.remove("is-hover"));
+      }
+      scrolling = true;
+      if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
+      scrollIdleTimer = setTimeout(() => { scrolling = false; }, 140);
+    }, { passive: true });
 
     function handleResize() {
       const wasMobile = mobile;
