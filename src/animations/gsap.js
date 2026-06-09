@@ -69,6 +69,7 @@
     initMobileMenu();
     initNavDropdowns();
     initHero();
+    initVideoPerf();
     initMarquee();
     initJerrys();
     initStory();
@@ -441,6 +442,26 @@
 
   /* ---------- section entrance animations ---------- */
 
+  function initVideoPerf() {
+    if (!("IntersectionObserver" in window)) return;
+    const vids = document.querySelectorAll("video.hero__video");
+    if (!vids.length) return;
+    // Pause the looping hero video once it scrolls out of view so weak devices
+    // aren't decoding frames behind the rest of the page; resume on return.
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        const v = e.target;
+        if (e.isIntersecting) {
+          const p = v.play();
+          if (p && p.catch) p.catch(() => {});
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.05 });
+    vids.forEach((v) => io.observe(v));
+  }
+
   function initMarquee() {
     const track = document.querySelector(".marquee__track");
     if (!track) return;
@@ -463,7 +484,7 @@
 
     // Seamless drift at a single steady pace: shift left by one group width,
     // then wrap via modifier. No scroll coupling — constant speed throughout.
-    gsap.to(track, {
+    const loop = gsap.to(track, {
       x: -groupWidth,
       duration: groupWidth / 90,
       ease: "none",
@@ -472,6 +493,17 @@
         x: (x) => (parseFloat(x) % groupWidth) + "px"
       }
     });
+
+    // Don't spend frames animating the band while it's scrolled out of view.
+    if (typeof ScrollTrigger !== "undefined") {
+      const vis = ScrollTrigger.create({
+        trigger: ".marquee",
+        start: "top bottom",
+        end: "bottom top",
+        onToggle: (self) => { self.isActive ? loop.play() : loop.pause(); }
+      });
+      if (!vis.isActive) loop.pause();
+    }
   }
 
   function initJerrys() {
@@ -595,6 +627,7 @@
     let hoverTween = null;
     let rotation = 0;
     let autoPaused = false;
+    let inView = false;
     let lastT = null;
     let RX = 320, RY = 60;
     const SPEED = 0.00018;
@@ -647,7 +680,7 @@
     }
 
     function tick(time) {
-      if (mobile) return;
+      if (mobile || !inView) return;
       const t = time * 1000;
       if (lastT === null) lastT = t;
       const dt = t - lastT;
@@ -661,6 +694,20 @@
     computeRadii();
     gsap.ticker.add(tick);
     window.addEventListener("load", computeRadii);
+
+    // Only run the per-frame bottle render while the section is on screen, so
+    // it isn't churning 7 transforms + drop-shadows every frame during the hero.
+    if (typeof ScrollTrigger !== "undefined") {
+      const vis = ScrollTrigger.create({
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        onToggle: (self) => { inView = self.isActive; if (inView) lastT = null; }
+      });
+      inView = vis.isActive;
+    } else {
+      inView = true;
+    }
 
     bottles.forEach((b, i) => {
       b.addEventListener("mouseenter", () => { setHover(i); b.classList.add("is-hover"); });

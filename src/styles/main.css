@@ -266,6 +266,26 @@ body.is-scrolled.is-nav-light .nav {
 body.is-nav-light .nav::before { opacity: 0; }
 body.is-nav-light .nav__wordmark { color: var(--ink); }
 
+/* Phones (our primary market) — backdrop-filter re-blurs the fixed nav and the
+   collection glass card on every scroll frame, which janks weak GPUs. Drop the
+   blur below 768px and compensate with a slightly more opaque background. */
+@media (max-width: 768px) {
+  body.is-scrolled .nav,
+  body.is-nav-light .nav,
+  body.is-scrolled.is-nav-light .nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  body.is-scrolled .nav { background: rgba(8, 5, 0, 0.96); }
+  body.is-nav-light .nav,
+  body.is-scrolled.is-nav-light .nav { background: rgba(245, 230, 200, 0.97); }
+  .orbital__heading {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(20, 14, 6, 0.9);
+  }
+}
+
 .nav__brand {
   display: inline-flex;
   align-items: center;
