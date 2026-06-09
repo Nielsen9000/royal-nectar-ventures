@@ -814,17 +814,28 @@
     const section = document.querySelector(".tetra");
     if (!section || reduced) return;
 
-    const heroImg = section.querySelector(".tetra__hero img");
-    const eyebrow = section.querySelector(".tetra__eyebrow");
-    const title   = section.querySelector(".tetra__title");
-    const sub     = section.querySelector(".tetra__sub");
-    const cards   = section.querySelectorAll(".tetra-card");
+    const bg      = section.querySelector(".tetra__bg");
+    const content = section.querySelectorAll(".tetra__content > *");
 
-    animateImage(heroImg, section.querySelector(".tetra__hero"));
-    animateEntrance([eyebrow], section.querySelector(".tetra__head"));
-    animateHeading(title, section.querySelector(".tetra__head"));
-    animateEntrance([sub], section.querySelector(".tetra__head"));
-    animateImage(cards, section.querySelector(".tetra__grid"), { stagger: STAGGER });
+    // Slow Ken Burns on the photo as the hero enters.
+    if (bg) {
+      gsap.fromTo(bg,
+        { scale: 1.12 },
+        {
+          scale: 1, duration: 2.4, ease: "power2.out",
+          scrollTrigger: { trigger: section, start: "top 85%", once: true }
+        });
+    }
+
+    // Staggered reveal of the overlaid headline + CTA.
+    if (content.length) {
+      gsap.fromTo(content,
+        { y: 30, autoAlpha: 0 },
+        {
+          y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out", stagger: 0.12,
+          scrollTrigger: { trigger: section, start: "top 65%", once: true }
+        });
+    }
   }
 
   function initProductsHeader() {

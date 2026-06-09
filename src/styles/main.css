@@ -164,8 +164,7 @@ body:not(.anim-ready) .hero__media,
 body:not(.anim-ready) .story__headline .word > span,
 body:not(.anim-ready) .orbital__display,
 body:not(.anim-ready) .orbital__stage,
-body:not(.anim-ready) .tetra__hero img,
-body:not(.anim-ready) .tetra__head > *,
+body:not(.anim-ready) .tetra__content > *,
 body:not(.anim-ready) .tetra-card,
 body:not(.anim-ready) .products__head > *,
 body:not(.anim-ready) .product__bottle,
@@ -191,8 +190,8 @@ body:not(.anim-ready) .footer__kente {
 .story__headline .word > span,
 .orbital__display,
 .orbital__stage,
-.tetra__hero img,
-.tetra__head > *,
+.tetra__bg,
+.tetra__content > *,
 .tetra-card,
 .products__head > *,
 .product__bottle,
@@ -735,13 +734,14 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   isolation: isolate;
   color: var(--cream);
 }
-/* Negroni (brown) -> tetra (cream) */
+/* Negroni (brown) -> tetra hero (dark top): fade into the hero's #080500 so
+   the dark carries through instead of flashing cream then dark again. */
 .jerrys:last-of-type::after {
   content: "";
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 80px;
-  background: linear-gradient(to bottom, transparent 0%, var(--cream) 100%);
+  background: linear-gradient(to bottom, transparent 0%, #080500 100%);
   pointer-events: none;
   z-index: 4;
 }
@@ -1458,60 +1458,69 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   }
 }
 
-/* ------------ Tetra Pak ------------ */
+/* ------------ Tetra Pak (homepage teaser — cinematic full-bleed hero) ------------
+   Deliberately a third format, distinct from the Jerry's split and the
+   Collection carousel: one photographic hero of the real cartons with an
+   overlaid headline + CTA pointing to the full range. The catalogue grid
+   below (.tetra__grid / .tetra-card) is kept for the tetra-pak.html page. */
 .tetra {
-  background: var(--cream);
-  color: var(--ink);
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding-top: 0;
+  min-height: clamp(560px, 82vh, 820px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: #080500;
+  color: var(--cream);
 }
-.tetra__hero {
-  position: relative;
-  width: 100%;
-  height: 32vh;
-  min-height: 220px;
-  max-height: 320px;
-  overflow: hidden;
-}
-.tetra__hero img {
+.tetra__bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  display: block;
+  object-position: center 38%;
+  z-index: 0;
   will-change: transform;
 }
-.tetra__hero::before {
-  content: "";
+.tetra__scrim {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background: linear-gradient(to bottom, #080500 0%, #080500 40%, transparent 100%);
-  pointer-events: none;
+  inset: 0;
   z-index: 1;
-}
-.tetra__hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 140px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(245, 230, 200, 0.5) 100%);
   pointer-events: none;
-  z-index: 1;
+  background:
+    linear-gradient(to bottom,
+      #080500 0%,
+      rgba(8, 5, 0, 0.82) 7%,
+      rgba(8, 5, 0, 0.18) 24%,
+      rgba(8, 5, 0, 0.55) 60%,
+      rgba(8, 5, 0, 0.9) 85%,
+      #080500 100%);
 }
-.tetra__head {
+.tetra__content {
   position: relative;
   z-index: 2;
+  max-width: 680px;
   text-align: center;
-  padding: clamp(3rem, 8vh, 5.5rem) 1.25rem clamp(2.25rem, 5vh, 3.5rem);
-  max-width: 920px;
-  margin: 0 auto;
+  padding: clamp(3rem, 9vh, 5.5rem) 1.5rem clamp(3.5rem, 11vh, 6.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.3rem);
+}
+/* Soft spotlight behind the copy so the headline and sub separate cleanly from
+   the busy cartons without hiding them. */
+.tetra__content::before {
+  content: "";
+  position: absolute;
+  inset: -10% -14%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 72% 76% at 50% 48%,
+    rgba(8, 5, 0, 0.72) 0%,
+    rgba(8, 5, 0, 0.5) 42%,
+    rgba(8, 5, 0, 0) 80%);
 }
 .tetra__eyebrow {
   font-family: var(--font-body);
@@ -1520,27 +1529,40 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   font-weight: 600;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 1.1rem;
 }
 .tetra__title {
   font-family: var(--font-display);
   font-weight: 900;
-  color: var(--ink);
-  font-size: clamp(2.4rem, 1rem + 6.5vw, 5.25rem);
+  color: var(--cream);
+  font-size: clamp(2.6rem, 1rem + 7vw, 5.5rem);
   line-height: 0.98;
   letter-spacing: -0.02em;
-  margin: 0 0 1.1rem;
+  margin: 0;
+  text-shadow: 0 6px 34px rgba(0, 0, 0, 0.55);
+}
+.tetra__title em {
+  font-style: italic;
+  color: #E5A93A;
 }
 .tetra__sub {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--body-on-cream);
+  color: rgba(248, 236, 210, 0.95);
   font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.5rem);
   line-height: 1.4;
-  max-width: 48ch;
-  margin: 0 auto;
+  margin: 0;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7);
 }
+.tetra__copy {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-body);
+  color: rgba(245, 230, 200, 0.9);
+  font-size: clamp(0.98rem, 0.93rem + 0.35vw, 1.12rem);
+  line-height: 1.65;
+  max-width: 50ch;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+.tetra__cta { margin-top: 0.6rem; }
 .tetra__grid {
   max-width: var(--max);
   margin: 0 auto;
@@ -2455,8 +2477,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .story__headline .word > span,
 .orbital__display,
 .orbital__stage,
-.tetra__hero img,
-.tetra__head > *,
+.tetra__bg,
+.tetra__content > *,
 .tetra-card,
 .products__head > *,
 .product__bottle,
@@ -2499,8 +2521,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   body .story__headline .word > span,
   body .orbital__display,
   body .orbital__stage,
-  body .tetra__hero img,
-  body .tetra__head > *,
+  body .tetra__content > *,
   body .tetra-card,
   body .products__head > *,
   body .product__bottle,
