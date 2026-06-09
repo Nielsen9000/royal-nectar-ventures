@@ -252,7 +252,7 @@
     if (reduced) return;
     const tl = gsap.timeline({ defaults: { ease: EASE_BASE } });
     tl.from(prep(".nav__brand"), { y: dy(24), autoAlpha: 0, duration: ddur(DUR_BASE) })
-      .from(prep(".nav__links > a, .nav__toggle"), {
+      .from(prep(".nav__links > a, .nav__dropdown, .nav__toggle"), {
         y: dy(18), autoAlpha: 0, duration: ddur(DUR_BUTTON), stagger: 0.08
       }, "-=0.55");
   }
@@ -372,7 +372,7 @@
     const hero = document.querySelector(".hero");
     const nav  = document.querySelector(".nav");
     const navItems = nav
-      ? Array.from(nav.querySelectorAll(".nav__brand, .nav__links > a, .nav__toggle"))
+      ? Array.from(nav.querySelectorAll(".nav__brand, .nav__links > a, .nav__dropdown, .nav__toggle"))
       : [];
 
     if (!hero) return;
