@@ -745,8 +745,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 /* Espresso photo variant: 3:2 landscape image, centered, fills the frame. */
 .jerrys__left--photo {
   background-image: url('../../public/images/backgrounds/jerrys-espresso-landscape.jpg');
-  background-size: cover;
-  background-position: center center;
+  background-size: auto 118%;
+  background-position: center 80%;
   background-repeat: no-repeat;
 }
 .jerrys__left::after {
@@ -926,6 +926,25 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
     min-height: 0;
   }
   .jerrys__left { min-height: 56vh; }
+  /* Negroni stacks exactly like martini on mobile: image on top, text below.
+     Its DOM order is text-then-image (for the desktop mirror), so pull the
+     image first, and match martini's fade 1:1 (right edge + bottom into text). */
+  .jerrys--negroni .jerrys__left { order: -1; }
+  .jerrys--negroni .jerrys__right { order: 0; }
+  .jerrys--negroni .jerrys__left::after {
+    background:
+      linear-gradient(to right,
+        transparent 0%,
+        transparent 28%,
+        rgba(30, 14, 2, 0.35) 55%,
+        rgba(30, 14, 2, 0.78) 80%,
+        #1E0E02 100%),
+      linear-gradient(to bottom,
+        transparent 0%,
+        transparent 60%,
+        rgba(30, 14, 2, 0.45) 82%,
+        #1E0E02 100%);
+  }
 }
 
 /* ------------ Story (text breaker) ------------ */
