@@ -929,18 +929,11 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .jerrys--negroni .jerrys__inner {
   margin: auto 0;
 }
+/* Keep one red touch — the eyebrow — as the negroni's "limited edition"
+   signature; the sub line and CTA fall back to the espresso gold so the two
+   Jerry's sections read as a cohesive mirrored pair. */
 .jerrys--negroni .jerrys__eyebrow {
   color: var(--jerrys-negroni-accent);
-}
-.jerrys--negroni .jerrys__sub {
-  color: var(--jerrys-negroni-accent);
-}
-.jerrys--negroni .jerrys__star {
-  color: var(--jerrys-negroni-accent);
-  filter: drop-shadow(0 0 10px rgba(200, 66, 10, 0.45));
-}
-.jerrys--negroni .jerrys__cta {
-  --btn-bg: var(--jerrys-negroni-accent);
 }
 
 @media (max-width: 768px) {
