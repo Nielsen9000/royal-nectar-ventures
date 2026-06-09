@@ -612,37 +612,39 @@
   }
 
   function initStory() {
-    const story = document.querySelector(".story");
-    if (!story || reduced) return;
+    if (reduced) return;
+    // Every cream text breaker on the page (the brand statement + any section
+    // breakers) shares this per-line word reveal, each triggered on its own.
+    gsap.utils.toArray(".story").forEach((story) => {
+      // Pre-existing DOM: <span class="word"><span>w</span></span> — one "word" per line for this heading.
+      // Group words into lines via measured top-offset, then animate per line per spec.
+      const words = Array.from(story.querySelectorAll(".story__headline .word > span"));
+      if (!words.length) return;
+      words.forEach((w) => { w.style.willChange = "transform, opacity"; });
 
-    // Pre-existing DOM: <span class="word"><span>w</span></span> — one "word" per line for this heading.
-    // Group words into lines via measured top-offset, then animate per line per spec.
-    const words = Array.from(story.querySelectorAll(".story__headline .word > span"));
-    if (!words.length) return;
-    words.forEach((w) => { w.style.willChange = "transform, opacity"; });
+      const lines = [];
+      let lastTop = null, current = null;
+      words.forEach((w) => {
+        const top = w.parentNode.offsetTop;
+        if (lastTop === null || Math.abs(top - lastTop) > 2) {
+          current = [];
+          lines.push(current);
+          lastTop = top;
+        }
+        current.push(w);
+      });
 
-    const lines = [];
-    let lastTop = null, current = null;
-    words.forEach((w) => {
-      const top = w.parentNode.offsetTop;
-      if (lastTop === null || Math.abs(top - lastTop) > 2) {
-        current = [];
-        lines.push(current);
-        lastTop = top;
-      }
-      current.push(w);
-    });
+      gsap.set(words, { yPercent: 100, autoAlpha: 0 });
 
-    gsap.set(words, { yPercent: 100, autoAlpha: 0 });
-
-    const tl = gsap.timeline({ scrollTrigger: ST(".story__headline") });
-    lines.forEach((lineWords, i) => {
-      tl.to(lineWords, {
-        yPercent: 0,
-        autoAlpha: 1,
-        duration: ddur(DUR_HEADING),
-        ease: EASE_HEADING
-      }, i * STAGGER_LINES);
+      const tl = gsap.timeline({ scrollTrigger: ST(story.querySelector(".story__headline")) });
+      lines.forEach((lineWords, i) => {
+        tl.to(lineWords, {
+          yPercent: 0,
+          autoAlpha: 1,
+          duration: ddur(DUR_HEADING),
+          ease: EASE_HEADING
+        }, i * STAGGER_LINES);
+      });
     });
   }
 

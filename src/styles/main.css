@@ -1038,6 +1038,11 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   color: var(--gold);
   font-style: italic;
 }
+/* Section breaker variant: a cream interstitial bridging Mr. Jerry's craft to
+   the Tetra everyday format. Sits between two dark sections, so balance the
+   top/bottom padding and tighten the eyebrow into a compact band. */
+.story--breaker { padding-top: clamp(1.5rem, 3vh, 2.5rem); }
+.story--breaker .story__eyebrow { margin-bottom: 1.25rem; }
 
 /* ------------ Orbital collection ------------ */
 /* ------------ Marquee breaker (hero -> collection) ------------
