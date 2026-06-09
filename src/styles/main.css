@@ -1887,16 +1887,20 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: clamp(540px, 92vh, 820px);
   display: flex;
+  flex-direction: column;
   background: #080500; /* matches the Tetra section above for a seamless seam */
   color: var(--cream);
 }
-/* Background film — covers the whole section; biased left on mobile so the
-   cans survive the narrow crop. */
+/* Mobile-first: the film is a full-width banner stacked ABOVE the copy, so both
+   cans read clearly and the headline sits on solid dark below — no text-over-
+   cans. The desktop query below turns this into a full-bleed overlay. */
 .xf__bg {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
+  /* Tall portrait banner so the two cans fill the frame at full height and read
+     big; the crop is biased onto the cans (the empty dark right is cut away). */
+  aspect-ratio: 4 / 5;
   z-index: 0;
 }
 .xf__video {
@@ -1904,22 +1908,27 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 34% center;
+  object-position: 23% center;
 }
-/* Directional scrim: drops the right side into shadow for headline contrast,
-   plus a bottom fade for the mobile (text-below) layout. */
+/* Feather the banner's top into the dark Tetra section above and its bottom
+   into the copy block below, so the cans rise out of the black and the text
+   sits right on its lower edge with no hard seam or dead gap. */
+.xf__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, #080500 0%, transparent 13%),
+    linear-gradient(to top, #080500 0%, rgba(8, 5, 0, 0.7) 18%, transparent 42%);
+}
+/* The full-section directional scrim is a desktop-only overlay device. */
 .xf__scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    /* Top fade dissolves the video's hard upper edge into the dark Tetra
-       section above (its exact #080500), so the cans appear to rise out of
-       the black with no visible seam. */
-    linear-gradient(to bottom, #080500 0%, rgba(8, 5, 0, 0.55) 9%, transparent 24%),
-    linear-gradient(to top, rgba(10, 6, 8, 0.94) 0%, rgba(10, 6, 8, 0.5) 30%, transparent 58%),
-    linear-gradient(to right, transparent 38%, rgba(10, 6, 8, 0.4) 72%, rgba(10, 6, 8, 0.66) 100%);
+  display: none;
 }
 .xf__inner {
   position: relative;
@@ -1927,10 +1936,10 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
+  margin-top: clamp(-5.5rem, -17vw, -3rem); /* lift the copy onto the banner's lower edge */
   display: flex;
-  align-items: flex-end;
   justify-content: center;
-  padding: clamp(2rem, 8vh, 5rem) 1.25rem clamp(2.25rem, 7vh, 4.5rem);
+  padding: 0 1.25rem clamp(2.5rem, 9vw, 3.5rem);
 }
 .xf__copy {
   display: flex;
@@ -1999,11 +2008,16 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .xf__cta { margin-top: 0.4rem; }
 
-/* Desktop: video sits centred, copy pulled into the dark right-hand column. */
+/* Desktop: full-bleed overlay — the film fills the section and the copy floats
+   in the dark right-hand column. */
 @media (min-width: 880px) {
-  .xf { min-height: clamp(600px, 88vh, 880px); }
-  .xf__video { object-position: center; }
+  .xf { min-height: clamp(600px, 88vh, 880px); flex-direction: row; }
+  /* Restore the covering background film + its directional scrim. */
+  .xf__bg { position: absolute; inset: 0; aspect-ratio: auto; }
+  .xf__bg::after { display: none; }
+  .xf__video { height: 100%; object-position: center; }
   .xf__scrim {
+    display: block;
     background:
       linear-gradient(to bottom, #080500 0%, rgba(8, 5, 0, 0.5) 8%, transparent 22%),
       linear-gradient(to right, transparent 0%, transparent 44%, rgba(10, 6, 8, 0.55) 68%, rgba(10, 6, 8, 0.86) 100%),
@@ -2012,6 +2026,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   /* Widen the container + add right breathing room so the copy sits further
      into the dark right-hand space, better balancing the cans on the left. */
   .xf__inner {
+    margin-top: 0;
     align-items: center;
     justify-content: flex-end;
     padding-block: 0;
