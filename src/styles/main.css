@@ -917,8 +917,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 /* Negroni photo variant: 3:2 landscape still, centered, fills the frame. */
 .jerrys__left--photo-negroni {
   background-image: url('../../public/images/backgrounds/jerrys-negroni-landscape.jpg');
-  background-size: cover;
-  background-position: center center;
+  background-size: auto 120%;
+  background-position: center 76%;
   background-repeat: no-repeat;
 }
 /* Mirror of the espresso fade: dissolve the LEFT edge into the text panel
