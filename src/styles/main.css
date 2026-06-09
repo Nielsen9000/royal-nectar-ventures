@@ -725,7 +725,9 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 .jerrys__split {
   position: relative;
-  min-height: clamp(480px, 68vh, 760px);
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 600px;
   display: grid;
   grid-template-columns: 55% 45%;
 }
@@ -744,13 +746,11 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .jerrys__left--video {
   background-image: none;
 }
-/* Espresso photo variant: portrait still image instead of video.
-   Pin to the bottom and pull the zoom back a touch so the full glass
-   (incl. the stem/base) stays in frame instead of being cropped off. */
+/* Espresso photo variant: 3:2 landscape image, centered, fills the frame. */
 .jerrys__left--photo {
-  background-image: url('../../public/images/backgrounds/jerrys-espresso-portrait.jpg');
-  background-size: auto 108%;
-  background-position: center bottom;
+  background-image: url('../../public/images/backgrounds/jerrys-espresso-landscape.jpg');
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 .jerrys__video {
@@ -765,7 +765,21 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, transparent 60%, #1E0E02 100%);
+  /* Stacked ramps: fade the right edge into the text panel AND the bottom edge
+     into the section brown, so the photo dissolves on both sides with no seam.
+     Both ramps land on #1E0E02 exactly, matching the section background. */
+  background:
+    linear-gradient(to right,
+      transparent 0%,
+      transparent 28%,
+      rgba(30, 14, 2, 0.35) 55%,
+      rgba(30, 14, 2, 0.78) 80%,
+      #1E0E02 100%),
+    linear-gradient(to bottom,
+      transparent 0%,
+      transparent 60%,
+      rgba(30, 14, 2, 0.45) 82%,
+      #1E0E02 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -775,13 +789,13 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Extra bottom padding keeps the CTA clear of the 80px section-transition gradient */
-  padding: clamp(2.5rem, 4.5vw, 4.5rem) clamp(3rem, 6vw, 7rem) clamp(5rem, 6vw, 6rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem) clamp(3rem, 6vw, 7rem) clamp(2rem, 4vw, 3.5rem);
+  overflow: hidden;
 }
 .jerrys__inner {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: clamp(0.7rem, 1.2vw, 1.1rem);
   max-width: 540px;
 }
 .jerrys__eyebrow {
@@ -878,7 +892,12 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   background-image: url('../../public/images/backgrounds/jerrys-negroni.jpg');
 }
 .jerrys--negroni .jerrys__left::after {
-  background: linear-gradient(to left, transparent 60%, #1E0E02 100%);
+  background: linear-gradient(to left,
+    transparent 0%,
+    transparent 28%,
+    rgba(30, 14, 2, 0.35) 55%,
+    rgba(30, 14, 2, 0.78) 80%,
+    #1E0E02 100%);
 }
 .jerrys--negroni .jerrys__inner {
   margin: auto 0;
@@ -903,6 +922,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   .jerrys__split,
   .jerrys--negroni .jerrys__split {
     grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
     min-height: 0;
   }
   .jerrys__left { min-height: 56vh; }
