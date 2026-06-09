@@ -254,10 +254,17 @@ body.is-scrolled .nav {
 }
 body.is-scrolled .nav::before { opacity: 0; }
 
-body.is-nav-light .nav,
+/* Light context (light heroes / light interior pages): ink text, transparent
+   at the top, picking up a light translucent bar only once scrolled. */
+body.is-nav-light .nav {
+  color: var(--ink);
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 body.is-scrolled.is-nav-light .nav {
   background: rgba(245, 230, 200, 0.9);
-  color: var(--ink);
   border-bottom-color: rgba(8, 5, 0, 0.12);
   backdrop-filter: blur(14px) saturate(1.1);
   -webkit-backdrop-filter: blur(14px) saturate(1.1);
@@ -294,8 +301,8 @@ body.is-nav-light .nav__wordmark { color: var(--ink); }
   transition: color 400ms var(--ease-soft);
 }
 .nav__antler {
-  width: 96px;
-  height: 96px;
+  width: 72px;
+  height: 72px;
   flex-shrink: 0;
   display: block;
   object-fit: contain;
@@ -2415,7 +2422,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 
 @media (min-width: 900px) {
   .nav__toggle { display: none; }
-  .nav__antler { width: 128px; height: 128px; }
+  .nav__antler { width: 96px; height: 96px; }
   .nav__links { display: inline-flex; }
 
   .products__head { padding: 9rem 3rem 5rem; }
@@ -2940,6 +2947,16 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   transition: opacity 220ms var(--ease-soft), transform 220ms var(--ease-soft), visibility 220ms;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
   z-index: 200;
+}
+/* Invisible bridge spanning the gap between the trigger and the menu so the
+   hover state isn't lost when the cursor crosses it (which dropped the menu). */
+.nav__dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
 }
 .nav__dropdown:hover .nav__dropdown-menu,
 .nav__dropdown:focus-within .nav__dropdown-menu,

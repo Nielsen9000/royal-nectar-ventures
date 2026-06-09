@@ -261,13 +261,21 @@
 
   function initNavScrollState() {
     const trigger = document.querySelector(".hero") || document.querySelector(".collection-hero");
-    if (!trigger) return;
-    ScrollTrigger.create({
-      trigger: trigger,
-      start: "bottom 85%",
-      onEnter:     () => document.body.classList.add("is-scrolled"),
-      onLeaveBack: () => document.body.classList.remove("is-scrolled")
-    });
+    if (trigger && typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.create({
+        trigger: trigger,
+        start: "bottom 85%",
+        onEnter:     () => document.body.classList.add("is-scrolled"),
+        onLeaveBack: () => document.body.classList.remove("is-scrolled")
+      });
+      return;
+    }
+    // Interior pages with no hero: solidify the nav after a small scroll.
+    const onScroll = () => {
+      document.body.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 
   function initNavTheme() {
