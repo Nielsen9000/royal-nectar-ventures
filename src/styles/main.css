@@ -846,13 +846,24 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   line-height: 1.6;
   opacity: 0.88;
 }
+/* Small caption above each list — espresso lists "Awards", negroni lists
+   "Ingredients & serve" — so the same slot reads correctly in both. */
+.jerrys__list-label {
+  display: block;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(200, 134, 10, 0.25);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
 .jerrys__awards {
   list-style: none;
-  padding: 1.25rem 0 0;
-  margin: 0.25rem 0 0;
+  padding: 0;
+  margin: 0;
   display: grid;
   gap: 0.9rem;
-  border-top: 1px solid rgba(200,134,10,0.25);
 }
 .jerrys__award {
   display: flex;

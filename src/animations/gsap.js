@@ -536,6 +536,7 @@
       const title   = section.querySelector(".jerrys__title");
       const sub     = section.querySelector(".jerrys__sub");
       const body    = section.querySelector(".jerrys__body");
+      const listLabel = section.querySelector(".jerrys__list-label");
       const awards  = section.querySelectorAll(".jerrys__award");
       const cta     = section.querySelector(".jerrys__cta");
 
@@ -584,10 +585,15 @@
         { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
         "-=0.4");
 
+      if (listLabel) tl.fromTo(listLabel,
+        { y: 16, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" },
+        "-=0.3");
+
       if (awards.length) tl.fromTo(awards,
         { y: 16, autoAlpha: 0 },
         { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.15 },
-        "-=0.3");
+        "-=0.25");
 
       if (cta) tl.fromTo(cta,
         { y: 16, autoAlpha: 0 },
