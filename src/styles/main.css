@@ -185,8 +185,9 @@ body:not(.anim-ready) .footer__kente {
 .hero__sub,
 .hero__actions > *,
 .hero__media,
-.jerrys__copy,
-.jerrys__media,
+.jerrys__head > *,
+.jerrys__copy > *,
+.jerrys__photo-bg,
 .story__headline .word > span,
 .orbital__display,
 .orbital__stage,
@@ -732,257 +733,156 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 }
 
 /* ------------ Mr. Jerry's Espresso Martini ------------ */
+/* ------------ Mr. Jerry's — ready-to-serve cocktail duo ------------
+   One branded section presenting both cocktails (Espresso Martini + Midday
+   Negroni) as a side-by-side diptych, halving the old two-section footprint. */
 .jerrys {
-  --jerrys-brown-l: #1E0E02;
-  --jerrys-brown-r: #1E0E02;
   position: relative;
-  background: var(--jerrys-brown-l);
-  overflow: hidden;
   isolation: isolate;
+  overflow: hidden;
+  background: #1E0E02;
+  color: var(--cream);
+  /* No horizontal padding — the photo columns run full-bleed to the edges. */
+  padding: clamp(3rem, 7vh, 5.5rem) 0 clamp(3rem, 7vh, 5.5rem);
+}
+.jerrys__head {
+  max-width: 720px;
+  margin: 0 auto clamp(2rem, 4.5vw, 3.25rem);
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.6rem, 1.4vw, 1rem);
+}
+.jerrys__eyebrow {
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+.jerrys__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 1rem + 3.2vw, 3.4rem);
+  line-height: 1.02;
   color: var(--cream);
 }
-/* Negroni (brown) -> tetra hero (dark top): fade into the hero's #080500 so
-   the dark carries through instead of flashing cream then dark again. */
-.jerrys:last-of-type::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent 0%, #080500 100%);
-  pointer-events: none;
-  z-index: 4;
+.jerrys__intro {
+  margin: 0;
+  font-family: var(--font-body);
+  color: rgba(245, 230, 200, 0.74);
+  font-size: clamp(0.98rem, 0.9rem + 0.3vw, 1.12rem);
+  line-height: 1.6;
 }
-.jerrys__split {
-  position: relative;
-  height: 100vh;
-  max-height: 100vh;
-  min-height: 600px;
+.jerrys__duo {
+  margin: 0;
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.5rem, 1vw, 0.9rem);
 }
-.jerrys__left {
+.jerrys__pour {
+  display: flex;
+  flex-direction: column;
+  --accent: var(--gold);
+}
+.jerrys__pour--negroni { --accent: #C8420A; }
+/* Wide 3:2 landscape (cocktail + angled bottle), full-bleed in its column. */
+.jerrys__photo {
   position: relative;
   width: 100%;
-  min-height: 100%;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
-  background-image: url('../../public/images/backgrounds/jerrys-hero.jpg');
+}
+.jerrys__photo-bg {
+  position: absolute;
+  inset: 0;
   background-size: cover;
-  background-position: 70% center;
-  pointer-events: none;
-  z-index: 0;
-  /* The Ken Burns scale (1.08 -> 1.0) can leave a flickering sub-pixel seam at
-     the edges during the reveal; promote to its own GPU layer to stabilise it. */
+  background-position: center;
+  will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  will-change: transform;
 }
-/* Espresso photo variant: 3:2 landscape image, centered, fills the frame. */
-.jerrys__left--photo {
-  background-image: url('../../public/images/backgrounds/jerrys-espresso-landscape.jpg');
-  background-size: auto 118%;
-  background-position: center 80%;
-  background-repeat: no-repeat;
+.jerrys__pour--espresso .jerrys__photo-bg {
+  background-image: url('../../public/images/backgrounds/jerrys-espresso-bottle.jpg');
 }
-.jerrys__left::after {
+.jerrys__pour--negroni .jerrys__photo-bg {
+  background-image: url('../../public/images/backgrounds/jerrys-negroni-bottle.jpg');
+}
+/* Gentle bottom fade so the photo's lower edge melts into the brown before the copy. */
+.jerrys__photo::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Stacked ramps: fade the right edge into the text panel AND the bottom edge
-     into the section brown, so the photo dissolves on both sides with no seam.
-     Both ramps land on #1E0E02 exactly, matching the section background. */
-  background:
-    linear-gradient(to right,
-      transparent 0%,
-      transparent 28%,
-      rgba(30, 14, 2, 0.35) 55%,
-      rgba(30, 14, 2, 0.78) 80%,
-      #1E0E02 100%),
-    linear-gradient(to bottom,
-      transparent 0%,
-      transparent 60%,
-      rgba(30, 14, 2, 0.45) 82%,
-      #1E0E02 100%);
+  background: linear-gradient(to bottom, transparent 62%, rgba(30, 14, 2, 0.5) 86%, #1E0E02 100%);
   pointer-events: none;
-  z-index: 1;
 }
-.jerrys__right {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(1.5rem, 4vw, 3.5rem) clamp(3rem, 6vw, 7rem) clamp(2rem, 4vw, 3.5rem);
-  overflow: hidden;
-}
-.jerrys__inner {
+.jerrys__copy {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.7rem, 1.2vw, 1.1rem);
-  max-width: 540px;
+  align-items: flex-start;
+  gap: clamp(0.5rem, 1vw, 0.8rem);
+  /* Photo is full-bleed; inset only the copy so text isn't glued to the edge. */
+  padding: clamp(1.1rem, 2vw, 1.6rem) clamp(1.25rem, 3vw, 2.5rem) 0;
 }
-.jerrys__eyebrow {
-  display: inline-flex;
-  align-self: flex-start;
-  color: var(--gold);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-}
-.jerrys__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(2rem, 0.9rem + 4.2vw, 3.9rem);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  color: var(--cream);
-}
-.jerrys__sub {
-  margin: 0;
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
-  color: var(--gold);
-  letter-spacing: 0.01em;
-}
-.jerrys__body {
-  margin: 0;
-  color: var(--cream);
-  font-size: clamp(0.92rem, 0.88rem + 0.25vw, 1.02rem);
-  line-height: 1.6;
-  opacity: 0.88;
-}
-/* Small caption above each list — espresso lists "Awards", negroni lists
-   "Ingredients & serve" — so the same slot reads correctly in both. */
-.jerrys__list-label {
-  display: block;
-  padding-top: 1.1rem;
-  border-top: 1px solid rgba(200, 134, 10, 0.25);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.jerrys__awards {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.9rem;
-}
-.jerrys__award {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  color: var(--gold);
-}
-.jerrys__award-text {
-  display: flex; flex-direction: column; gap: 0.15rem; line-height: 1.25;
-}
-.jerrys__award-text strong {
+.jerrys__tag {
+  position: relative;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
-  color: var(--gold);
+  font-size: clamp(1.35rem, 1rem + 1.4vw, 1.95rem);
+  line-height: 1.05;
+  color: var(--cream);
+  padding-bottom: 0.5rem;
 }
-.jerrys__award-text span {
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
+.jerrys__tag::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+}
+.jerrys__abv {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold-soft);
-  opacity: 0.85;
 }
+.jerrys__desc {
+  margin: 0;
+  font-family: var(--font-body);
+  color: rgba(245, 230, 200, 0.82);
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.05rem);
+  line-height: 1.6;
+}
+.jerrys__note {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(245, 230, 200, 0.74);
+}
+.jerrys__note strong { color: rgba(245, 230, 200, 0.92); font-weight: 700; }
 .jerrys__cta {
   --btn-bg: var(--gold);
   --btn-fg: var(--ink);
   --btn-ico-bg: var(--ink);
   --btn-ico-fg: var(--gold);
   align-self: flex-start;
-  margin-top: 0.75rem;
+  margin-top: clamp(0.6rem, 1.2vw, 1rem);
 }
 .jerrys__cta:hover { --btn-bg: var(--gold-soft); }
 
-/* Star icon sizing — base rule restored for the negroni section's ingredient list */
-.jerrys__star {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  color: var(--gold);
-  filter: drop-shadow(0 0 10px rgba(200, 134, 10, 0.4));
-}
-
-/* ------------ Mr. Jerry's Midday Negroni (mirrored variant) ------------ */
-.jerrys--negroni {
-  --jerrys-negroni-accent: #C8420A;
-}
-/* Mirror via reversed grid columns: text left (45%), image right (55%) */
-.jerrys--negroni .jerrys__split {
-  grid-template-columns: 45% 55%;
-}
-/* Negroni photo variant: 3:2 landscape still, centered, fills the frame. */
-.jerrys__left--photo-negroni {
-  background-image: url('../../public/images/backgrounds/jerrys-negroni-landscape.jpg');
-  background-size: auto 120%;
-  background-position: center 76%;
-  background-repeat: no-repeat;
-}
-/* Mirror of the espresso fade: dissolve the LEFT edge into the text panel
-   AND the bottom edge into the section brown. */
-.jerrys--negroni .jerrys__left::after {
-  background:
-    linear-gradient(to left,
-      transparent 0%,
-      transparent 28%,
-      rgba(30, 14, 2, 0.35) 55%,
-      rgba(30, 14, 2, 0.78) 80%,
-      #1E0E02 100%),
-    linear-gradient(to bottom,
-      transparent 0%,
-      transparent 60%,
-      rgba(30, 14, 2, 0.45) 82%,
-      #1E0E02 100%);
-}
-.jerrys--negroni .jerrys__inner {
-  margin: auto 0;
-}
-/* Keep one red touch — the eyebrow — as the negroni's "limited edition"
-   signature; the sub line and CTA fall back to the espresso gold so the two
-   Jerry's sections read as a cohesive mirrored pair. */
-.jerrys--negroni .jerrys__eyebrow {
-  color: var(--jerrys-negroni-accent);
-}
-
-@media (max-width: 768px) {
-  /* Stack to a single column so the text isn't crushed into a narrow column */
-  .jerrys__split,
-  .jerrys--negroni .jerrys__split {
-    grid-template-columns: 1fr;
-    height: auto;
-    max-height: none;
-    min-height: 0;
-  }
-  .jerrys__left { min-height: 56vh; }
-  /* Negroni stacks exactly like martini on mobile: image on top, text below.
-     Its DOM order is text-then-image (for the desktop mirror), so pull the
-     image first, and match martini's fade 1:1 (right edge + bottom into text). */
-  .jerrys--negroni .jerrys__left { order: -1; }
-  .jerrys--negroni .jerrys__right { order: 0; }
-  .jerrys--negroni .jerrys__left::after {
-    background:
-      linear-gradient(to right,
-        transparent 0%,
-        transparent 28%,
-        rgba(30, 14, 2, 0.35) 55%,
-        rgba(30, 14, 2, 0.78) 80%,
-        #1E0E02 100%),
-      linear-gradient(to bottom,
-        transparent 0%,
-        transparent 60%,
-        rgba(30, 14, 2, 0.45) 82%,
-        #1E0E02 100%);
-  }
+@media (max-width: 759px) {
+  .jerrys__duo { grid-template-columns: 1fr; gap: clamp(2rem, 7vw, 3rem); }
+  .jerrys__photo { aspect-ratio: 4 / 3; }
 }
 
 /* ------------ Story (text breaker) ------------ */
@@ -2884,13 +2784,9 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .hero__sub,
 .hero__actions > *,
 .hero__media,
-.jerrys__title,
-.jerrys__eyebrow,
-.jerrys__sub,
-.jerrys__body,
-.jerrys__award,
-.jerrys__cta,
-.jerrys__media,
+.jerrys__head > *,
+.jerrys__copy > *,
+.jerrys__photo-bg,
 .story__headline .word > span,
 .orbital__display,
 .orbital__stage,
@@ -2951,8 +2847,8 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   body .premium__head > *,
   body .premium-card,
   body .contact-cta__inner > *,
+  body .jerrys__head > *,
   body .jerrys__copy > *,
-  body .jerrys__media,
   body .footer__inner > *,
   body .footer__kente,
   body .split-word__inner {

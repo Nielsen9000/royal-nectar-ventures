@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
-  <link rel="stylesheet" href="src/styles/main.css?v=69" />
+  <link rel="stylesheet" href="src/styles/main.css?v=76" />
 </head>
 <body>
   <div class="loader" id="loader" role="status" aria-label="Loading Royal Nectar Ventures">
@@ -211,57 +211,43 @@
   </div>
 </section>
 
-<section class="jerrys" id="jerrys" aria-label="Mr. Jerry's Espresso Martini">
-  <div class="jerrys__split">
-    <div class="jerrys__left jerrys__left--photo"></div>
-    <div class="jerrys__right">
-      <div class="jerrys__inner">
-        <span class="jerrys__eyebrow">Featured</span>
-        <h2 class="jerrys__title">Mr. Jerry&rsquo;s Espresso Martini</h2>
-        <p class="jerrys__sub">Ready to Serve Cocktail &middot; 20% ABV</p>
-        <p class="jerrys__body">A sweet style cocktail best enjoyed post dinner, intense coffee bitterness rounded by the vanilla and nutmeg. Super Smooth.</p>
-        <span class="jerrys__list-label">Awards</span>
-        <ul class="jerrys__awards" aria-label="Awards and accolades">
-          <li class="jerrys__award">
-            <div class="jerrys__award-text"><strong>Gold Medal 2022</strong><span>Concours Mondial de Bruxelles</span></div>
-          </li>
-          <li class="jerrys__award">
-            <div class="jerrys__award-text"><strong>IWSC 95 Points</strong><span>International Wine &amp; Spirit Competition</span></div>
-          </li>
-        </ul>
-        <a class="btn btn--primary jerrys__cta" href="#contact">
-          <span>Trade enquiry</span>
-          <span class="btn__ico" aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
-    </div>
+<section class="jerrys" id="jerrys" aria-label="Mr. Jerry's ready-to-serve cocktails">
+  <div class="jerrys__head">
+    <span class="jerrys__eyebrow">Mr. Jerry&rsquo;s</span>
+    <h2 class="jerrys__heading">Ready-to-serve cocktails</h2>
+    <p class="jerrys__intro">Bar-quality cocktails, bottled and ready to pour &mdash; the smooth and the bittersweet, both award-worthy.</p>
   </div>
-</section>
-
-<section class="jerrys jerrys--negroni" id="negroni" aria-label="Mr. Jerry's Midday Negroni">
-  <div class="jerrys__split">
-    <div class="jerrys__right jerrys__right--left">
-      <div class="jerrys__inner">
-        <span class="jerrys__eyebrow">Limited Edition</span>
-        <h2 class="jerrys__title">Mr. Jerry&rsquo;s Midday Negroni</h2>
-        <p class="jerrys__sub">Ready to Serve Cocktail &middot; 24% ABV</p>
-        <p class="jerrys__body">Robust, bitter with botanical depth &mdash; a burst of juniper and orange. An Italian favourite made with London Dry Gin, Vermouth and Bitters. Pour 100ml over ice, garnish with an orange slice. Sit back and unwind.</p>
-        <span class="jerrys__list-label">Ingredients &amp; serve</span>
-        <ul class="jerrys__awards" aria-label="Ingredients">
-          <li class="jerrys__award">
-            <div class="jerrys__award-text"><strong>London Dry Gin</strong><span>Vermouth &amp; Bitters</span></div>
-          </li>
-          <li class="jerrys__award">
-            <div class="jerrys__award-text"><strong>Serve over ice</strong><span>Garnish with orange slice</span></div>
-          </li>
-        </ul>
+  <div class="jerrys__duo">
+    <article class="jerrys__pour jerrys__pour--negroni">
+      <div class="jerrys__photo">
+        <div class="jerrys__photo-bg" role="img" aria-label="Mr. Jerry's Midday Negroni"></div>
+      </div>
+      <div class="jerrys__copy">
+        <span class="jerrys__tag">Midday Negroni</span>
+        <p class="jerrys__abv">Ready to serve &middot; 24% ABV</p>
+        <p class="jerrys__desc">Robust and bitter with botanical depth &mdash; juniper and orange over London Dry Gin, vermouth and bitters.</p>
+        <p class="jerrys__note"><strong>Serve over ice</strong> Garnish with an orange slice</p>
         <a class="btn btn--primary jerrys__cta" href="#contact">
           <span>Trade enquiry</span>
           <span class="btn__ico" aria-hidden="true">&rarr;</span>
         </a>
       </div>
-    </div>
-    <div class="jerrys__left jerrys__left--right jerrys__left--photo-negroni"></div>
+    </article>
+    <article class="jerrys__pour jerrys__pour--espresso">
+      <div class="jerrys__photo">
+        <div class="jerrys__photo-bg" role="img" aria-label="Mr. Jerry's Espresso Martini"></div>
+      </div>
+      <div class="jerrys__copy">
+        <span class="jerrys__tag">Espresso Martini</span>
+        <p class="jerrys__abv">Ready to serve &middot; 20% ABV</p>
+        <p class="jerrys__desc">A sweet, post-dinner pour &mdash; intense coffee bitterness rounded by vanilla and nutmeg. Super smooth.</p>
+        <p class="jerrys__note"><strong>Gold Medal 2022</strong> Concours Mondial de Bruxelles &middot; <strong>IWSC 95 pts</strong></p>
+        <a class="btn btn--primary jerrys__cta" href="#contact">
+          <span>Trade enquiry</span>
+          <span class="btn__ico" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -383,7 +369,7 @@
 
   <script src="public/vendor/gsap.min.js" defer></script>
   <script src="public/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="src/animations/gsap.js?v=29" defer></script>
+  <script src="src/animations/gsap.js?v=30" defer></script>
   <script src="src/animations/orbital-drag.js?v=3" defer></script>
 </body>
 </html>

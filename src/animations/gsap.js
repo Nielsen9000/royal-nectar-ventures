@@ -542,78 +542,34 @@
 
   function initJerrys() {
     if (reduced) return;
-    const sections = document.querySelectorAll(".jerrys");
-    if (!sections.length) return;
+    const section = document.querySelector(".jerrys");
+    if (!section) return;
 
-    sections.forEach((section) => {
-      const photo   = section.querySelector(".jerrys__left");
-      const eyebrow = section.querySelector(".jerrys__eyebrow");
-      const title   = section.querySelector(".jerrys__title");
-      const sub     = section.querySelector(".jerrys__sub");
-      const body    = section.querySelector(".jerrys__body");
-      const listLabel = section.querySelector(".jerrys__list-label");
-      const awards  = section.querySelectorAll(".jerrys__award");
-      const cta     = section.querySelector(".jerrys__cta");
-
-      // Ken Burns — photo slowly zooms in as section enters
-      if (photo) {
-        gsap.fromTo(photo,
-          { scale: 1.08 },
-          {
-            scale: 1.0,
-            duration: 2.2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 90%",
-              once: true
-            }
-          }
-        );
-      }
-
-      // Staggered text reveal
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          once: true
-        }
-      });
-
-      if (eyebrow) tl.fromTo(eyebrow,
-        { y: 20, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" });
-
-      if (title) tl.fromTo(title,
-        { y: 40, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.9, ease: "power4.out" },
-        "-=0.3");
-
-      if (sub) tl.fromTo(sub,
+    // Shared header reveal.
+    const head = section.querySelectorAll(".jerrys__eyebrow, .jerrys__heading, .jerrys__intro");
+    if (head.length) {
+      gsap.fromTo(head,
         { y: 24, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
-        "-=0.5");
+        {
+          y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.1,
+          scrollTrigger: { trigger: section, start: "top 78%", once: true }
+        });
+    }
 
-      if (body) tl.fromTo(body,
-        { y: 20, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
-        "-=0.4");
+    // Each cocktail: Ken Burns on its photo + a staggered copy reveal, each
+    // triggered as that half scrolls in.
+    gsap.utils.toArray(section.querySelectorAll(".jerrys__pour")).forEach((pour) => {
+      const photo = pour.querySelector(".jerrys__photo-bg");
+      const copy  = pour.querySelectorAll(".jerrys__tag, .jerrys__abv, .jerrys__desc, .jerrys__note, .jerrys__cta");
+      const st = { trigger: pour, start: "top 82%", once: true };
 
-      if (listLabel) tl.fromTo(listLabel,
-        { y: 16, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" },
-        "-=0.3");
+      if (photo) gsap.fromTo(photo,
+        { scale: 1.08 },
+        { scale: 1.0, duration: 2.2, ease: "power2.out", scrollTrigger: st });
 
-      if (awards.length) tl.fromTo(awards,
-        { y: 16, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.15 },
-        "-=0.25");
-
-      if (cta) tl.fromTo(cta,
-        { y: 16, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
-        "-=0.2");
+      if (copy.length) gsap.fromTo(copy,
+        { y: 22, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.08, scrollTrigger: st });
     });
   }
 
