@@ -2056,12 +2056,16 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   z-index: 1;
   pointer-events: none;
   background:
-    /* Soft "spotlight" ellipse behind the copy so the sub + meta stay readable
-       where they cross the bright cans, without dimming the whole lineup. */
-    radial-gradient(92% 56% at 50% 33%, rgba(8, 5, 0, 0.84) 0%, rgba(8, 5, 0, 0.46) 42%, transparent 72%),
-    /* Darken the upper area for the headline; leave the lower third (cans) clear. */
-    linear-gradient(to bottom, rgba(8, 5, 0, 0.66) 0%, rgba(8, 5, 0, 0.28) 26%, transparent 50%),
-    linear-gradient(to top, rgba(8, 5, 0, 0.5) 0%, transparent 22%);
+    /* Light "spotlight" just behind the text rows — enough to seat the copy on
+       the bright cans (the text also carries its own shadow), not enough to
+       drown the lineup. */
+    radial-gradient(78% 46% at 50% 30%, rgba(8, 5, 0, 0.52) 0%, rgba(8, 5, 0, 0.22) 48%, transparent 72%),
+    /* Gentle top darken for the headline + nav legibility. */
+    linear-gradient(to bottom, rgba(8, 5, 0, 0.42) 0%, transparent 32%),
+    /* Dissolve the video's bottom edge into the range section below (its exact
+       #0a0608) so the hero flows into "The Range" with no hard seam — solid at
+       the very bottom, easing off before it reaches the can labels. */
+    linear-gradient(to top, #0a0608 0%, #0a0608 5%, rgba(10, 6, 8, 0.68) 16%, rgba(10, 6, 8, 0.3) 30%, transparent 46%);
 }
 .xfp-hero__inner {
   position: relative;
@@ -2129,7 +2133,9 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 /* Range grid */
 .xfp {
   background:
-    radial-gradient(60% 45% at 50% 0%, rgba(216, 30, 91, 0.1), transparent 70%),
+    /* Glow sits well inside the section, not at the top edge, so the seam with
+       the hero above stays a neutral #0a0608 on both sides. */
+    radial-gradient(70% 50% at 50% 42%, rgba(216, 30, 91, 0.1), transparent 72%),
     #0a0608;
   color: var(--cream);
   padding: clamp(3rem, 8vh, 6rem) 1.25rem clamp(3.5rem, 10vh, 7rem);
