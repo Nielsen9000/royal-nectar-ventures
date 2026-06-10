@@ -253,11 +253,17 @@
     // On the homepage the cinematic hero timeline owns the nav reveal.
     if (document.querySelector(".hero")) return;
     if (reduced) return;
+    // fromTo with explicit targets + clearProps so the tween leaves NO residual
+    // inline transform — otherwise the pill CTA settles a few px off its CSS
+    // position (the homepage skips this fn, which is why its nav looked right).
     const tl = gsap.timeline({ defaults: { ease: EASE_BASE } });
-    tl.from(prep(".nav__brand"), { y: dy(24), autoAlpha: 0, duration: ddur(DUR_BASE) })
-      .from(prep(".nav__links > a, .nav__dropdown, .nav__toggle"), {
-        y: dy(18), autoAlpha: 0, duration: ddur(DUR_BUTTON), stagger: 0.08
-      }, "-=0.55");
+    tl.fromTo(prep(".nav__brand"),
+        { y: dy(24), autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: ddur(DUR_BASE), clearProps: "transform" })
+      .fromTo(prep(".nav__links > a, .nav__dropdown, .nav__toggle"),
+        { y: dy(18), autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: ddur(DUR_BUTTON), stagger: 0.08, clearProps: "transform" },
+        "-=0.55");
   }
 
   function initNavScrollState() {

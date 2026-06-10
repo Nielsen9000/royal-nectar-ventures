@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080500" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>XF Cans &mdash; Xquizit Fizz | Royal Nectar Ventures</title>
+  <meta name="description" content="XF &mdash; Xquizit Fizz. Eight bold, fizzy ready-to-drink flavours at 5% ABV in 330ml cans. The loud, young side of Royal Nectar Ventures." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
+  <link rel="stylesheet" href="src/styles/main.css?v=66" />
+</head>
+<body>
+  <div class="loader" id="loader" role="status" aria-label="Loading Royal Nectar Ventures">
+    <div class="loader__inner">
+      <svg class="loader__antler" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 44 L24 24" />
+          <path d="M24 28 L16 20 M16 20 L10 22 M16 20 L13 12 M16 20 L8 16" />
+          <path d="M24 28 L32 20 M32 20 L38 22 M32 20 L35 12 M32 20 L40 16" />
+          <path d="M24 34 L18 28 M18 28 L14 30" />
+          <path d="M24 34 L30 28 M30 28 L34 30" />
+          <circle cx="24" cy="44" r="1.4" fill="currentColor" stroke="none" />
+        </g>
+      </svg>
+      <span class="loader__wordmark">Royal Nectar Ventures</span>
+      <span class="loader__tag">The best quality drinks on the market</span>
+    </div>
+    <div class="loader__bar" aria-hidden="true"><span id="loaderFill"></span></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html" aria-label="Royal Nectar Ventures home">
+      <img class="nav__antler" src="public/images/logo/rnv-logo.png" alt="" aria-hidden="true" decoding="async" />
+      <span class="nav__wordmark">Royal Nectar Ventures</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#story">Our Story</a>
+      <div class="nav__dropdown"><button class="nav__dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="nav__caret" aria-hidden="true">&#9662;</span></button><div class="nav__dropdown-menu" role="menu"><a role="menuitem" href="premium-bottles.html">Premium Bottles</a><a role="menuitem" href="tetra-pak.html">Tetra Pak</a><a role="menuitem" href="xf.html" aria-current="page">XF Cans</a><a role="menuitem" href="mr-jerrys.html">Mr. Jerry&rsquo;s</a></div></div>
+      <a href="index.html#contact">Contact</a>
+      <a class="nav__cta" href="index.html#contact">
+        <span>Trade enquiry</span>
+        <span class="nav__cta-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </nav>
+
+    <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-overlay">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+    <div class="menu-overlay__kente"></div>
+    <div class="menu-overlay__inner">
+      <span class="menu-overlay__eyebrow">Royal Nectar Ventures &middot; Accra</span>
+      <ul class="menu-overlay__list">
+        <li><a href="index.html#story" data-menu-link>Our Story</a></li>
+        <li class="menu-overlay__group"><span class="menu-overlay__heading">Products</span><ul class="menu-overlay__sublist"><li><a href="premium-bottles.html" data-menu-link>Premium Bottles</a></li><li><a href="tetra-pak.html" data-menu-link>Tetra Pak</a></li><li><a href="xf.html" data-menu-link aria-current="page">XF Cans</a></li><li><a href="mr-jerrys.html" data-menu-link>Mr. Jerry&rsquo;s</a></li></ul></li>
+        <li><a href="index.html#contact" data-menu-link>Contact &amp; Trade</a></li>
+      </ul>
+      <div class="menu-overlay__foot">
+        <a href="mailto:spirits@royalnectarventures.com">spirits@royalnectarventures.com</a>
+        <a href="tel:+233542190308">(+233) 542 190 308</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="xfp-hero" aria-label="XF — Xquizit Fizz">
+      <div class="xfp-hero__bg" aria-hidden="true">
+        <video class="xfp-hero__video" autoplay muted loop playsinline preload="auto" poster="public/videos/xf-fizz-hero-poster.jpg">
+          <source src="public/videos/xf-fizz-hero.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="xfp-hero__scrim" aria-hidden="true"></div>
+      <div class="xfp-hero__inner">
+        <span class="xfp-hero__eyebrow">Xquizit Fizz &middot; Ready to Fizz</span>
+        <h1 class="xfp-hero__title">Eight ways to <em>fizz.</em></h1>
+        <p class="xfp-hero__sub">The loud, young side of the Royal Nectar book &mdash; bold flavours, cracked cold and ready to go.</p>
+        <div class="xfp-hero__meta">
+          <span>5% ABV</span>
+          <span>330ml cans</span>
+          <span>8 flavours</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="xfp" aria-label="The XF range">
+      <div class="xfp__head">
+        <span class="xfp__eyebrow">The Range</span>
+        <h2 class="xfp__title">Pick your fizz</h2>
+        <p class="xfp__lead">Eight naturally bold flavours, each with its own colour world &mdash; built for the beach, the braai and the late night.</p>
+      </div>
+      <div class="xfp__grid">
+        <article class="xfp-can" style="--accent:#E11D58;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-crazy-cranberry-nobg.png" alt="XF Crazy Cranberry" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Crazy Cranberry</h3>
+          <span class="xfp-can__type">Tart &amp; Punchy</span>
+          <p class="xfp-can__note">Crisp cranberry with a sharp, fizzy bite.</p>
+        </article>
+        <article class="xfp-can" style="--accent:#F2C200;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-zesty-lemon-nobg.png" alt="XF Zesty Lemon" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Zesty Lemon</h3>
+          <span class="xfp-can__type">Sharp Citrus</span>
+          <p class="xfp-can__note">Zesty lemon, bright and electric.</p>
+        </article>
+        <article class="xfp-can" style="--accent:#2E9B57;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-gin-tonic-nobg.png" alt="XF Gin &amp; Tonic" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Gin &amp; Tonic</h3>
+          <span class="xfp-can__type">Crisp &amp; Botanical</span>
+          <p class="xfp-can__note">The classic G&amp;T, canned and ready.</p>
+        </article>
+        <article class="xfp-can" style="--accent:#7B3FB5;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-blackcurrant-buzz-nobg.png" alt="XF Blackcurrant Buzz" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Blackcurrant Buzz</h3>
+          <span class="xfp-can__type">Deep &amp; Berry</span>
+          <p class="xfp-can__note">Dark blackcurrant with a fizzy buzz.</p>
+        </article>
+        <article class="xfp-can" style="--accent:#F7941D;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-tangy-orange-nobg.png" alt="XF Tangy Orange" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Tangy Orange</h3>
+          <span class="xfp-can__type">Bright &amp; Zingy</span>
+          <p class="xfp-can__note">Sun-soaked orange, full of zip.</p>
+        </article>
+        <article class="xfp-can" style="--accent:#F0531E;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-tropical-passion-nobg.png" alt="XF Tropical Passion" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Tropical Passion</h3>
+          <span class="xfp-can__type">Juicy &amp; Tropical</span>
+          <p class="xfp-can__note">A passionfruit-led tropical hit.</p>
+        </article>
+        <article class="xfp-can" style="--accent:#B5701E;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-long-island-ice-tea-nobg.png" alt="XF Long Island Ice Tea" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Long Island Ice Tea</h3>
+          <span class="xfp-can__type">Bold &amp; Layered</span>
+          <p class="xfp-can__note">The legendary mix, in a can.</p>
+        </article>
+        <article class="xfp-can" style="--accent:#C0186A;">
+          <div class="xfp-can__visual"><img src="public/images/bottles/xf-energy-nobg.png" alt="XF Energy" loading="lazy" decoding="async" /></div>
+          <h3 class="xfp-can__name">Energy</h3>
+          <span class="xfp-can__type">Charged &amp; Electric</span>
+          <p class="xfp-can__note">A bold, charged kick of fizz.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="xfp-cta" aria-label="Trade enquiry">
+      <div class="xfp-cta__inner">
+        <h2 class="xfp-cta__title">Want XF on your shelf?</h2>
+        <p class="xfp-cta__sub">We&rsquo;re lining up launch partners for bars, beaches and shops across Ghana. Get in early.</p>
+        <a class="btn btn--gold" href="index.html#contact">
+          <span>Register interest</span>
+          <span class="btn__ico" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Site footer">
+    <div class="footer__inner">
+      <img class="footer__logo" src="public/images/logo/rnv-logo.png" alt="Royal Nectar Ventures" decoding="async" />
+      <p class="footer__tag">The best quality drinks on the market.</p>
+
+      <div class="footer__grid">
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href="mailto:spirits@royalnectarventures.com">spirits@royalnectarventures.com</a>
+          <a href="tel:+233542190308">(+233) 542 190 308</a>
+          <a href="tel:+233532941034">(+233) 532 941 034</a>
+        </div>
+        <div class="footer__col">
+          <h4>Where</h4>
+          <p>Accra, Ghana</p>
+          <p>Distributed nationwide</p>
+          <a href="https://www.royalnectarventures.com">www.royalnectarventures.com</a>
+        </div>
+        <div class="footer__col">
+          <h4>Range</h4>
+          <a href="premium-bottles.html">Premium bottles</a>
+          <a href="xf.html">XF cans</a>
+          <a href="index.html#contact">Trade enquiry</a>
+        </div>
+      </div>
+
+      <p class="footer__small">Please drink responsibly. Not for sale to persons under 18.</p>
+      <p class="footer__copy">&copy; 2026 Royal Nectar Ventures Ghana.</p>
+    </div>
+    <div class="footer__kente" aria-hidden="true"></div>
+  </footer>
+
+  <script src="public/vendor/gsap.min.js" defer></script>
+  <script src="public/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="src/animations/gsap.js?v=29" defer></script>
+  <script>
+    // Energetic entrance for the XF page — runs after the deferred GSAP bundle.
+    window.addEventListener("DOMContentLoaded", function () {
+      if (!window.gsap) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from(".xfp-hero__inner > *", {
+        y: 30, autoAlpha: 0, duration: 0.7, ease: "power3.out", stagger: 0.1, delay: 0.15
+      });
+      gsap.from(".xfp-can", {
+        y: 44, autoAlpha: 0, duration: 0.7, ease: "back.out(1.4)", stagger: 0.07,
+        scrollTrigger: { trigger: ".xfp__grid", start: "top 80%", once: true }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -2037,6 +2037,246 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   .xf__badge { align-self: flex-start; }
 }
 
+/* ============ XF Cans page (xf.html) — loud neon range ============ */
+.xfp-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(560px, 90vh, 900px);
+  display: flex;
+  align-items: flex-start; /* copy lives in the upper dark space; the cans sit low in the film */
+  background: #080500;
+  color: var(--cream);
+}
+.xfp-hero__bg { position: absolute; inset: 0; z-index: 0; }
+.xfp-hero__video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 72%; }
+.xfp-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    /* Soft "spotlight" ellipse behind the copy so the sub + meta stay readable
+       where they cross the bright cans, without dimming the whole lineup. */
+    radial-gradient(92% 56% at 50% 33%, rgba(8, 5, 0, 0.84) 0%, rgba(8, 5, 0, 0.46) 42%, transparent 72%),
+    /* Darken the upper area for the headline; leave the lower third (cans) clear. */
+    linear-gradient(to bottom, rgba(8, 5, 0, 0.66) 0%, rgba(8, 5, 0, 0.28) 26%, transparent 50%),
+    linear-gradient(to top, rgba(8, 5, 0, 0.5) 0%, transparent 22%);
+}
+.xfp-hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(5.5rem, 17vh, 11rem) 1.25rem clamp(2.5rem, 8vh, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+}
+.xfp-hero__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+.xfp-hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--cream);
+  font-size: clamp(2.8rem, 1rem + 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-shadow: 0 6px 36px rgba(0, 0, 0, 0.5);
+}
+.xfp-hero__title em { font-style: italic; color: #E5A93A; }
+.xfp-hero__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: rgba(245, 230, 200, 0.92);
+  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem);
+  line-height: 1.4;
+  margin: 0;
+  max-width: 620px;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.75);
+}
+.xfp-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.4rem;
+  margin-top: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 230, 200, 0.82);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+}
+.xfp-hero__meta span { display: inline-flex; align-items: center; gap: 0.6rem; }
+.xfp-hero__meta span + span::before {
+  content: "";
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold);
+  margin-right: 0.6rem;
+}
+
+/* Range grid */
+.xfp {
+  background:
+    radial-gradient(60% 45% at 50% 0%, rgba(216, 30, 91, 0.1), transparent 70%),
+    #0a0608;
+  color: var(--cream);
+  padding: clamp(3rem, 8vh, 6rem) 1.25rem clamp(3.5rem, 10vh, 7rem);
+}
+.xfp__head {
+  max-width: 760px;
+  margin: 0 auto clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.xfp__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+.xfp__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 1rem + 3vw, 3.2rem);
+  line-height: 1;
+  margin: 0;
+  color: var(--cream);
+}
+.xfp__lead {
+  font-family: var(--font-body);
+  color: rgba(245, 230, 200, 0.72);
+  font-size: clamp(0.98rem, 0.9rem + 0.3vw, 1.1rem);
+  line-height: 1.6;
+  margin: 0;
+}
+.xfp__grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+}
+@media (min-width: 720px) {
+  .xfp__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.xfp-can {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(1.5rem, 3vw, 2.25rem) 1rem clamp(1.25rem, 2.5vw, 1.75rem);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(0, 0, 0, 0.28));
+  border: 1px solid rgba(245, 230, 200, 0.1);
+  transition: transform 320ms var(--ease-soft), border-color 320ms ease, box-shadow 320ms ease;
+}
+/* Per-flavour accent glow blooming from behind the can. */
+.xfp-can::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: auto 0 28% 0;
+  height: 58%;
+  background: radial-gradient(60% 60% at 50% 45%, var(--accent), transparent 70%);
+  opacity: 0.16;
+  filter: blur(14px);
+  transition: opacity 320ms ease;
+}
+.xfp-can:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 30px -4px var(--accent);
+}
+.xfp-can:hover::before { opacity: 0.36; }
+.xfp-can__visual {
+  height: clamp(170px, 30vw, 240px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.xfp-can__visual img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.5));
+  transition: transform 420ms var(--ease-soft);
+}
+.xfp-can:hover .xfp-can__visual img { transform: translateY(-4px) scale(1.03); }
+.xfp-can__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.3rem);
+  line-height: 1.05;
+  margin: 0;
+  color: var(--cream);
+}
+.xfp-can__type {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 0.55rem;
+  font-weight: 700;
+}
+.xfp-can__note {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(245, 230, 200, 0.62);
+  margin: 0.5rem 0 0;
+  line-height: 1.45;
+}
+
+/* Closing CTA band */
+.xfp-cta {
+  background: #080500;
+  color: var(--cream);
+  text-align: center;
+  padding: clamp(3rem, 8vh, 5rem) 1.25rem;
+}
+.xfp-cta__inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+.xfp-cta__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 1rem + 3vw, 3rem);
+  line-height: 1.02;
+  margin: 0;
+}
+.xfp-cta__sub {
+  font-family: var(--font-body);
+  color: rgba(245, 230, 200, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* ------------ Contact ------------ */
 .contact {
   position: relative;
