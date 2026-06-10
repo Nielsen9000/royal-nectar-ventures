@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
-  <link rel="stylesheet" href="src/styles/main.css?v=76" />
+  <link rel="stylesheet" href="src/styles/main.css?v=78" />
 </head>
 <body class="is-nav-light">
   <div class="loader" id="loader" role="status" aria-label="Loading Royal Nectar Ventures">
@@ -77,12 +77,18 @@
   </div>
 
   <main id="top">
-    <section class="catalog" aria-label="Premium bottles">
-      <div class="catalog__head">
-        <span class="catalog__eyebrow">The flagship line</span>
-        <h1 class="catalog__title">Premium Bottles</h1>
-        <p class="catalog__lead">Seven premium spirits, hand-picked for the bars, hotels and shelves of Ghana &mdash; each available in 1L bottles.</p>
+    <section class="cat-hero" aria-label="Premium bottles">
+      <span class="cat-hero__eyebrow">The flagship line</span>
+      <h1 class="cat-hero__title">Premium <em>Bottles</em></h1>
+      <p class="cat-hero__sub">Seven premium spirits, hand-picked for the bars, hotels and shelves of Ghana.</p>
+      <div class="cat-hero__meta">
+        <span>7 spirits</span>
+        <span>3 categories</span>
+        <span>1L format</span>
       </div>
+    </section>
+
+    <section class="catalog catalog--flush" aria-label="The premium line-up">
       <div class="catalog__group">
         <div class="catalog__grid">
           <a class="prod-card" style="--accent:#0066FF;" href="buccaneer-white-rum.html">
@@ -142,6 +148,17 @@
             </div>
           </a>
         </div>
+      </div>
+    </section>
+
+    <section class="xfp-cta" aria-label="Trade enquiry">
+      <div class="xfp-cta__inner">
+        <h2 class="xfp-cta__title">Want these on your shelf?</h2>
+        <p class="xfp-cta__sub">We supply bars, hotels, restaurants and retailers across Ghana. Let&rsquo;s talk range, volume and pricing.</p>
+        <a class="btn btn--gold" href="index.html#contact">
+          <span>Trade enquiry</span>
+          <span class="btn__ico" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </section>
   </main>

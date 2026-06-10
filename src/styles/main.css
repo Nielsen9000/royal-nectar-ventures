@@ -1496,16 +1496,17 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   background: var(--cream);
   border: 1px solid #C8860A;
   border-radius: 10px;
+  box-shadow: 0 10px 26px -10px rgba(8, 5, 0, 0.28);
   padding: 0.85rem 0.9rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   align-self: stretch;
   text-align: center;
-  gap: 0.55rem;
+  gap: 0.4rem;
   overflow: hidden;
   isolation: isolate;
-  height: clamp(280px, 40vh, 440px);
+  height: clamp(320px, 46vh, 500px);
   box-sizing: border-box;
   transition:
     transform 420ms var(--ease-soft),
@@ -1521,7 +1522,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .tetra-card__visual {
   position: relative;
   width: 100%;
-  flex: 0 0 65%;
+  flex: 0 0 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2304,7 +2305,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .footer__inner {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 4rem 1.25rem 2rem;
+  padding: 2.25rem 1.25rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2312,10 +2313,14 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   text-align: center;
 }
 .footer__logo {
-  width: clamp(140px, 22vw, 200px);
+  width: clamp(132px, 20vw, 184px);
+  /* The PNG carries ~25% empty canvas above the antler; crop tight to the mark
+     so the footer doesn't open with a big dead gap. */
+  aspect-ratio: 1.18;
   height: auto;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center 58%;
   /* Dark-grey antler PNG → gold #C8860A tint */
   filter: brightness(0) saturate(100%) invert(60%) sepia(59%) saturate(745%) hue-rotate(5deg) brightness(88%) contrast(90%) drop-shadow(0 12px 20px rgba(200, 134, 10, 0.25));
 }
@@ -3319,3 +3324,143 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
 .menu-overlay__sublist a:hover {
   color: var(--gold);
 }
+
+/* ============ Tetra Pak page (tetra-pak.html) ============
+   Reuses the existing .tetra hero + .tetra__grid / .tetra-card styles. These
+   wrap the standalone page: a dark band behind the carton grid and its head. */
+.tetra-range {
+  /* A touch deeper than the bright cream cards so they read as lifted tiles. */
+  background: #EBDAB0;
+  color: var(--ink);
+  padding: clamp(3rem, 8vh, 5.5rem) 0 0;
+}
+.tetra-range__head {
+  max-width: 760px;
+  margin: 0 auto clamp(1.75rem, 4vw, 2.75rem);
+  padding: 0 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+/* The shared .xfp__ head classes are cream-on-dark; recolour them for the
+   light range section. */
+.tetra-range .xfp__title { color: var(--ink); }
+.tetra-range .xfp__lead { color: rgba(8, 5, 0, 0.68); }
+/* The standalone tetra hero swaps the static .tetra__bg image for a video;
+   open the framing up (the shared image rule pins to center 38% for the index
+   teaser, which crops the beach clip too high). Scoped to the <video> only. */
+video.tetra__bg { object-position: center center; }
+/* On the standalone page the busy carton photo is gone, so the boxy radial
+   spotlight behind the copy (.tetra__content::before) reads as a hard dark
+   rectangle. Drop it and bake a big, edgeless full-section vignette into the
+   scrim instead — keeps the headline legible over the bright beach with no box.
+   Scoped to .tetra-page so the index teaser keeps its original treatment. */
+.tetra-page .tetra__content::before { display: none; }
+.tetra-page .tetra__scrim {
+  background:
+    radial-gradient(125% 95% at 50% 40%,
+      rgba(8, 5, 0, 0.6) 0%,
+      rgba(8, 5, 0, 0.32) 42%,
+      rgba(8, 5, 0, 0) 74%),
+    linear-gradient(to bottom,
+      rgba(8, 5, 0, 0.55) 0%,
+      rgba(8, 5, 0, 0.12) 24%,
+      rgba(8, 5, 0, 0.3) 62%,
+      rgba(8, 5, 0, 0.86) 100%);
+}
+
+/* Trade-enquiry CTA lives inside the cream range section now (no separate black
+   band). Tighten the grid's bottom gap and seat the copy + button on the cream,
+   so the cartons and the ask read as one continuous section. */
+.tetra-page .tetra__grid { padding-bottom: clamp(2.25rem, 5vw, 3.5rem); }
+.tetra-range__cta {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.25rem) 1.5rem clamp(4rem, 9vh, 6.5rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+.tetra-range__cta-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.85rem, 1rem + 3vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.tetra-range__cta-sub {
+  margin: 0;
+  font-family: var(--font-body);
+  color: rgba(8, 5, 0, 0.66);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.12rem);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+/* ============ Premium Bottles page hero (premium-bottles.html) ============
+   Light/cream hero that sits above the existing cream .catalog grid. */
+.cat-hero {
+  background: var(--cream);
+  color: var(--ink);
+  text-align: center;
+  padding: clamp(7rem, 18vh, 11rem) 1.25rem clamp(2.5rem, 6vh, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+}
+.cat-hero__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+.cat-hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 1rem + 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+}
+.cat-hero__title em { font-style: italic; color: var(--gold); }
+.cat-hero__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem);
+  line-height: 1.4;
+  margin: 0;
+  max-width: 600px;
+  color: rgba(8, 5, 0, 0.72);
+}
+.cat-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 1.4rem;
+  margin-top: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(8, 5, 0, 0.6);
+}
+.cat-hero__meta span + span::before {
+  content: "";
+  display: inline-block;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold);
+  margin-right: 1.4rem;
+  vertical-align: middle;
+}
+/* When a hero precedes the catalog, drop the catalog's big top padding. */
+.catalog--flush { padding-top: clamp(1.5rem, 4vh, 3rem); }
