@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080500" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Contact &amp; Trade &mdash; Royal Nectar Ventures</title>
+  <meta name="description" content="Get in touch with Royal Nectar Ventures. Trade and wholesale enquiries by email or WhatsApp — premium spirits, ready-to-serve cocktails and canned fizz, distributed nationwide across Ghana." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" href="public/images/logo/rnv-logo.png" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" />
+  <link rel="stylesheet" href="src/styles/main.css?v=97" />
+</head>
+<body>
+  <div class="loader" id="loader" role="status" aria-label="Loading Royal Nectar Ventures">
+    <div class="loader__inner">
+      <svg class="loader__antler" viewBox="0 0 48 48" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 44 L24 24" />
+          <path d="M24 28 L16 20 M16 20 L10 22 M16 20 L13 12 M16 20 L8 16" />
+          <path d="M24 28 L32 20 M32 20 L38 22 M32 20 L35 12 M32 20 L40 16" />
+          <path d="M24 34 L18 28 M18 28 L14 30" />
+          <path d="M24 34 L30 28 M30 28 L34 30" />
+          <circle cx="24" cy="44" r="1.4" fill="currentColor" stroke="none" />
+        </g>
+      </svg>
+      <span class="loader__wordmark">Royal Nectar Ventures</span>
+      <span class="loader__tag">The best quality drinks on the market</span>
+    </div>
+    <div class="loader__bar" aria-hidden="true"><span id="loaderFill"></span></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html" aria-label="Royal Nectar Ventures home">
+      <img class="nav__antler" src="public/images/logo/rnv-logo.png" alt="" aria-hidden="true" decoding="async" />
+      <span class="nav__wordmark">Royal Nectar Ventures</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="index.html#story">Our Story</a>
+      <div class="nav__dropdown"><button class="nav__dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Products <span class="nav__caret" aria-hidden="true">&#9662;</span></button><div class="nav__dropdown-menu" role="menu"><a role="menuitem" href="premium-bottles.html">Premium Bottles</a><a role="menuitem" href="tetra-pak.html">Tetra Pak</a><a role="menuitem" href="xf.html">XF Cans</a></div></div>
+      <a href="contact.html" aria-current="page">Contact</a>
+      <a class="nav__cta" href="#cform">
+        <span>Trade enquiry</span>
+        <span class="nav__cta-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </nav>
+
+    <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-overlay">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+    <div class="menu-overlay__kente"></div>
+    <div class="menu-overlay__inner">
+      <span class="menu-overlay__eyebrow">Royal Nectar Ventures &middot; Accra</span>
+      <ul class="menu-overlay__list">
+        <li><a href="index.html" data-menu-link>Home</a></li>
+        <li><a href="index.html#story" data-menu-link>Our Story</a></li>
+        <li class="menu-overlay__group"><span class="menu-overlay__heading">Products</span><ul class="menu-overlay__sublist"><li><a href="premium-bottles.html" data-menu-link>Premium Bottles</a></li><li><a href="tetra-pak.html" data-menu-link>Tetra Pak</a></li><li><a href="xf.html" data-menu-link>XF Cans</a></li></ul></li>
+        <li><a href="contact.html" data-menu-link aria-current="page">Contact &amp; Trade</a></li>
+      </ul>
+      <div class="menu-overlay__foot">
+        <a href="mailto:spirits@royalnectarventures.com">spirits@royalnectarventures.com</a>
+        <a href="tel:+233542190308">(+233) 542 190 308</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="cform" id="cform" aria-label="Contact and trade enquiries">
+      <div class="cform__inner">
+        <div class="cform__head">
+          <span class="cform__eyebrow">Trade &amp; wholesale</span>
+          <h1 class="cform__title">Let&rsquo;s talk <em>stock.</em></h1>
+          <p class="cform__sub">Bars, hotels, restaurants, retailers and event partners &mdash; tell us what you need and we&rsquo;ll reply fast. Nationwide delivery across Ghana.</p>
+        </div>
+
+        <div class="cform__grid">
+          <form class="cform__form" id="contactForm" novalidate>
+            <div class="cform__row">
+              <label class="cform__field">
+                <span>Name</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+              <label class="cform__field">
+                <span>Business <em>(optional)</em></span>
+                <input type="text" name="company" autocomplete="organization" />
+              </label>
+            </div>
+            <div class="cform__row">
+              <label class="cform__field">
+                <span>Email</span>
+                <input type="email" name="email" autocomplete="email" />
+              </label>
+              <label class="cform__field">
+                <span>Phone <em>(optional)</em></span>
+                <input type="tel" name="phone" autocomplete="tel" />
+              </label>
+            </div>
+            <label class="cform__field">
+              <span>What do you need?</span>
+              <textarea name="message" rows="5" placeholder="e.g. I run a bar in Accra and want to stock the Premium range &mdash; please send pricing." required></textarea>
+            </label>
+
+            <div class="cform__actions">
+              <button type="button" class="btn btn--gold" data-send="email">
+                <span>Send via email</span>
+                <span class="btn__ico" aria-hidden="true">&rarr;</span>
+              </button>
+              <button type="button" class="btn cform__wa" data-send="whatsapp">
+                <span>Send via WhatsApp</span>
+                <span class="btn__ico" aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+            <p class="cform__note" id="formNote" role="status" aria-live="polite"></p>
+          </form>
+
+          <aside class="cform__direct" aria-label="Direct contact details">
+            <h2 class="cform__direct-title">Or reach us directly</h2>
+            <a class="cform__direct-link" href="mailto:spirits@royalnectarventures.com">
+              <span class="cform__direct-label">Email</span>
+              <span class="cform__direct-value">spirits@royalnectarventures.com</span>
+            </a>
+            <a class="cform__direct-link" href="https://wa.me/233542190308" target="_blank" rel="noopener">
+              <span class="cform__direct-label">WhatsApp</span>
+              <span class="cform__direct-value">(+233) 542 190 308</span>
+            </a>
+            <a class="cform__direct-link" href="tel:+233532941034">
+              <span class="cform__direct-label">Distribution</span>
+              <span class="cform__direct-value">(+233) 532 941 034</span>
+            </a>
+            <div class="cform__direct-foot">
+              <span class="cform__direct-label">Where</span>
+              <p>Accra, Ghana &middot; distributed nationwide</p>
+              <a href="https://www.royalnectarventures.com">www.royalnectarventures.com</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Site footer">
+    <div class="footer__inner">
+      <img class="footer__logo" src="public/images/logo/rnv-logo.png" alt="Royal Nectar Ventures" decoding="async" />
+      <p class="footer__tag">The best quality drinks on the market.</p>
+
+      <div class="footer__grid">
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href="mailto:spirits@royalnectarventures.com">spirits@royalnectarventures.com</a>
+          <a href="tel:+233542190308">(+233) 542 190 308</a>
+          <a href="tel:+233532941034">(+233) 532 941 034</a>
+        </div>
+        <div class="footer__col">
+          <h4>Where</h4>
+          <p>Accra, Ghana</p>
+          <p>Distributed nationwide</p>
+          <a href="https://www.royalnectarventures.com">www.royalnectarventures.com</a>
+        </div>
+        <div class="footer__col">
+          <h4>Range</h4>
+          <a href="premium-bottles.html">Premium bottles</a>
+          <a href="xf.html">XF cans</a>
+          <a href="contact.html">Trade enquiry</a>
+        </div>
+      </div>
+
+      <p class="footer__small">Please drink responsibly. Not for sale to persons under 18.</p>
+      <p class="footer__copy">&copy; 2026 Royal Nectar Ventures Ghana.</p>
+    </div>
+    <div class="footer__kente" aria-hidden="true"></div>
+  </footer>
+
+  <script src="public/vendor/gsap.min.js" defer></script>
+  <script src="public/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="src/animations/gsap.js?v=30" defer></script>
+  <script>
+    // Static site, no backend: the form composes the enquiry and hands it off to
+    // the visitor's email client (mailto) or WhatsApp with everything pre-filled.
+    (function () {
+      var EMAIL = "spirits@royalnectarventures.com";
+      var WA = "233542190308"; // (+233) 542 190 308 in wa.me international format
+      var form = document.getElementById("contactForm");
+      var note = document.getElementById("formNote");
+      if (!form) return;
+
+      function val(name) {
+        var el = form.elements[name];
+        return el ? el.value.trim() : "";
+      }
+      function setNote(msg, ok) {
+        note.textContent = msg;
+        note.classList.toggle("is-error", !ok);
+      }
+      function compose() {
+        var name = val("name"), message = val("message");
+        if (!name || !message) {
+          setNote("Please add your name and a short message first.", false);
+          (name ? form.elements.message : form.elements.name).focus();
+          return null;
+        }
+        var company = val("company"), email = val("email"), phone = val("phone");
+        var lines = ["Name: " + name];
+        if (company) lines.push("Business: " + company);
+        if (email) lines.push("Email: " + email);
+        if (phone) lines.push("Phone: " + phone);
+        lines.push("", message);
+        setNote("Opening your messaging app…", true);
+        return { subject: "Trade enquiry — " + name, body: lines.join("\n") };
+      }
+
+      form.addEventListener("click", function (e) {
+        var btn = e.target.closest("[data-send]");
+        if (!btn) return;
+        var data = compose();
+        if (!data) return;
+        if (btn.dataset.send === "whatsapp") {
+          var text = "*Trade enquiry — " + val("name") + "*\n" + data.body;
+          window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+        } else {
+          window.location.href = "mailto:" + EMAIL +
+            "?subject=" + encodeURIComponent(data.subject) +
+            "&body=" + encodeURIComponent(data.body);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

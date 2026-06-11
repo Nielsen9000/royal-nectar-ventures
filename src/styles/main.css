@@ -3740,3 +3740,177 @@ video.tetra__bg { object-position: center center; }
   line-height: 1.6;
   max-width: 42ch;
 }
+
+/* ============ Contact / trade-enquiry page (contact.html) ============
+   Dark page (flows from the light nav into the dark footer) with a cream form
+   card and a gold-bordered direct-contact column. */
+.cform {
+  background: radial-gradient(120% 90% at 50% 0%, #170D05 0%, #0A0602 55%, #080500 100%);
+  color: var(--cream);
+  min-height: 100vh;
+  padding: calc(var(--nav-h) + clamp(2.5rem, 7vh, 5rem)) clamp(1.25rem, 5vw, 4rem) clamp(3.5rem, 9vh, 6rem);
+}
+.cform__inner { max-width: 1100px; margin: 0 auto; }
+.cform__head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(2.25rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.cform__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+.cform__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 1rem + 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+.cform__title em { font-style: italic; color: #E5A93A; }
+.cform__sub {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(245, 230, 200, 0.74);
+  max-width: 56ch;
+}
+.cform__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+@media (min-width: 880px) {
+  .cform__grid { grid-template-columns: 1.5fr 1fr; }
+}
+.cform__form {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(200, 134, 10, 0.28);
+  color: var(--cream);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.75);
+}
+.cform__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+@media (min-width: 560px) {
+  .cform__row { grid-template-columns: 1fr 1fr; }
+}
+.cform__field { display: flex; flex-direction: column; gap: 0.4rem; }
+.cform__field > span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.cform__field > span em {
+  font-style: normal;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: rgba(245, 230, 200, 0.5);
+}
+.cform__field input,
+.cform__field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--cream);
+  background: rgba(8, 5, 0, 0.45);
+  border: 1px solid rgba(245, 230, 200, 0.18);
+  border-radius: 9px;
+  padding: 0.7rem 0.85rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+.cform__field input::placeholder,
+.cform__field textarea::placeholder { color: rgba(245, 230, 200, 0.38); }
+.cform__field textarea { resize: vertical; min-height: 120px; }
+.cform__field input:focus,
+.cform__field textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(8, 5, 0, 0.6);
+  box-shadow: 0 0 0 3px rgba(200, 134, 10, 0.22);
+}
+.cform__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+/* Secondary WhatsApp action as a gold-outline ghost (keeps the black/gold). */
+.cform__wa {
+  --btn-bg: transparent;
+  --btn-fg: var(--cream);
+  --btn-ico-bg: var(--gold);
+  --btn-ico-fg: var(--ink);
+  box-shadow: inset 0 0 0 1.5px rgba(200, 134, 10, 0.55);
+}
+.cform__wa:hover { --btn-bg: rgba(200, 134, 10, 0.12); }
+.cform__note {
+  margin: 0.1rem 0 0;
+  min-height: 1.2em;
+  font-size: 0.9rem;
+  color: rgba(245, 230, 200, 0.6);
+}
+.cform__note.is-error { color: #FF8A8A; }
+.cform__direct { display: flex; flex-direction: column; gap: 0.9rem; }
+.cform__direct-title {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--cream);
+}
+.cform__direct-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-decoration: none;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid rgba(200, 134, 10, 0.3);
+  border-radius: 12px;
+  transition: border-color 220ms ease, background 220ms ease, transform 220ms ease;
+}
+.cform__direct-link:hover {
+  border-color: var(--gold);
+  background: rgba(200, 134, 10, 0.08);
+  transform: translateY(-2px);
+}
+.cform__direct-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.cform__direct-value { font-size: 1.02rem; color: var(--cream); }
+.cform__direct-foot {
+  margin-top: 0.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 230, 200, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.cform__direct-foot p { margin: 0; color: rgba(245, 230, 200, 0.78); font-size: 0.95rem; }
+.cform__direct-foot a { color: var(--gold); text-decoration: none; font-size: 0.95rem; }
