@@ -2170,6 +2170,14 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   align-items: center;
   gap: 1.1rem;
 }
+.xfp-cta__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
 .xfp-cta__title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -2177,6 +2185,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   line-height: 1.02;
   margin: 0;
 }
+.xfp-cta__title em { font-style: italic; color: #E5A93A; }
 .xfp-cta__sub {
   font-family: var(--font-body);
   color: rgba(245, 230, 200, 0.7);
@@ -3384,6 +3393,14 @@ video.tetra__bg { object-position: center center; }
   align-items: center;
   gap: 1.1rem;
 }
+.tetra-range__cta-eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
 .tetra-range__cta-title {
   margin: 0;
   font-family: var(--font-display);
@@ -3393,6 +3410,7 @@ video.tetra__bg { object-position: center center; }
   letter-spacing: -0.01em;
   color: var(--ink);
 }
+.tetra-range__cta-title em { font-style: italic; color: var(--gold); }
 .tetra-range__cta-sub {
   margin: 0;
   font-family: var(--font-body);
@@ -3485,12 +3503,13 @@ video.tetra__bg { object-position: center center; }
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem 1.4rem;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   font-family: var(--font-body);
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(245, 230, 200, 0.82);
+  color: var(--gold);
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
 }
 .prem-hero__meta span { display: inline-flex; align-items: center; gap: 0.6rem; }
@@ -3566,3 +3585,112 @@ video.tetra__bg { object-position: center center; }
 }
 /* When a hero precedes the catalog, drop the catalog's big top padding. */
 .catalog--flush { padding-top: clamp(1.5rem, 4vh, 3rem); }
+
+/* ============ Premium Bottles — flagship "colour world" cards ============
+   Scoped to .premium-page so products.html keeps the plain white prod-card.
+   Each card IS the product's colour world: a bright spotlight centre so the big
+   bottle pops, deepening to the accent at the edges. Fewer columns + a portrait
+   visual make the bottle large; a soft-tinted strip carries the label. */
+/* Dark gallery ground so the vibrant colour tiles pop; a warm near-black at the
+   top flows out of the dark hero and into the dark footer below. */
+.premium-page .catalog {
+  background:
+    radial-gradient(120% 90% at 50% 0%, #170D05 0%, #0A0602 55%, #080500 100%);
+}
+.premium-page .catalog__grid {
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+@media (min-width: 640px) {
+  .premium-page .catalog__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1080px) {
+  .premium-page .catalog__grid { grid-template-columns: repeat(3, 1fr); }
+}
+/* The whole card is one colour-world tile — no separate white strip. The label
+   sits on the darkened bottom of the gradient in white. */
+.premium-page .prod-card {
+  border-top: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px -18px color-mix(in srgb, var(--accent) 55%, #000);
+  background:
+    linear-gradient(to top,
+      color-mix(in srgb, var(--accent) 84%, #000) 0%,
+      color-mix(in srgb, var(--accent) 45%, transparent) 20%,
+      transparent 38%),
+    radial-gradient(ellipse 86% 60% at 50% 38%,
+      color-mix(in srgb, var(--accent) 20%, #fff) 0%,
+      color-mix(in srgb, var(--accent) 62%, #fff) 40%,
+      var(--accent) 78%,
+      color-mix(in srgb, var(--accent) 84%, #000) 100%);
+}
+.premium-page .prod-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px -20px color-mix(in srgb, var(--accent) 62%, #000);
+}
+.premium-page .prod-card__visual {
+  background: none;
+  aspect-ratio: 1 / 1.08;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 1.25rem 0;
+}
+.premium-page .prod-card__visual img {
+  max-width: 80%;
+  max-height: 92%;
+  filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.5));
+  -webkit-box-reflect: below 0 linear-gradient(transparent 60%, rgba(0, 0, 0, 0.15));
+  transition: transform 540ms var(--ease-soft);
+}
+.premium-page .prod-card:hover .prod-card__visual img {
+  transform: translateY(-6px) scale(1.04);
+}
+.premium-page .prod-card__meta {
+  background: none;
+  padding: 0.4rem 1.4rem 1.5rem;
+  gap: 0.3rem;
+}
+.premium-page .prod-card__type { color: rgba(255, 255, 255, 0.85); }
+.premium-page .prod-card__name { color: #fff; }
+.premium-page .prod-card__link { color: rgba(255, 255, 255, 0.78); }
+
+/* Trade-enquiry CTA lives as a grid cell that fills the empty space beside the
+   lone seventh bottle (spans the two leftover columns on wider screens). */
+.premium-page .prod-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.1rem;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  color: var(--cream);
+}
+@media (min-width: 640px) {
+  .premium-page .prod-cta { grid-column: span 2; }
+}
+.premium-page .prod-cta__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+.premium-page .prod-cta__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 1rem + 2.6vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+}
+.premium-page .prod-cta__title em { font-style: italic; color: #E5A93A; }
+.premium-page .prod-cta__sub {
+  margin: 0;
+  font-family: var(--font-body);
+  color: rgba(245, 230, 200, 0.72);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  line-height: 1.6;
+  max-width: 42ch;
+}
