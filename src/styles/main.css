@@ -3402,6 +3402,108 @@ video.tetra__bg { object-position: center center; }
   max-width: 46ch;
 }
 
+/* ============ Premium Bottles page — video hero (premium-bottles.html) ======
+   Full-bleed loop of coloured ink dispersing through black, with the headline
+   centred in the dark well of the frame. Mirrors the .xfp-hero / .tetra video-
+   hero pattern; the cream .catalog grid below picks the nav back up via
+   .is-scrolled. The seven bottles live in that grid, not here. */
+.prem-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(560px, 88vh, 900px);
+  display: flex;
+  align-items: center;
+  background: #080500;
+  color: var(--cream);
+}
+.prem-hero__bg { position: absolute; inset: 0; z-index: 0; }
+.prem-hero__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.prem-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    /* soft pool behind the copy so the headline reads against the ink */
+    radial-gradient(60% 48% at 50% 50%, rgba(8, 5, 0, 0.62) 0%, rgba(8, 5, 0, 0.28) 46%, transparent 74%),
+    /* darken the top for nav legibility */
+    linear-gradient(to bottom, rgba(8, 5, 0, 0.5) 0%, rgba(8, 5, 0, 0.1) 22%, transparent 38%),
+    /* meet the cream catalog below with a clean, slightly darker base */
+    linear-gradient(to top, rgba(8, 5, 0, 0.5) 0%, rgba(8, 5, 0, 0.16) 14%, transparent 34%);
+}
+.prem-hero__inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(6rem, 14vh, 9rem) 1.25rem clamp(4rem, 10vh, 6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+}
+.prem-hero__eyebrow {
+  font-family: var(--font-body);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+.prem-hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--cream);
+  font-size: clamp(2.8rem, 1rem + 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-shadow: 0 6px 36px rgba(0, 0, 0, 0.55);
+}
+.prem-hero__title em { font-style: italic; color: #E5A93A; }
+.prem-hero__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: rgba(245, 230, 200, 0.92);
+  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem);
+  line-height: 1.4;
+  margin: 0;
+  max-width: 620px;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.75);
+}
+.prem-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.4rem;
+  margin-top: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 230, 200, 0.82);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+}
+.prem-hero__meta span { display: inline-flex; align-items: center; gap: 0.6rem; }
+.prem-hero__meta span + span::before {
+  content: "";
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold);
+  margin-right: 0.6rem;
+}
+@media (max-width: 760px) {
+  .prem-hero { min-height: clamp(440px, 72vh, 620px); }
+}
+
 /* ============ Premium Bottles page hero (premium-bottles.html) ============
    Light/cream hero that sits above the existing cream .catalog grid. */
 .cat-hero {
