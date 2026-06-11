@@ -191,7 +191,6 @@
     // Static site, no backend: the form composes the enquiry and hands it off to
     // the visitor's email client (mailto) or WhatsApp with everything pre-filled.
     (function () {
-      var EMAIL = "spirits@royalnectarventures.com";
       var WA = "233542190308"; // (+233) 542 190 308 in wa.me international format
       var form = document.getElementById("contactForm");
       var note = document.getElementById("formNote");
@@ -205,7 +204,10 @@
         note.textContent = msg;
         note.classList.toggle("is-error", !ok);
       }
-      function compose() {
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // WhatsApp path: compose the enquiry text and hand off to WhatsApp.
+      function composeWhatsApp() {
         var name = val("name"), message = val("message");
         if (!name || !message) {
           setNote("Please add your name and a short message first.", false);
@@ -218,22 +220,70 @@
         if (email) lines.push("Email: " + email);
         if (phone) lines.push("Phone: " + phone);
         lines.push("", message);
-        setNote("Opening your messaging app…", true);
-        return { subject: "Trade enquiry — " + name, body: lines.join("\n") };
+        return lines.join("\n");
+      }
+
+      // Email path: POST the enquiry to the serverless endpoint (Resend).
+      function sendEmail(btn) {
+        var name = val("name"), email = val("email"), message = val("message");
+        if (!name || !email || !message) {
+          setNote("Please add your name, email and a short message first.", false);
+          (!name ? form.elements.name : !email ? form.elements.email : form.elements.message).focus();
+          return;
+        }
+        if (!EMAIL_RE.test(email)) {
+          setNote("Please enter a valid email address.", false);
+          form.elements.email.focus();
+          return;
+        }
+
+        var label = btn.querySelector("span");
+        var original = label ? label.textContent : "";
+        btn.disabled = true;
+        if (label) label.textContent = "Sending…";
+        setNote("Sending your enquiry…", true);
+
+        fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name,
+            company: val("company"),
+            email: email,
+            phone: val("phone"),
+            message: message
+          })
+        })
+          .then(function (res) {
+            return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+          })
+          .then(function (r) {
+            if (r.ok && r.data && r.data.success) {
+              form.reset();
+              setNote("Thanks — your enquiry is on its way. We’ll be in touch shortly.", true);
+            } else {
+              setNote((r.data && r.data.error) || "Sorry, something went wrong. Please email us directly.", false);
+            }
+          })
+          .catch(function () {
+            setNote("Network error — please check your connection or email us directly.", false);
+          })
+          .then(function () {
+            btn.disabled = false;
+            if (label) label.textContent = original;
+          });
       }
 
       form.addEventListener("click", function (e) {
         var btn = e.target.closest("[data-send]");
         if (!btn) return;
-        var data = compose();
-        if (!data) return;
+        e.preventDefault();
         if (btn.dataset.send === "whatsapp") {
-          var text = "*Trade enquiry — " + val("name") + "*\n" + data.body;
-          window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+          var text = composeWhatsApp();
+          if (text === null) return;
+          window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent("*Trade enquiry*\n" + text), "_blank", "noopener");
         } else {
-          window.location.href = "mailto:" + EMAIL +
-            "?subject=" + encodeURIComponent(data.subject) +
-            "&body=" + encodeURIComponent(data.body);
+          sendEmail(btn);
         }
       });
     })();

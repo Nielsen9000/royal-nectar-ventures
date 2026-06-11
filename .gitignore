@@ -6,3 +6,6 @@ public/.DS_Store
 # Claude Code local settings
 .claude/settings.local.json
 .vercel
+
+# Node / dependencies
+node_modules/
