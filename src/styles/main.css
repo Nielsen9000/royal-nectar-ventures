@@ -48,6 +48,11 @@
 
 * { box-sizing: border-box; }
 
+html {
+  /* Anchor jumps (incl. cross-page links like index.html#story) clear the
+     fixed nav instead of landing hidden underneath it. */
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -891,7 +896,7 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   background: var(--cream);
   color: var(--ink);
   overflow: hidden;
-  padding-bottom: clamp(1.5rem, 3vh, 2.5rem);
+  padding-bottom: clamp(3.5rem, 7vh, 6rem);
 }
 .story__inner {
   position: relative;
@@ -934,6 +939,47 @@ body.menu-open .menu-overlay__foot { opacity: 1; transform: translateY(0); }
   margin: 2.5rem auto 0;
   opacity: 0.7;
 }
+.story__body {
+  max-width: 620px;
+  margin: 2.25rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.story__body p {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.18rem);
+  line-height: 1.7;
+  color: rgba(8, 5, 0, 0.78);
+}
+.story__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.75rem, 5vw, 4rem);
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+}
+.story__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.story__stat-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  line-height: 1;
+  color: var(--ink);
+}
+.story__stat-label {
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+}
+.story__cta { margin: clamp(2.25rem, 4.5vw, 3.25rem) auto 0; }
 .story__word--accent span {
   color: var(--gold);
   font-style: italic;
